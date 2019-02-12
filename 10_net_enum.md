@@ -17,7 +17,7 @@
 =============================================================
 ## Port scanner
 ### Nmap
-    # nmap -sV -A -p- 192.168.206.23
+    # nmap -sV -A  192.168.206.23
     # nmap -sV -sC -p- 10.10.10.93
         -sV : Attempts to determine the version of the service running on port
         -sC : Scan with default NSE scripts. Considered useful for discovery and safe
