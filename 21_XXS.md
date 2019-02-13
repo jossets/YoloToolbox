@@ -6,8 +6,9 @@ https://quanyang.github.io/the-abcs-of-xss/
 
 
 ### Templates
+List of XSS templates:
+https://gist.github.com/jossets/069ec356de6f73e16b88f07c79728565
 
-<script src="https://gist.github.com/jossets/069ec356de6f73e16b88f07c79728565.js"></script>
 
 ### Basic
 ```html
@@ -30,9 +31,6 @@ http://12.0.0.11/xss/example3.php?name=%3Cscr%3Cscript%3Eipt%3Ealert(1);%3C/sc%3
 
 
 ### Embed JS
-
-Detect : use ', "
-666 lines of JS : https://gist.github.com/JohannesHoppe/5612274
 
 - with the <a tag directly in the URL. You will need to click the link to trigger the JavaScript code.
 ```` html
