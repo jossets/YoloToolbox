@@ -7,7 +7,7 @@ https://quanyang.github.io/the-abcs-of-xss/
 
 ### Templates
 
-<script src="https://gist.github.com/jossets/069ec356de6f73e16b88f07c79728565#file-xss-detecttion-templates"></script>
+<script src="https://gist.github.com/jossets/069ec356de6f73e16b88f07c79728565.js"></script>
 
 ### Basic
 ```html
