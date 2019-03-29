@@ -4,7 +4,23 @@
 
 ## Simple buffer overflow : overwrite a stack variable
 
+````
+$ cat buffer_01.c
+#include <stdio.h>
+#include <string.h>
+int main(int argc, char *argv[])
+{
+  char  tst=0;
+  char name[10];
 
+  strcpy(name, argv[1]);
+  printf("Hello %s\n", name);
+  if (tst=='Z') printf("Pwnd");
+  return 0;
+}
+$ gcc -fno-stack-protector buffer_01.c -o buffer_01
+$ buffer_01 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+````
 
 
 ## Execute stack payload : before ESP
@@ -15,10 +31,7 @@ Context:
 - No Address Space Layout Randomization
 => Adresses are hard coded in elf
 
-
-
-
-
+gcc -z execstack 
 
 
 
