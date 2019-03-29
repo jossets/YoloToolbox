@@ -12,6 +12,7 @@ Plugin pour gdb : https://github.com/longld/peda
 ````
 
 </br>
+
 ## Simple buffer overflow : overwrite a stack variable
 
 ````
@@ -33,6 +34,7 @@ $ buffer_01 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 ````
 
 </br>
+
 ## Execute stack payload : before ESP
 
 Context:
@@ -79,6 +81,7 @@ uid=1001(user) gid=1001(user) euid=1000(chall) groups=1001(user)
 ````
 
 </br>
+
 ## Execute stack payload : after ESP
 
 
@@ -88,24 +91,29 @@ On se le refait mais avec la payload après EIP
 ````
 
 </br>
+
 ## Stack/Heap non executable -> return to LibC
 
 
 </br>
+
 ## Hide LibC adresse ALSR 32 bits -> bruteforce search 
 
 
 
 </br>
+
 ## Hide LibC adresse ALSR 64 bits -> information leak (format string vuln)
 
 
 </br>
+
 ## LibC hidden -> Return Oriented Program (ROP)
 
 https://github.com/0vercl0k/rp
 
 </br>
+
 ## Randomize location of code -> Blind ROP
 
 [http://www.scs.stanford.edu/brop/]
