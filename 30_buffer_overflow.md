@@ -48,6 +48,7 @@ Context:
 
 ## LibC hidden -> Return Oriented Program (ROP)
 
+https://github.com/0vercl0k/rp
 
 
 ## Randomize location of code -> Blind ROP
