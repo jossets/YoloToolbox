@@ -13,6 +13,7 @@
 * PwnTools 
 * /usr/share/metasploit-framework/tools/exploit/pattern create.rb -l 2000
 * /usr/share/metasploit-framework/tools/exploit/pattern offset.rb -q 0x41424344
+* https://github.com/JonathanSalwan/ROPgadget
 
 </br>
 
