@@ -28,6 +28,7 @@
 
 ### Disable securities
 
+````
 gcc -fno-stack-protector -z execstack 
 Disable ASLR for one binary : setarch `uname -m` -R /root/mybinary
 Disable ASLR for the session : echo 0 > /proc/sys/kernel/randomize_va_space
@@ -36,8 +37,14 @@ Disable ASLR for the session : echo 0 > /proc/sys/kernel/randomize_va_space
 2: on (default value)
 Disable ASLR:
 sysctl -w kernel.randomize_va_space=0 in /etc/sysctl.conf
+````
 
+#### compile 32 bit on 64 bit platform
+
+````
+apt-get install gcc-multilib
 gcc -m32
+````
 
 </br>
 
