@@ -14,6 +14,7 @@
 * /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2000
 * /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 0x41424344
 * https://github.com/JonathanSalwan/ROPgadget
+* # for i in `seq 1 100`; do echo $i; ./simple $(python -c "print 'A'*$i"); done
 
 </br>
 
