@@ -3,10 +3,13 @@
 </br>
 ## Tools
 
-Plugin pour gdb : https://github.com/longld/peda
-string xxx
-test eax, eax : caracteristique des comparaisons de strings
-objdump -D buffer_01
+* Plugin pour gdb : https://github.com/longld/peda
+* string xxx
+* test eax, eax : caracteristique des comparaisons de strings
+* objdump -D buffer_01
+* strace
+* pmap `pidof xxx`
+* PwnTools 
 
 </br>
 
@@ -30,6 +33,7 @@ Disable ASLR for the session : echo 0 > /proc/sys/kernel/randomize_va_space
 Disable ASLR:
 sysctl -w kernel.randomize_va_space=0 in /etc/sysctl.conf
 
+gcc -m32
 
 </br>
 
