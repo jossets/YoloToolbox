@@ -76,7 +76,15 @@
 
 =============================================================
 
-## Php
+## Drupal
+### Droopescan
+    /opt/droopescan/droopescan scan drupal -u http://10.10.10.9
+
+=============================================================
+
+## Php server
+   python3 /opt/dirsearch/dirsearch.py -u http://10.10.10.9/ -e php -x 403,404 -t 50
+
 
 =============================================================
 
@@ -101,6 +109,10 @@
 ## 23: Telnet
     # nmap -p 23 --script telnet-brute --script-args userdb=users.lst,passdb=/usr/share/john/password.lst,telnet-brute.timeout=8s <target>
 
+
+===================================
+
+Tunneling your traffic through another host : https://guide.offsecnewbie.com/network-pen
 
 
 
