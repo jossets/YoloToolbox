@@ -137,6 +137,24 @@ Msfconsole password list
 
 ## Glassfish
 
+=============================================================
+
+## IIS Versions
+
+IIS 1.0	Windows NT 3.51
+IIS 2.0	Windows NT 4.0
+IIS 3.0	Windows NT 4.0 SP3
+IIS 4.0	Windows NT 4.0 Options Pack
+IIS 5.0	Windows 2000
+IIS 5.1	Windows XP Professional x32
+IIS 6.0	Windows Server 2003
+IIS 6.0	Windows Server 2003 R2
+IIS 6.0	Windows XP Professional x64
+IIS 7.0	Windows Vista
+IIS 7.0	Windows 7
+IIS 7.0	Windows Server 2008
+IIS 7.5	Windows Server 2008 R2
+
 
 =============================================================
 
