@@ -69,8 +69,8 @@ Msfconsole password list
 ## 22: Ssh
 ### Hydra
     # hydra -l root -e nsr -V -o hydra.log -t8 -f ssh://raven.local
-
-
+    hydra –l (found_name) –P password.lst 192.168.168.168 ssh
+    hydra -L username_list.txt -P password_list.txt 192.168.168.168 ssh -t 4
 =============================================================
 ## 23: Telnet
     # nmap -p 23 --script telnet-brute --script-args userdb=users.lst,passdb=/usr/share/john/password.lst,telnet-brute.timeout=8s <target>
@@ -125,13 +125,6 @@ Msfconsole password list
     $ cewl http://192.168.168.168/index.html -m 2 -w cewl.lst
 
 
-### Davtest
-    $ davtest –url http://(target IP) – will display what is executable
-
-
-### Cadaver
-    cadaver http://(target IP), then run “ls” to list directories found
-
 
 =============================================================
 
@@ -143,6 +136,21 @@ Msfconsole password list
 =============================================================
 
 ## Glassfish
+
+
+=============================================================
+
+## WebDAV
+
+### Davtest
+    Testing tool for WebDAV servers
+    $ davtest –url http://(target IP) – will display what is executable
+
+
+### Cadaver
+    A command-line WebDAV client for Unix. 
+    cadaver http://(target IP), then run “ls” to list directories found
+
 
 =============================================================
 

