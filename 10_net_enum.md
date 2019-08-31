@@ -33,7 +33,45 @@
     Use unicorn to scan open ports, then nmap to identify services
     https://github.com/superkojiman/onetwopunch
 
+
 =============================================================
+## 21: Ftp
+    Check anonymous access
+    ````
+    anonymous       anonymous
+    ````
+
+    Use nmap script
+    ````
+    nmap --script=ftp-anon.nse 10.10.10.9
+    ````
+    
+    Hydra password list
+    ````
+    # hydra -t 1 -l admin -P /root/Desktop/password.lst -vV 192.168.1.1 ftp
+    ````
+
+    Msfconsole scanner
+    # ./msfconsole -x “use auxiliary/scanner/ftp/anonymous; set ConnectTimeout=1; set FTPTimeout=1; set RHOSTS=xxx.xxx.xxx.0/19; run”
+    Note : for large network : set variable THREADS increase perf
+
+    
+
+    
+
+=============================================================
+## 22: Ssh
+### Hydra
+    # hydra -l root -e nsr -V -o hydra.log -t8 -f ssh://raven.local
+
+
+=============================================================
+## 23: Telnet
+    # nmap -p 23 --script telnet-brute --script-args userdb=users.lst,passdb=/usr/share/john/password.lst,telnet-brute.timeout=8s <target>
+
+
+=============================================================
+
 ## 80: HTTP
 
 ### Nikto
@@ -90,29 +128,8 @@
 
 ## Ruby on Rail
 
-=============================================================
-## 21: Ftp
-    Try password list
-    # hydra -t 1 -l admin -P /root/Desktop/password.lst -vV 192.168.1.1 ftp
-    Check anonymous access
-    # ./msfconsole -x “use auxiliary/scanner/ftp/anonymous; set ConnectTimeout=1; set FTPTimeout=1; set RHOSTS=xxx.xxx.xxx.0/19; run”
-    Note : for large network : set variable THREADS increase perf
-    
-
-=============================================================
-## 22: Ssh
-### Hydra
-    # hydra -l root -e nsr -V -o hydra.log -t8 -f ssh://raven.local
-
-
-=============================================================
-## 23: Telnet
-    # nmap -p 23 --script telnet-brute --script-args userdb=users.lst,passdb=/usr/share/john/password.lst,telnet-brute.timeout=8s <target>
-
 
 ===================================
-
-Tunneling your traffic through another host : https://guide.offsecnewbie.com/network-pen
 
 
 

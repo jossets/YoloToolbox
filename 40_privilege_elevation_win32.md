@@ -16,8 +16,8 @@ Caption=Microsoft Windows 10 Professionnel
 CSDVersion=
 ````
 
+Version found in Licenses files
 ````
-
 type c:\windows\system32\license.rtf 
 c:\windows\system32\licenses\*
 c:\windows\system32\eula.txt
@@ -34,9 +34,9 @@ Windows 95 OEM Service Release 1    4.00        950 A	1996-02-14
 Windows 95 OEM Service Release 2    4.00        950 B	1996-08-24	
 Windows 95 OEM Service Release 2.1  4.00        950 B	1997-08-27	
 Windows 95 OEM Service Release 2.5  4.00        950 C	1997-11-26	
-Windows 98	                        4.10        1998	1998-05-15	
+Windows 98                          4.10        1998	1998-05-15	
 Windows 98 Second Edition (SE)      4.10        2222	1999-05-05	
-Windows Me	                        4.90        3000	2000-09-14	2000-06-19
+Windows Me                          4.90        3000	2000-09-14	2000-06-19
 Windows NT 3.1                      3.10        511	    1993-07-27	
 Windows NT 3.1, Service Pack 3      3.10        528	    1994-11	
 Windows NT 3.5                      3.50        807	    1994-09-21	
@@ -103,10 +103,76 @@ cmdkey /list
 
 ## Check installed programs, permissions, and hidden files:
 ````
-dir /q
-dir /r
-attrib -h *.*
-wmic /node: "127.0.0.1" product get name, version
-wmic product get /format:list
+dir /q                     : quick format
+dir /r                     : resursive
+attrib -h *.*              : 
+````
+
+List of installed programs
+````
+> wmic /node: "127.0.0.1" product get name, version
+Name                                             Version
+Blender                                          2.79.2
+Microsoft Visual Studio 2015 Tools for Unity     2.2.0.0
+Microsoft Visual Studio 2017 Tools for Unity     3.1.0.0
+````
+
+Detail of installed programs
+````
+> wmic product get /format:list 
+AssignmentType=1
+Caption=Visual C++ Compiler/Tools Premium X86 X64 Cross Resource Package
+Description=Visual C++ Compiler/Tools Premium X86 X64 Cross Resource Package
+IdentifyingNumber={EF764423-A8DC-35FB-B547-6F0F5D09F665}
+InstallSource=C:\ProgramData\Package Cache\{EF764423-A8DC-35FB-B547-6F0F5D09F665}v14.0.23506\packages\VisualC_D14\VC_PremTools.X86.X64.Res\enu\
+InstallState=5
+Language=1033
+LocalPackage=C:\WINDOWS\Installer\308043f.msi
+Name=Visual C++ Compiler/Tools Premium X86 X64 Cross Resource Package
+PackageCache=C:\WINDOWS\Installer\308043f.msi
+PackageCode={03977CCE-21AF-45BC-A6F1-BF89D44CF720}
+PackageName=VC_PremTools.X86.X64.Res.msi
+Vendor=Microsoft Corporation
+Version=14.0.23506
 ````
  
+## Manual escalation commands
+````
+net user username password /add
+net localgroup Administrators username /add
+net localgroup "Remote Desktop Users" username /add
+psexec.exe -accepteula \\hostname -u hostname\username -p password cmd /c net user username password /add
+runas /user:hostname\username explorer.exe
+reg.exe save
+icacls.exe
+reg.exe query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\WinLogon" /v DefaultUserName
+reg.exe query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\WinLogon" /v DefaultPassword
+````
+
+SAM file locations
+````
+
+````
+
+
+## Running services
+````
+sc query type= service
+sc qc (service)
+Get-Service -DisplayName "Service"
+Get-CimInstance Win32_Service -Filter "Name='Service'" | Format-List -Property *
+````
+
+## Scheduled tasks/jobs
+````
+schtasks
+schtasks /query /v /fo LIST
+Get-ScheduledTask | Where State -EQ 'Ready'
+````
+
+
+ 
+
+
+ Sources:
+ - https://blackwintersecurity.com/
