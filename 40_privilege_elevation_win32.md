@@ -172,7 +172,19 @@ Get-ScheduledTask | Where State -EQ 'Ready'
 
 
  
+## Netcat for windows
+    Precompiled : not tested
+    https://joncraton.org/files/nc111nt.zip (can be detected by AV)
+    https://joncraton.org/files/nc111nt_safe.zip
 
+    Sources
+    https://github.com/diegocr/netcat
+
+
+## Add users
+    Windows: net user username password /add
+    net localgroup Administrators username /add
+    net localgroup "Remote Desktop Users" username /add
 
  Sources:
  - https://blackwintersecurity.com/

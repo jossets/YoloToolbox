@@ -57,7 +57,11 @@ Msfconsole scanner
 # ./msfconsole -x “use auxiliary/scanner/ftp/anonymous; set ConnectTimeout=1; set FTPTimeout=1; set RHOSTS=xxx.xxx.xxx.0/19; run”
 Note : for large network : set variable THREADS increase perf
 ````
-    
+
+Msfconsole password list
+````
+> use auxiliary/scanner/ftp/ftp_login
+````    
 
     
 
@@ -73,34 +77,60 @@ Note : for large network : set variable THREADS increase perf
 
 
 =============================================================
-
 ## 80: HTTP
+
+### Magic files
+    /robots.txt
+    Comments in the HTML source code.
+
+
+### Nman Enum script
+    $ nmap –script http-enum.nse –p80 192.168.168.168
+
+### Dirbuster
+    Find hidden files & dir
+    https://github.com/digination/dirbuster-ng
+    # dirb http://10.10.10.93
+    # dirb http://10.10.10.93/aspnet_client/system_web/ fuzz.txt -r
+    # dirb http://10.10.10.93/ /usr/share/wordlists/dirb/common.txt -r
+
+
 
 ### Nikto
     Identify server
     https://github.com/sullo/nikto
-    # nikto -host xxx
+    $ nikto -host xxx
+    $ nikto –h 192.168.168.168 –p (port), nikto -h www.website.com
 
 ### Gobuster
     Find hidden files & dir
     https://github.com/OJ/gobuster
     # gobuster -u http://172.16.27.142/ -w /opt/SecLists/Discovery/Web-Content/common.txt -x html,php -s 200,301,401,403
     # gobuster -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
+    # gobuster -u http://192.168.168.168/ -w /usr/share/seclists/Discovery/Web_Content/common.txt -s 200,204,301,302,307,403,500 –e
 
+### Curl
+    curl http://192.168.168.168/admin.php?action=users&login=0
 
-### Dirbuster
-    Find hidden files & dir
-    https://github.com/digination/dirbuster-ng
-    # dirb http://10.10.10.93/aspnet_client/system_web/ fuzz.txt -r
-    # dirb http://10.10.10.93/ /usr/share/wordlists/dirb/common.txt -r
-
-
-#### Web server Directories
+    
+### Web server Common Directories
     https://github.com/digination/dirbuster-ng/tree/master/wordlists
     IIS : https://github.com/digination/dirbuster-ng/blob/master/wordlists/vulns/iis.txt
     Kali Dictionaries:
     /usr/share/wordlists/dirb/common.txt
     /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+
+### Cewl
+    Get word list from sweb site
+    $ cewl http://192.168.168.168/index.html -m 2 -w cewl.lst
+
+
+### Davtest
+    $ davtest –url http://(target IP) – will display what is executable
+
+
+### Cadaver
+    cadaver http://(target IP), then run “ls” to list directories found
 
 
 =============================================================
@@ -122,16 +152,76 @@ Note : for large network : set variable THREADS increase perf
 
 =============================================================
 
-## Php server
-   python3 /opt/dirsearch/dirsearch.py -u http://10.10.10.9/ -e php -x 403,404 -t 50
-
+## Crawl php server
+    python3 /opt/dirsearch/dirsearch.py -u http://10.10.10.9/ -e php -x 403,404 -t 50
+    Look for : 
+    phpinfo.php
+    /phpliteadmin
+    /dashboard
+    /admin
+    /admin.php
+    /login
+    /login.php
 
 =============================================================
 
 ## Ruby on Rail
 
 
-===================================
 
 
 
+=============================================================
+## 137-139-445 : NetBios/Smb
+
+### Nmap scripts
+    nmap --script smb-vuln*.nse
+    nmap 192.168.168.168 --script=smb-vuln*.nse location: /usr/share/nmap/scripts/smb-vuln*.nse
+
+
+### Enum4Linux
+    enum4linux 192.168.168.168  
+    enum4linux 192.168.168.168 -U   : grab userlist
+
+### Smbclient
+    lists smb type (often displaying samba version) and various shares
+    smbclient -N -L 192.168.168.168 - 
+
+### Accesschk
+    Attempts to connect to $IPC or $ADMIN shares
+    accesschk -v -t (target IP) -u user -P /usr/share/dirb/wordlists/common.txt 
+
+### Mount linux share
+    rdesktop -u username -p password -r disk:share=/home//Desktop 192.168.168.168
+
+=============================================================
+## 161 : SNMP (UDP)
+
+### Snmpwalk
+    snmpwalk -c public -v1 192.168.168.168
+
+
+
+=============================================================
+## 3000 : Node JS
+
+### xxx
+
+
+
+=============================================================
+## 3306 : MySQL
+
+### sqsh
+    $ apt-get install sqsh freetds-bin freetds-common freetds-dev
+    Add to the bottom of freetds.conf:
+        [hostname] host = 192.168.168.169
+        port = 2600
+        tds version = 8.0
+    edit ~/.sqshrc:
+        \set username=sa
+        \set password=password
+        \set style=vert
+    $ sqsh -S hostname
+    select sys_exec('/bin/bash');
+    (escalation: bash -p or sudo su)

