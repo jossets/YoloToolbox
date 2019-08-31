@@ -3,7 +3,7 @@
 
 
 ## Get System info
-```
+````
 > systeminfo | findstr /B /C:"Name" /C:"Version"
 OS Name:                   Microsoft Windows Server 2008 R2 Datacenter 
 OS Version:                6.1.7600 N/A Build 7600
@@ -25,7 +25,7 @@ c:\windows\system32\eula.txt
 
 more => http://www.fuzzysecurity.com/tutorials/16.html
 
-
+hostname
 ````
 
 Name	                            Version	    Build	Release Date	RTM Date
@@ -83,13 +83,17 @@ Windows Server 2019, Version 1809   10.0	    17763	2018-10-02
 
 
 ## Get User info
-```
-hostname
+
+````
+net user
+net user (username)
+````
+
+Some others
+````
 echo %username%
 whoami
 echo %username%
-net user
-net user (username)
 echo %userprofile%
 net localgroup
 net config Workstation | find "User name"
@@ -98,7 +102,18 @@ wmic useraccount get name
 wmic /node: "127.0.0.1" computersystem get username
 qwinsta
 cmdkey /list
-```
+````
+
+## Network info
+````
+ipconfig /all
+route print
+arp -A            : Arp table for All interfaces
+netstat -ano      : Actives connections
+
+netsh firewall show state  
+netsh firewall show config
+````
 
 
 ## Check installed programs, permissions, and hidden files:
@@ -157,6 +172,7 @@ SAM file locations
 
 ## Running services
 ````
+net start                        : started services
 sc query type= service
 sc qc (service)
 Get-Service -DisplayName "Service"
@@ -168,9 +184,13 @@ Get-CimInstance Win32_Service -Filter "Name='Service'" | Format-List -Property *
 schtasks
 schtasks /query /v /fo LIST
 Get-ScheduledTask | Where State -EQ 'Ready'
+tasklist /SVC                                : links running processes to started services.
 ````
 
-
+## Driver list
+````
+DRIVERQUERY
+````
  
 ## Netcat for windows
     Precompiled : not tested
@@ -188,3 +208,193 @@ Get-ScheduledTask | Where State -EQ 'Ready'
 
  Sources:
  - https://blackwintersecurity.com/
+
+
+ # WMIC tool
+
+XP did not allow access to WMIC from a low privileged account. 
+Windows 7 Professional and Windows 8 Enterprise allowed low privilege users to use WMIC
+
+````
+wmic /?                 : help
+````
+[exploits/windows/wmic_info.bat](exploits/windows/wmic_info.bat)
+http://www.fuzzysecurity.com/tutorials/files/wmic_info.rar
+
+# Find missing patches
+
+````
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+
+Caption                                     Description      HotFixID   InstalledOn
+http://support.microsoft.com/?kbid=2727528  Security Update  KB2727528  11/23/2013
+http://support.microsoft.com/?kbid=2729462  Security Update  KB2729462  11/26/2013
+http://support.microsoft.com/?kbid=2736693  Security Update  KB2736693  11/26/2013
+http://support.microsoft.com/?kbid=2737084  Security Update  KB2737084  11/23/2013
+http://support.microsoft.com/?kbid=2742614  Security Update  KB2742614  11/23/2013
+````
+Look for privilege escalation exploits and look up their respective KB patch numbers. 
+- KiTrap0D (KB979682)
+- MS11-011 (KB2393802)
+- MS10-059 (KB982799)
+- MS10-021 (KB979683)
+- MS11-080 (KB2592799). 
+
+After enumerating the OS version and Service Pack you should find out which privilege escalation vulnerabilities could be present. Using the KB patch numbers you can grep the installed patches to see if any are missing.
+````
+wmic qfe get Caption,Description,HotFixID,InstalledOn | findstr /C:"KB.." /C:"KB.."
+````
+
+# Finding remote admin config files
+
+c:\sysprep.inf
+c:\sysprep\sysprep.xml
+%WINDIR%\Panther\Unattend\Unattended.xml
+%WINDIR%\Panther\Unattended.xml
+
+````
+
+
+# This is a sample from sysprep.inf with clear-text credentials.
+
+[GuiUnattended]
+OEMSkipRegional=1
+OemSkipWelcome=1
+AdminPassword=s3cr3tp4ssw0rd
+TimeZone=20
+
+# This is a sample from sysprep.xml with Base64 "encoded" credentials. Please people Base64 is not
+encryption, I take more precautions to protect my coffee. The password here is "SuperSecurePassword".
+
+<LocalAccounts>
+    <LocalAccount wcm:action="add">
+        <Password>
+            <Value>U3VwZXJTZWN1cmVQYXNzd29yZA==</Value>
+            <PlainText>false</PlainText>
+        </Password>
+        <Description>Local Administrator</Description>
+        <DisplayName>Administrator</DisplayName>
+        <Group>Administrators</Group>
+        <Name>Administrator</Name>
+    </LocalAccount>
+</LocalAccounts>
+
+# Sample from Unattended.xml with the same "secure" Base64 encoding.
+
+<AutoLogon>
+    <Password>
+        <Value>U3VwZXJTZWN1cmVQYXNzd29yZA==</Value>
+        <PlainText>false</PlainText>
+    </Password>
+    <Enabled>true</Enabled>
+    <Username>Administrator</Username>
+</AutoLogon>
+````
+
+# Group Policy Preference saved passwords
+
+When the box you compromise is connected to a domain it is well worth looking for the Groups.xml file which is stored in SYSVOL. Any authenticated user will have read access to this file. 
+The password in the xml file is "obscured" from the casual user by encrypting it with AES, I say obscured because the static key is published on the msdn website allowing for easy decryption of the stored value. (http://www.fuzzysecurity.com/tutorials/images/priv05_big.png)
+
+In addition to Groups.xml several other policy preference files can have the optional "cPassword" attribute set:
+- Services\Services.xml: Element-Specific Attributes
+- ScheduledTasks\ScheduledTasks.xml: Task Inner Element, TaskV2 Inner Element, ImmediateTaskV2 Inner Element
+- Printers\Printers.xml: SharedPrinter Element
+- Drives\Drives.xml: Element-Specific Attributes
+- DataSources\DataSources.xml: Element-Specific Attributes
+
+Use from Get-GPPPassword from PowerSploit (https://github.com/PowerShellMafia/PowerSploit) to get all automaticaly
+
+# AlwaysInstallElevated
+
+This will only work if both registry keys contain "AlwaysInstallElevated" with DWORD values of 1.
+````
+C:\Windows\system32> reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer\AlwaysInstallElevated
+C:\Windows\system32> reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer\AlwaysInstallElevated
+````
+
+# Find files with interresting names
+
+The command below will search the file system for file names containing certain keywords. You can
+specify as many keywords as you wish.
+    C:\Windows\system32> dir /s *pass* == *cred* == *vnc* == *.config*
+
+Search certain file types for a keyword, this can generate a lot of output.
+    C:\Windows\system32> findstr /si password *.xml *.ini *.txt
+
+Similarly the two commands below can be used to grep the registry for keywords, in this case "password".
+    C:\Windows\system32> reg query HKLM /f password /t REG_SZ /s
+    C:\Windows\system32> reg query HKCU /f password /t REG_SZ /s
+
+
+## Microsoft Sysinternal
+
+[tools/SysinternalsSuite.zip](tools/SysinternalsSuite.zip)
+Download at https://docs.microsoft.com/fr-fr/sysinternals/downloads/sysinternals-suite
+
+Query, configure and manage windows services.
+````
+C:\Windows\system32> sc qc Spooler
+
+[SC] QueryServiceConfig SUCCESS
+
+SERVICE_NAME: Spooler
+        TYPE               : 110  WIN32_OWN_PROCESS (interactive)
+        START_TYPE         : 2   AUTO_START
+        ERROR_CONTROL      : 1   NORMAL
+        BINARY_PATH_NAME   : C:\Windows\System32\spoolsv.exe
+        LOAD_ORDER_GROUP   : SpoolerGroup
+        TAG                : 0
+        DISPLAY_NAME       : Print Spooler
+        DEPENDENCIES       : RPCSS
+                           : http
+        SERVICE_START_NAME : LocalSystem
+````
+
+List permissions that each user level has.
+"accesschk.exe -ucqv *" to list all services.
+````
+C:\> accesschk.exe -ucqv Spooler
+
+Spooler
+
+  R  NT AUTHORITY\Authenticated Users
+        SERVICE_QUERY_STATUS
+        SERVICE_QUERY_CONFIG
+        SERVICE_INTERROGATE
+        SERVICE_ENUMERATE_DEPENDENTS
+        SERVICE_USER_DEFINED_CONTROL
+        READ_CONTROL
+  R  BUILTIN\Power Users
+        SERVICE_QUERY_STATUS
+        SERVICE_QUERY_CONFIG
+        SERVICE_INTERROGATE
+        SERVICE_ENUMERATE_DEPENDENTS
+        SERVICE_START
+        SERVICE_USER_DEFINED_CONTROL
+        READ_CONTROL
+  RW BUILTIN\Administrators
+        SERVICE_ALL_ACCESS
+  RW NT AUTHORITY\SYSTEM
+        SERVICE_ALL_ACCESS
+````
+
+
+Read more : http://www.fuzzysecurity.com/tutorials/16.html
+
+
+Getting Credentials : http://www.fuzzysecurity.com/tutorials/18.html
+
+
+# PowerSploit
+
+https://github.com/PowerShellMafia/PowerSploit
+
+
+
+Read next 
+To watch : 
+- Encyclopedia of win escalation : https://www.youtube.com/watch?v=kMG8IsCohHA
+- https://www.youtube.com/watch?v=_8xJaaQlpBo
+
+http://www.greyhathacker.net/?p=738
