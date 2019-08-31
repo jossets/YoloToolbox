@@ -85,7 +85,7 @@ Msfconsole password list
 
 
 ### Nman Enum script
-    $ nmap –script http-enum.nse –p80 192.168.168.168
+    $ nmap -script http-enum.nse -p80 192.168.168.168
 
 ### Dirbuster
     Find hidden files & dir
@@ -100,7 +100,7 @@ Msfconsole password list
     Identify server
     https://github.com/sullo/nikto
     $ nikto -host xxx
-    $ nikto –h 192.168.168.168 –p (port), nikto -h www.website.com
+    $ nikto -h 192.168.168.168 -p (port), nikto -h www.website.com
 
 ### Gobuster
     Find hidden files & dir

@@ -172,6 +172,7 @@ On obtient un shell
 
 ## Elevation
 
+### Get OS version
 ```
 C:\inetpub\drupal-7.54> systeminfo
 
@@ -179,9 +180,8 @@ Host Name:                 BASTARD
 OS Name:                   Microsoft Windows Server 2008 R2 Datacenter 
 OS Version:                6.1.7600 N/A Build 7600
 
-6.0 	=> 	Windows Vista / Windows Server 2008
 6.1 	=> 	Windows 7 / Windows Server 2008 R2
-6.2 	=> 	Windows 8 / Windows Server 2012
+
 
 
 OS Manufacturer:           Microsoft Corporation
@@ -223,6 +223,7 @@ Network Card(s):           1 NIC(s) Installed.
 PS C:\inetpub\drupal-7.54> 
 ```
 
+### Get kernel exploit
 
 Windows Hacking Pack : https://github.com/51x/WHP
  - Set of tool for exploitation

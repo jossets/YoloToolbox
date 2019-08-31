@@ -2,6 +2,10 @@
 # Privilege escalation
 
 
+Read : https://github.com/AlessandroZ/BeRoot/tree/master/Windows
+
+
+
 ## Get System info
 ````
 > systeminfo | findstr /B /C:"Name" /C:"Version"
@@ -402,6 +406,59 @@ Getting Credentials : http://www.fuzzysecurity.com/tutorials/18.html
 # PowerSploit
 
 https://github.com/PowerShellMafia/PowerSploit
+
+
+# Windows Hacking Pack
+Set of tool for exploitation
+https://github.com/51x/WHP
+
+# Watson : Analyse and suggest exploits for windows
+https://github.com/rasta-mouse/Watson
+use of Watson in HTB:Devel box : https://0xdf.gitlab.io/2019/03/05/htb-devel.html#privesc-web--system
+
+
+
+# Get .Net version
+```
+> reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP"
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727
+```
+
+# Precompiled Windows kernel exploits: 
+- https://github.com/abatchy17/WindowsExploits
+- https://github.com/AusJock/Privilege-Escalation/tree/master/Windows
+- https://github.com/SecWiki/windows-kernel-exploits
+
+MS11-046 : spawn a system shell in remote shell
+
+Be root: https://github.com/AlessandroZ/BeRoot
+
+## MSF exploit suggester
+```
+msf5 exploit(multi/handler) > use post/multi/recon/local_exploit_suggester
+
+msf5 post(multi/recon/local_exploit_suggester) > set session 1
+session => 1
+
+msf5 post(multi/recon/local_exploit_suggester) > options 
+
+Module options (post/multi/recon/local_exploit_suggester):
+
+   Name             Current Setting  Required  Description
+   ----             ---------------  --------  -----------
+   SESSION          1                yes       The session to run this module on
+   SHOWDESCRIPTION  false            yes       Displays a detailed description for the available exploits
+
+msf5 post(multi/recon/local_exploit_suggester) > run
+```
+
+=> use exploit/windows/local/ms10_015_kitrap0d
+
+# 
+https://github.com/51x/WHP
+List of CVE
+
 
 
 
