@@ -4,40 +4,40 @@
 
 ## Get System info
 ```
->systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
+> systeminfo | findstr /B /C:"Name" /C:"Version"
 OS Name:                   Microsoft Windows Server 2008 R2 Datacenter 
 OS Version:                6.1.7600 N/A Build 7600
 
-C:\Windows\system32> hostname
-b33f
+> ver
+Microsoft Windows [version 10.0.18362.295]
 
-C:\Windows\system32> echo %username%
-user1
-```
+> wmic os get Caption, CSDVersion /value
+Caption=Microsoft Windows 10 Professionnel
+CSDVersion=
+````
 
 ````
-ver
-c:\windows\system32\license.rtf
+
+type c:\windows\system32\license.rtf 
 c:\windows\system32\licenses\*
 c:\windows\system32\eula.txt
-systeminfo | findstr /B /C: "OS Name" /C: "OS Version"
-wmic os get Caption, CSDVersion /value
 ````
 
 more => http://www.fuzzysecurity.com/tutorials/16.html
 
+
 ````
-Name / Description	Version	Build Number	Public Release	RTM Release
-Name	                        Version	Build	Release Date	RTM Date
-Windows 95	4.00	950	1995-08-24	
-Windows 95 OEM Service Release 1	4.00	950 A	1996-02-14	
-Windows 95 OEM Service Release 2	4.00	950 B	1996-08-24	
-Windows 95 OEM Service Release 2.1	4.00	950 B	1997-08-27	
-Windows 95 OEM Service Release 2.5	4.00	950 C	1997-11-26	
-Windows 98	4.10	1998	1998-05-15	
-Windows 98 Second Edition (SE)	4.10	2222	1999-05-05	
-Windows Me	4.90	3000	2000-09-14	2000-06-19
-Windows NT 3.1	                 3.10	511	1993-07-27	
+
+Name	                            Version	    Build	Release Date	RTM Date
+Windows 95	                        4.00	    950	    1995-08-24	
+Windows 95 OEM Service Release 1	4.00	    950 A	1996-02-14	
+Windows 95 OEM Service Release 2	4.00	    950 B	1996-08-24	
+Windows 95 OEM Service Release 2.1	4.00	    950 B	1997-08-27	
+Windows 95 OEM Service Release 2.5	4.00	    950 C	1997-11-26	
+Windows 98	                        4.10	1998	1998-05-15	
+Windows 98 Second Edition (SE)	    4.10	2222	1999-05-05	
+Windows Me	                        4.90	3000	2000-09-14	2000-06-19
+Windows NT                          3.1	                 3.10	511	1993-07-27	
 Windows NT 3.1, Service Pack 3	 3.10	528	1994-11	
 Windows NT 3.5	3.50	807	1994-09-21	
 Windows NT 3.51	3.51	1057	1995-05-30	
@@ -82,3 +82,31 @@ Windows Server 2019, Version 1809	10.0	17763	2018-10-02
 ````
 
 
+## Get User info
+```
+hostname
+echo %username%
+whoami
+echo %username%
+net user
+net user (username)
+echo %userprofile%
+net localgroup
+net config Workstation | find "User name"
+query user
+wmic useraccount get name
+wmic /node: "127.0.0.1" computersystem get username
+qwinsta
+cmdkey /list
+```
+
+
+## Check installed programs, permissions, and hidden files:
+````
+dir /q
+dir /r
+attrib -h *.*
+wmic /node: "127.0.0.1" product get name, version
+wmic product get /format:list
+````
+ 
