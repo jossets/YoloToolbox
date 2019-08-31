@@ -125,6 +125,11 @@ BEGIN {
         }
 }
 ````
+# PowerShell - Nishang Invoke-PowerShellTcp.ps1
+Nishang Powershell - Invoke-PowerShellTcp.ps1
+- https://github.com/samratashok/nishang
+- https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1
+
 
 # More to read
 http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet

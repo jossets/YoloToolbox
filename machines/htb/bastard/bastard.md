@@ -1,40 +1,45 @@
 # bastard 10.10.10.9
 
-In brief:
+## In brief:
 - Windows
 - Drupal 7.54
    => Drupalgeddon2 or Drupalgeddon3
 - Powershell Invoke-PowerShellTcp.ps1
 
 
-```
+## Nmap
+````
 $ nmap -sT -p- --min-rate 10000 -oA scans/alltcp 10.10.10.9
 $ nmap -sU -p- --min-rate 10000 -oA scans/alludp 10.10.10.9 
 80/tcp    open  http
 135/tcp   open  msrpc
 49154/tcp open  unknown
-```
 
-```
-nmap -sV -sC -p 80,135,49154 -oA scans/scripts 10.10.10.9
+$ nmap -sV -sC -p 80,135,49154 -oA scans/scripts 10.10.10.9
 80/tcp    open  http    Microsoft IIS httpd 7.5
 |_http-generator: Drupal 7 (http://drupal.org)
 http-robots.txt
+````
 
+## Robots.txt
+
+````
 $ curl -s http://10.10.10.9/robots.txt
 $ curl -s http://10.10.10.9/CHANGELOG.txt | head
 Drupal 7.54, 2017-02-01
-```
+````
 
 Note:
 IIS 7.5 => IIS for Windows 7 / Server 2008r2. 
 
-DRUPAL scanner => droopescan
+
+## DRUPAL scanner => droopescan
 
 ```
 $ /opt/droopescan/droopescan scan drupal -u http://10.10.10.9
 ```
 
+## Drupalgeddon2
 Exploit for Drupal 7.54
  - Drupal 7.x Module Services - Remote Code Execution
     -  https://www.ambionics.io/blog/drupal-services-module-rce
@@ -44,6 +49,7 @@ Exploit for Drupal 7.54
     - drupalgeddon2.rb
 
  - Drupalgeddon3 (April 2018) 
+
 
 drupalgeddon2
 ```
