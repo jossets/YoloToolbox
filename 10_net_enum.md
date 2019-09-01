@@ -91,8 +91,9 @@ Msfconsole password list
     Find hidden files & dir
     https://github.com/digination/dirbuster-ng
     # dirb http://10.10.10.93
-    # dirb http://10.10.10.93/aspnet_client/system_web/ fuzz.txt -r
+    # dirb http://10.10.10.93/aspnet_client/system_web/ fuzz.txt -r                        : -r dont search recurvively
     # dirb http://10.10.10.93/ /usr/share/wordlists/dirb/common.txt -r
+    # dirb http://10.10.10.24/ /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
 
 
@@ -100,13 +101,16 @@ Msfconsole password list
     Identify server
     https://github.com/sullo/nikto
     $ nikto -host xxx
-    $ nikto -h 192.168.168.168 -p (port), nikto -h www.website.com
+    $ nikto -h 192.168.168.168 -p (port)
 
 ### Gobuster
     Find hidden files & dir
     https://github.com/OJ/gobuster
+    wget https://github.com/OJ/gobuster/releases/download/v3.0.1/gobuster-linux-amd64.7z
+    ./gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
+
     # gobuster -u http://172.16.27.142/ -w /opt/SecLists/Discovery/Web-Content/common.txt -x html,php -s 200,301,401,403
-    # gobuster -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
+    # ./gobuster -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
     # gobuster -u http://192.168.168.168/ -w /usr/share/seclists/Discovery/Web_Content/common.txt -s 200,204,301,302,307,403,500 –e
 
 ### Curl
@@ -159,6 +163,16 @@ IIS 7.5	Windows Server 2008 R2
 =============================================================
 
 ## WebDAV
+
+Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hypertext Transfer Protocol (HTTP) that allows clients to perform remote Web content authoring operations.
+    Apache HTTP Server provides WebDAV modules based on both davfs and Apache Subversion (svn).
+    Microsoft's IIS has a WebDAV module.
+    Nginx has a very limited optional WebDAV module[4] and a third-party module[5]
+    SabreDAV is a PHP application that can be used on Apache or Nginx in lieu of their bundled modules
+    ownCloud is a cloud storage PHP application which offers full WebDAV support[6]
+    Nextcloud is a fork of ownCloud, and therefore also offers full WebDAV support[7]
+    lighttpd has an optional WebDAV module[8]
+    Caddy has an optional WebDAV module[9]
 
 ### Davtest
     Testing tool for WebDAV servers

