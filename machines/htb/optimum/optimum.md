@@ -4,10 +4,11 @@
 OS Name:                   Microsoft Windows Server 2012 R2 Standard
 OS Version:                6.3.9600 N/A Build 9600
 31 Hotfix(s) Installed.
+Powershell
 ```
 
-HFS 2.3 exploit
-
+HFS 2.3 exploit : htp2.3.py
+Exploit MS16-032 with empire MS16-032 powershell script that call Nishang: Invoke-PowerShellTCP.ps1
 
 
 # nmap
