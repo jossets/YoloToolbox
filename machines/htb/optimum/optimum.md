@@ -75,7 +75,7 @@ dir
 
 C:\Users\kostas\Desktop>type user.txt.txt
 type user.txt.txt
-d0c39409d7b994a9a1389ebf38ef5f73
+xxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 # Get info
@@ -355,7 +355,6 @@ PS C:\Users\kostas\Desktop>
 PS C:\Users\kostas\Desktop> whoami
 nt authority\system
 
-PS C:\Users\kostas\Desktop> type user.txt.txt
 PS C:\Users\Administrator\Desktop> type root.txt
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
