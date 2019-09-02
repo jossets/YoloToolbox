@@ -86,6 +86,27 @@ Windows Server 2019, Version 1809   10.0	    17763	2018-10-02
 ````
 
 
+## Get 64bit OS ?
+```
+>WMIC OS get osarchitecture
+WMIC OS get osarchitecture
+OSArchitecture  
+64-bit          
+```
+Info on 32/64 bits : https://ss64.com/nt/syntax-64bit.html
+
+## Is process 32 bit ?
+```
+> echo %PROCESSOR_ARCHITEW6432%
+AMD64 => 32 bits
+Rien => 64 bits
+```
+
+## Upgrade 32 bit cmd to 64 bit
+```
+> C:\Windows\sysnative\cmd.exe
+```
+
 ## Get User info
 
 ````
@@ -496,6 +517,11 @@ msf5 post(multi/recon/local_exploit_suggester) > run
 https://github.com/51x/WHP
 List of CVE
 
+
+# Powershell version
+```
+powershell -Command "$PSVersionTable.PSVersion"
+```
 
 
 
