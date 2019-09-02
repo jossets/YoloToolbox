@@ -7,8 +7,8 @@ OS Version:                6.3.9600 N/A Build 9600
 Powershell
 ```
 
-HFS 2.3 exploit : htp2.3.py
-Exploit MS16-032 with empire MS16-032 powershell script that call Nishang: Invoke-PowerShellTCP.ps1
+- HFS 2.3 exploit : htp2.3.py
+- Exploit MS16-032 with empire MS16-032 powershell script that call Nishang: Invoke-PowerShellTCP.ps1
 
 
 # nmap
