@@ -13,6 +13,8 @@ nmap -sC -sV -oA optimum 10.10.10.8
 
 # HttpFileServer 2.3
 
+![](images/htb-optimum.png)
+
 https://www.exploit-db.com/exploits/39161
 => htp2.3.py
 	ip_addr = "10.10.14.30" #local IP address
