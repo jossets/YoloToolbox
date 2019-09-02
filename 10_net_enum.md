@@ -63,6 +63,11 @@ Msfconsole password list
 > use auxiliary/scanner/ftp/ftp_login
 ````    
 
+Mirror the site
+```
+wget --mirror 'ftp://ftp_user:UTDRSCH53c"$6hys@tally.htb.local'
+```
+
     
 
 =============================================================
@@ -132,6 +137,18 @@ Msfconsole password list
 
 =============================================================
 
+## Sharepoint
+### Directory listing
+    wget https://github.com/danielmiessler/SecLists/archive/master.zip
+    /usr/share/wordlists/SecLists/Discovery/Web-Content/CMS/sharepoint.txt 
+
+### Well known : _layouts/viewlsts.aspx 
+    http://10.10.10.59/_layouts/viewlsts.aspx   : liste des répertoires
+    http://1tally/_layouts/viewlsts.aspx        : Utiliser un FQDN, sinon pages redirigées vers l'accueil..
+
+
+=============================================================
+
 ## Wordpress
 ### Wpscan
     # wpscan -u http://raven.local/wordpress -e
@@ -158,7 +175,11 @@ IIS 7.0	Windows Vista
 IIS 7.0	Windows 7
 IIS 7.0	Windows Server 2008
 IIS 7.5	Windows Server 2008 R2
-
+IIS 8.0 Windows Server 2012 and Windows 8
+IIS 8.5 Windows Server 2012 R2 and Windows 8.1. 
+IIS 10.0 version 1607 a.k.a. version 10.0.14393 : Windows Server 2016 released 2016-09-26 and Windows 10 Anniversary Update released 2016-08-02.
+IIS 10.0 version 1709 : Windows Server, version 1709 (Semi-Annual Channel) and Windows 10 Fall Creators Update both released 2017-10-17.
+IIS 10.0 version 1809 a.k.a. version 10.0.17763 : Windows Server 2019 and Windows 10 October Update released 2018-10-02. 
 
 =============================================================
 

@@ -7,7 +7,11 @@ Kali Dictionaries
 - /usr/share/dirb/wordlists/big.txt
 - /usr/share/wfuzz/wordlist/general/big.txt
 - /usr/share/wordlists/rockyou.txt             (unzip it before use)
+- /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
+
+## Listes
+SecLists: wget https://github.com/danielmiessler/SecLists/archive/master.zip
 
 
 ## ftp default passwd
@@ -104,6 +108,24 @@ USER anonymous
     Usage: pwdump.exe (host)
     pwdump.exe
     pwdump.exe 127.0.0.1
+
+## Keepass
+```
+     keepass2john tim.kdbx 
+tim:$keepass$*2*6000*222*f362b5565b916422607711b54e8d0bd20838f5111d33a5eed137f9d66a375efb*3f51c5ac43ad11e0096d59bb82a59dd09cfd8d2791cadbdb85ed3020d14c8fea*3f759d7011f43b30679a5ac650991caa*b45da6b5b0115c5a7fb688f8179a19a749338510dfe90aa5c2cb7ed37f992192*535a85ef5c9da14611ab1c1edc4f00a045840152975a4d277b3b5c4edc1cd7da
+https://hashcat.net/wiki/doku.php?id=example_hashes
+$keepass$*2*6000*222*f3 => 
+13400 :	KeePass 2 AES / without keyfile 	$keepass$*2*6000*222*a279e37c
+13400 : Keepass 2 AES / with keyfile 	$keepass$*2*6000*222*15b6
+
+cat tim.keepass
+$keepass$*2*6000*222*f362b5565b916422607711b54e8d0bd20838f5111d33a5eed137f9d66a375efb*3f51c5ac43ad11e0096d59bb82a59dd09cfd8d2791cadbdb85ed3020d14c8fea*3f759d7011f43b30679a5ac650991caa*b45da6b5b0115c5a7fb688f8179a19a749338510dfe90aa5c2cb7ed37f992192*535a85ef5c9da14611ab1c1edc4f00a045840152975a4d277b3b5c4edc1cd7da
+
+hashcat -m 13400 tim.keepass
+
+=> simplementeyo
+
+```
 
 
 ## Online hash crackers:
