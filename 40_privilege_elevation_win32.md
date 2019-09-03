@@ -470,10 +470,16 @@ https://github.com/PowerShellMafia/PowerSploit
 Set of tool for exploitation
 https://github.com/51x/WHP
 
+
+# Sherlock
+deprecated, replaced by Watson
+https://github.com/rasta-mouse/Sherlock
+
+
 # Watson : Analyse and suggest exploits for windows
 https://github.com/rasta-mouse/Watson
 use of Watson in HTB:Devel box : https://0xdf.gitlab.io/2019/03/05/htb-devel.html#privesc-web--system
-
+Identify .net version, compile watson for this version, tranfert & run
 
 
 # Get .Net version
