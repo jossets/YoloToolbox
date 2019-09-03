@@ -523,7 +523,11 @@ List of CVE
 powershell -Command "$PSVersionTable.PSVersion"
 ```
 
+## Writable dir
 
+- C:\Users\Public\Documents : Windows 2008 and 2012 
+- C:\Documents and Settings\All Users\Documents :  Windows 2003 
+ 
 
 Read next 
 To watch : 
