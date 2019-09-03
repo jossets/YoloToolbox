@@ -20,6 +20,7 @@ $ dirb http://10.10.10.6
 http://10.10.10.6/torrent/
 ````
 
+![](images/popcorn_torrent.png)
 
 ## Site exploit : file upload (xx.php.png)
 
