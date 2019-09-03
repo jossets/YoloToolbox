@@ -1,5 +1,12 @@
 # Popcorn 10.10.10.6
 
+
+- Linux 2.6.31-14
+- Bittornado exploit : file upload (xx.php.png)
+- Linux Kernel <= 2.6.37 local privilege escalation : full_nelson : 3 https://www.exploit-db.com/exploits/15704
+
+
+
 ## nmap
 ````
 $ nmap -A 10.10.10.6
