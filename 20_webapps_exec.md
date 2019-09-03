@@ -90,6 +90,11 @@ Note :
 
 ````
 
+## Apache .htaccess
+
+Upload a crafted .htacess : https://github.com/wireghoul/htshells
+
+
 
 ## cgi in perl called by jquery
 $.getJSON("/cgi-bin/hello?name="+document.location.hash.substring(1), function (data) {
