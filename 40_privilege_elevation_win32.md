@@ -528,6 +528,9 @@ powershell -Command "$PSVersionTable.PSVersion"
 - C:\Users\Public\Documents : Windows 2008 and 2012 
 - C:\Documents and Settings\All Users\Documents :  Windows 2003 
  
+## Offensive BinSploit
+https://github.com/offensive-security/exploitdb-bin-sploits
+
 
 Read next 
 To watch : 
