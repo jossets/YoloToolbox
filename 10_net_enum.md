@@ -161,7 +161,7 @@ wget --mirror 'ftp://ftp_user:UTDRSCH53c"$6hys@tally.htb.local'
 =============================================================
 
 ## IIS Versions
-
+````
 IIS 1.0	Windows NT 3.51
 IIS 2.0	Windows NT 4.0
 IIS 3.0	Windows NT 4.0 SP3
@@ -169,18 +169,18 @@ IIS 4.0	Windows NT 4.0 Options Pack
 IIS 5.0	Windows 2000
 IIS 5.1	Windows XP Professional x32
 IIS 6.0	Windows Server 2003
-IIS 6.0	Windows Server 2003 R2
+IIS 6.0	Windows Server 2003 R2  : with WebDAV CVE 2017-7269
 IIS 6.0	Windows XP Professional x64
 IIS 7.0	Windows Vista
 IIS 7.0	Windows 7
 IIS 7.0	Windows Server 2008
 IIS 7.5	Windows Server 2008 R2
 IIS 8.0 Windows Server 2012 and Windows 8
-IIS 8.5 Windows Server 2012 R2 and Windows 8.1. 
+IIS 8.5 Windows Server 2012 R2 and Windows 8.1.  : pas de MS-XX ?
 IIS 10.0 version 1607 a.k.a. version 10.0.14393 : Windows Server 2016 released 2016-09-26 and Windows 10 Anniversary Update released 2016-08-02.
 IIS 10.0 version 1709 : Windows Server, version 1709 (Semi-Annual Channel) and Windows 10 Fall Creators Update both released 2017-10-17.
 IIS 10.0 version 1809 a.k.a. version 10.0.17763 : Windows Server 2019 and Windows 10 October Update released 2018-10-02. 
-
+````
 =============================================================
 
 ## WebDAV
