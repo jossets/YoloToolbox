@@ -4,6 +4,7 @@
 - Linux 2.6.31-14
 - Bittornado exploit : file upload (xx.php.png)
 - Linux Kernel <= 2.6.37 local privilege escalation : full_nelson : 3 https://www.exploit-db.com/exploits/15704
+- Tested on unpatched Ubuntu 10.04 kernels, both x86 and x86-64.
 
 
 
@@ -59,6 +60,8 @@ meterpreter > sysinfo
 ## Pric esc : full_nelson
 
 => Linux Kernel <= 2.6.37 local privilege escalation : full_nelson : 3 Privilege to get root
+Exploit 3 CVE: CVE-2010-4258, CVE-2010-3849, CVE-2010-3850
+Tested on unpatched Ubuntu 10.04 kernels, both x86 and x86-64.
 ````
 https://www.exploit-db.com/exploits/15704
 ````
