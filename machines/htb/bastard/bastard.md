@@ -1,7 +1,12 @@
 # bastard 10.10.10.9
 
-## In brief:
-- Windows
+
+
+- Windows Server 2008 R2 Datacenter 
+- 6.1.7600 N/A Build 7600
+- No hot fix
+
+
 - Drupal 7.54
    => Drupalgeddon2 or Drupalgeddon3
 - Powershell Invoke-PowerShellTcp.ps1
