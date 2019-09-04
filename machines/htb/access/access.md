@@ -1,7 +1,11 @@
-# Access 10.10.10.98
-Windows
-ftp anonymous 
-extract db file
+# NTG - Access 10.10.10.98
+
+- Windows
+
+- ftp anonymous 
+- extract db file
+- Run cmd with Credentials
+
 
 ## nmap
 ````
