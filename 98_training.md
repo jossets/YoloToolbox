@@ -61,7 +61,7 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - shocker 10.10.10.56
   - bashed 10.10.10.68
   - nibbles 10.10.10.75
-  - beep 10.10.10.7
+  - beep 10.10.10.7          : Linux beep 2.6.18-238.12.1.el5 #1 SMP Tue May 31 13:23:01 EDT 2011 i686 athlon i386 GNU/Linux
   - cronos 10.10.10.13
   - nineveh 10.10.10.43
   - sense 10.10.10.60
@@ -77,15 +77,16 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - mirai
   - bashed
 
+
 ###HTB Windows
 
   - legacy
-  - Blue
+  - Blue       : Windows 7 Professional 7601 Service Pack 1
   - Devel
   - Optimum
-  - Bastard
+  - Bastard    : Windows Server 2008 R2 Datacenter, 6.1.7600 N/A Build 7600, No hotfix
   - granny
-  - Arctic
+  - Arctic     : Windows Server 2008 R2 Standard,   6.1.7600 N/A Build 7600, No Hotfix
   - grandpa
   - silo
   - bounty
@@ -95,4 +96,28 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - bart
   - jeeves
   - chatterbox
+  
+  ### Systems
+  
+  
+
+Windows 7 Professional 7601 Service Pack 1
+- Blue: Metasploit: exploit/windows/smb/ms17_010_eternalblue
+
+Windows Server 2008 R2 Standard
+6.1.7600 N/A Build 7600, No Hotfix
+- HTB - arctic : MS10-059 Chimichurri (*.exe)
+
+Windows Server 2008 R2 Datacenter
+6.1.7600 N/A Build 7600, No hotfix
+- HTB - Bastard
+
+6.1.7600
+- HTB - Bounty : MS15-051, ms10_092_schelevator
+
+
+
+Microsoft Windows 10 Enterprise
+10.0.15063 N/A Build 15063, No hotfix
+
 
