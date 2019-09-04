@@ -52,6 +52,8 @@
   - Web Developer 1: https://www.vulnhub.com/entry/web-developer-1,288/
   - SolidState: https://www.vulnhub.com/entry/solidstate-1,261/
 
+Pay close attention to the privilege escalation on both Vulnix and PwnOS. 
+
 ### HTB Linux
 
   - Lame 10.10.10.3
@@ -70,6 +72,10 @@
   - poison 10.10.10.84
   - sunday 10.10.10.76
   - tartarsauce 10.10.10.88
+  - popcorn
+  - haircut
+  - mirai
+  - bashed
 
 ###HTB Windows
 
@@ -82,8 +88,11 @@
   - Arctic
   - grandpa
   - silo
-  -bounty
+  - bounty
   - jerry
   - conceal
-
+  - tally
+  - bart
+  - jeeves
+  - chatterbox
 
