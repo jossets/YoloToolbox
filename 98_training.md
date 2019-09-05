@@ -61,7 +61,7 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - shocker 10.10.10.56
   - bashed 10.10.10.68
   - nibbles 10.10.10.75
-  - beep 10.10.10.7          : Linux beep 2.6.18-238.12.1.el5 #1 SMP Tue May 31 13:23:01 EDT 2011 i686 athlon i386 GNU/Linux
+  - beep 10.10.10.7          : Linux beep 2.6.18-238.12.1.el5 #1 SMP EDT 2011 i686 athlon i386 GNU/Linux
   - cronos 10.10.10.13
   - nineveh 10.10.10.43
   - sense 10.10.10.60
@@ -72,34 +72,59 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - poison 10.10.10.84
   - sunday 10.10.10.76
   - tartarsauce 10.10.10.88
-  - popcorn
-  - haircut
+  - popcorn                  : Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP UTC 2009 i686 GNU/Linux
+  - haircut                  : Linux haircut 4.4.0-78-generic      #99-Ubuntu SMP UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
   - mirai
   - bashed
+
+#### Systems
+
+Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 i686 GNU/Linux
+- HTB Popcorn : Linux Kernel <= 2.6.37 local privilege escalation : full_nelson : https://www.exploit-db.com/exploits/15704 , Tested on unpatched Ubuntu 10.04 kernels, both x86 and x86-64.
+
 
 
 ###HTB Windows
 
-  - legacy
+  - legacy     : XP sp3 English
   - Blue       : Windows 7 Professional 7601 Service Pack 1
-  - Devel
-  - Optimum
+  - Devel      : Windows 7 Enterprise OS Version: 6.1.7600 N/A Build 7600 No hotfix
+  - Optimum    : Windows Server 2012 R2 Standard, 6.3.9600 N/A Build 9600, 31 Hotfix(s) Installed.
   - Bastard    : Windows Server 2008 R2 Datacenter, 6.1.7600 N/A Build 7600, No hotfix
-  - granny
+  - granny     : Windows Server 2003 SP2
   - Arctic     : Windows Server 2008 R2 Standard,   6.1.7600 N/A Build 7600, No Hotfix
-  - grandpa
+  - grandpa    : Windows(R) Server 2003, Standard Edition, 5.2.3790 Service Pack 2 Build 3790 Hotfix(s): 1 Hotfix(s) Installed. [01]: Q147222
   - silo
   - bounty
   - jerry
-  - conceal
-  - tally
+  - conceal    : Windows 10 Enterprise,   10.0.15063 N/A Build 15063, No hotfix
+  - tally      : Windows Server 2016 Standard, 10.0.14393 N/A Build 14393, 2 Hotfix(s) Installed.
   - bart
   - jeeves
   - chatterbox
   
-  ### Systems
+### Systems
   
   
+XP sp3 English
+- HTB Legacy : msfconsole exploit/windows/smb/ms17_010_psexec
+- HTB Legacy : msfconsole exploit/windows/smb/ms08_067_netapi target=7 (XP SP3 Eng)
+
+
+Windows(R) Server 2003, Standard Edition  
+5.2.3790 Service Pack 2 Build 3790 
+Hotfix(s): 1 Hotfix(s) Installed. [01]: Q147222
+- HTB - Grandpa : Metasploit iis_webdav_scstoragepathfromurl to get user shell -> user
+- HTB - Grandpa : CVE 2017-7269 Remote Buffer Overflow github -> user
+
+Windows Server 2003 SP2
+- HTB - Granny : ms14_058 : metasploit windows/local/ms14_058_track_popup_menu (worked 0xdf)
+- HTB - Granny : ms14_058 : ms14_070 : metasploit use exploit/windows/local/ms14_070_tcpip_ioctl (worked medium)
+- HTB - Granny : ms14_058 : MS14–070 : TCP/IP IOCTL Privilege Escalation
+
+Windows 7 Enterprise OS Version: 6.1.7600 N/A Build 7600, No hotfix
+- HTB - Devel : MS10-015.exe(ko)
+- HTB - Devel : exploit/windows/local/ms15_051_client_copy_image (ok)
 
 Windows 7 Professional 7601 Service Pack 1
 - Blue: Metasploit: exploit/windows/smb/ms17_010_eternalblue
@@ -107,6 +132,7 @@ Windows 7 Professional 7601 Service Pack 1
 Windows Server 2008 R2 Standard
 6.1.7600 N/A Build 7600, No Hotfix
 - HTB - arctic : MS10-059 Chimichurri (*.exe)
+- HTB - Silo
 
 Windows Server 2008 R2 Datacenter
 6.1.7600 N/A Build 7600, No hotfix
@@ -115,9 +141,26 @@ Windows Server 2008 R2 Datacenter
 6.1.7600
 - HTB - Bounty : MS15-051, ms10_092_schelevator
 
+Microsoft Windows Server 2012 R2 Standard
+6.3.9600 N/A Build 9600
+31 Hotfix(s) Installed.
+- HTB - Optimum : Empire MS16-032 powershell script
 
+Microsoft Windows Server 2016 Standard
+10.0.14393 N/A Build 14393 
+2 Hotfix(s) Installed. [01]: KB3199986, [02]: KB4015217           
+- HTB - Tally
 
 Microsoft Windows 10 Enterprise
 10.0.15063 N/A Build 15063, No hotfix
+- HTB - Counceal : SeImpresonatePrivilege => Hot potato, or Juicy Potato
 
+  
+### Apps
+
+Apache Tomcat/Coyote JSP engine 1.1
+- HTB - Jerry
+
+Dist CC 4.2.4 
+- HTB - Lame : CVE 2004-2687
 
