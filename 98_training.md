@@ -122,7 +122,8 @@ Windows Server 2003 SP2
 - HTB - Granny : ms14_058 : ms14_070 : metasploit use exploit/windows/local/ms14_070_tcpip_ioctl (worked medium)
 - HTB - Granny : ms14_058 : MS14–070 : TCP/IP IOCTL Privilege Escalation
 
-Windows 7 Enterprise OS Version: 6.1.7600 N/A Build 7600, No hotfix
+Windows 7 Enterprise OS Version: 
+6.1.7600 N/A Build 7600, No hotfix
 - HTB - Devel : MS10-015.exe(ko)
 - HTB - Devel : exploit/windows/local/ms15_051_client_copy_image (ok)
 
@@ -137,6 +138,7 @@ Windows Server 2008 R2 Standard
 Windows Server 2008 R2 Datacenter
 6.1.7600 N/A Build 7600, No hotfix
 - HTB - Bastard
+
 
 6.1.7600
 - HTB - Bounty : MS15-051, ms10_092_schelevator
