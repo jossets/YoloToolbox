@@ -201,3 +201,77 @@ hashcat -m 13400 tim.keepass
 
 ```
 
+
+# systeminfo
+
+````
+ Host Name:                 TALLY                                                   
+	OS Name:                   Microsoft Windows Server 2016 Standard
+	OS Version:                10.0.14393 N/A Build 14393 
+	OS Manufacturer:           Microsoft Corporation  
+	OS Configuration:          Standalone Server 
+	OS Build Type:             Multiprocessor Free 
+	Registered Owner:          Windows User       
+	Registered Organization:                      
+	Product ID:                00376-30726-67778-AA877
+	Original Install Date:     28/08/2017, 15:43:34   
+	System Boot Time:          17/02/2018, 20:05:52      
+
+	System Manufacturer:       VMware, Inc.   
+	System Model:              VMware Virtual Platform    
+
+	System Type:               x64-based PC   
+	Processor(s):              2 Processor(s) Installed.    
+
+	                           [01]: Intel64 Family 6 Model 63 Stepping 2 GenuineIntel ~2600 Mhz       
+
+	                           [02]: Intel64 Family 6 Model 63 Stepping 2 GenuineIntel ~2600 Mhz    
+
+	BIOS Version:              Phoenix Technologies LTD 6.00, 05/04/2016 
+
+	Windows Directory:         C:\Windows                
+
+	System Directory:          C:\Windows\system32       
+
+	Boot Device:               \Device\HarddiskVolume1    
+
+	System Locale:             en-gb;English (United Kingdom) 
+
+	Input Locale:              en-gb;English (United Kingdom) 
+
+	Time Zone:                 (UTC+00:00) Dublin, Edinburgh, Lisbon, London                                               
+
+	Total Physical Memory:     2,047 MB  
+	Available Physical Memory: 231 MB                                                                            
+	Virtual Memory: Max Size:  4,458 MB    
+	Virtual Memory: Available: 657 MB                    
+
+	Virtual Memory: In Use:    3,801 MB                  
+
+	Page File Location(s):     C:\pagefile.sys           
+
+	Domain:                    HTB.LOCAL                
+
+	Logon Server:              \\TALLY       
+	Hotfix(s):                 2 Hotfix(s) Installed. 
+	                           [01]: KB3199986           
+
+	                           [02]: KB4015217           
+
+	Network Card(s):           1 NIC(s) Installed.  
+	                           [01]: Intel(R) 82574L Gigabit Network Connection                                                   
+	                                 Connection Name: Ethernet0  
+
+	                                 DHCP Enabled:    No  
+
+	                                 IP address(es)     
+
+	                                 [01]: 10.10.10.59   
+
+	                                 [02]: fe80::c5bc:7321:fb5d:9066
+
+	                                 [03]: dead:beef::c5bc:7321:fb5d:9066  
+                                                          
+
+Hyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will
+````
