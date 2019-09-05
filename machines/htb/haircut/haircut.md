@@ -1,5 +1,8 @@
 # HTB - Haircut  10.10.10.24
 
+- Linux haircut 4.4.0-78-generic #99-Ubuntu SMP Thu Apr 27 15:29:09 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+- App cmd exploit-> nc
+- suid on screen-4.5.0 + screen-4.5.0 exploit
 
 
 # nmap
