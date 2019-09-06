@@ -94,9 +94,9 @@ Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 
   - granny     : Windows Server 2003 SP2
   - Arctic     : Windows Server 2008 R2 Standard,   6.1.7600 N/A Build 7600, No Hotfix
   - grandpa    : Windows(R) Server 2003, Standard Edition, 5.2.3790 Service Pack 2 Build 3790 Hotfix(s): 1 Hotfix(s) Installed. [01]: Q147222
-  - silo
-  - bounty
-  - jerry
+  - silo       : Windows Server 2008 R2
+  - bounty     : Windows Server 2008 R2, 6.1.7600
+  - jerry      : windows...
   - conceal    : Windows 10 Enterprise,   10.0.15063 N/A Build 15063, No hotfix
   - tally      : Windows Server 2016 Standard, 10.0.14393 N/A Build 14393, 2 Hotfix(s) Installed.
   - bart       : Windows NT 10.0 Build 15063 i586
@@ -139,7 +139,6 @@ Windows Server 2008 R2 Datacenter
 6.1.7600 N/A Build 7600, No hotfix
 - HTB - Bastard
 
-
 6.1.7600
 - HTB - Bounty : MS15-051, ms10_092_schelevator
 
@@ -161,6 +160,10 @@ Windows NT 10.0 Build 15063 i586
 - HTB - Bart
 
 
+
+
+
+
   
 ### Apps
 
@@ -169,6 +172,13 @@ Apache Tomcat/Coyote JSP engine 1.1
 
 Dist CC 4.2.4 
 - HTB - Lame : CVE 2004-2687
+
+
+IIS 7
+- HTB - Bounty
+
+IIS 8.5
+- HTB - Silo
 
 IIS 10.0
 - HTB - Bart
