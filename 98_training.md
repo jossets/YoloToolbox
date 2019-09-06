@@ -99,7 +99,7 @@ Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 
   - jerry
   - conceal    : Windows 10 Enterprise,   10.0.15063 N/A Build 15063, No hotfix
   - tally      : Windows Server 2016 Standard, 10.0.14393 N/A Build 14393, 2 Hotfix(s) Installed.
-  - bart
+  - bart       : Windows NT 10.0 Build 15063 i586
   - jeeves
   - chatterbox
   
@@ -157,6 +157,10 @@ Microsoft Windows 10 Enterprise
 10.0.15063 N/A Build 15063, No hotfix
 - HTB - Counceal : SeImpresonatePrivilege => Hot potato, or Juicy Potato
 
+Windows NT 10.0 Build 15063 i586
+- HTB - Bart
+
+
   
 ### Apps
 
@@ -165,4 +169,7 @@ Apache Tomcat/Coyote JSP engine 1.1
 
 Dist CC 4.2.4 
 - HTB - Lame : CVE 2004-2687
+
+IIS 10.0
+- HTB - Bart
 
