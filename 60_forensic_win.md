@@ -7,6 +7,14 @@
 - GDB for Linux CFF Explorer Lord PE PEBrowse32/64 for PE Editors ResHacker Hex Workshop 010 Editor for hex and text editing
 - Windbg
 
+## Samdump2
+```
+cd /mnt/vhd/Windows/System32/config
+# samdump2 SYSTEM SAM
+*disabled* Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+*disabled* Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+L4mpje:1000:aad3b435b51404eeaad3b435b51404ee:26112010952d963c8dc4217daec986d9:::
+```
 
 ## Windows Memdump : extract SAM
 
@@ -79,4 +87,10 @@ Administrator:500:aad3b435b51404eeaad3b435b51404ee:9e730375b7cbcebf74ae46481e07b
 Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 Phineas:1002:aad3b435b51404eeaad3b435b51404ee:8eacdd67b77749e65d3b3d5c110b0969:::
 ````
+
+## Mount VHD : Virtual Hard Drive
+
+apt-get install libguestfs-tools
+mkdir /mnt/vhd
+guestmount --add /mnt/path/to/vhdfile.vhd --inspector --ro /mnt/vhd -v
 

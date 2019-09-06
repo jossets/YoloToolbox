@@ -102,6 +102,8 @@ Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 
   - bart       : Windows NT 10.0 Build 15063 i586
   - jeeves
   - chatterbox
+
+  - Bastion    : Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)
   
 ### Systems
   
@@ -148,9 +150,14 @@ Microsoft Windows Server 2012 R2 Standard
 - HTB - Optimum : Empire MS16-032 powershell script
 
 Microsoft Windows Server 2016 Standard
+10.0.14393 N/A Build 14393 , ?? hotfix
+- HTB - Bastion
+
+Microsoft Windows Server 2016 Standard
 10.0.14393 N/A Build 14393 
 2 Hotfix(s) Installed. [01]: KB3199986, [02]: KB4015217           
 - HTB - Tally
+
 
 Microsoft Windows 10 Enterprise
 10.0.15063 N/A Build 15063, No hotfix

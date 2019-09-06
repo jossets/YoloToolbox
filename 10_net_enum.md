@@ -244,9 +244,40 @@ Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hyperte
     enum4linux 192.168.168.168  
     enum4linux 192.168.168.168 -U   : grab userlist
 
-### Smbclient
+### Smbclient list
     lists smb type (often displaying samba version) and various shares
     smbclient -N -L 192.168.168.168 - 
+    # smbclient -L 10.10.10.134
+    Enter WORKGROUP\root's password: 
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	Backups         Disk      
+	C$              Disk      Default share
+	IPC$            IPC       Remote IPC
+
+
+### Smbclient browse
+    $ smbclient '//host/folder' -U user --pass password
+    smb: \folder\> recurse ON
+    smb: \folder\> prompt OFF
+    smb: \folder\> lcd /local/source/directory
+    smb: \folder\> cd remote/target/directory
+    smb: \folder\> mput *
+                   mget *
+                   get xxx
+                   put xxx
+
+### Mount SMB
+    Install apt
+    sudo apt-get install cifs-utils
+    Mount point
+    sudo mkdir /mnt/local_share
+    Mount without login
+    sudo mount -t cifs  //10.10.10.134/Backups /mnt/local_share
+    Mount with authent
+    sudo mount -t cifs -o user=<user on VPSA> //10.10.10.134/Backups /mnt/local_share
 
 ### Accesschk
     Attempts to connect to $IPC or $ADMIN shares
