@@ -7,6 +7,8 @@
 # - g0tmi1k   ~ https://blog.g0tmi1k.com/ // https://twitter.com/g0tmi1k
 #
 
+# https://github.com/dreadlocked/Drupalgeddon2
+
 # sudo gem install highline
 
 
@@ -526,9 +528,9 @@ paths = [
   "sites/default/",
   "sites/default/files/",
   # They did something "wrong", chmod -R 0777 .
-  #"core/",
-  #"user/",
-  #"rest/",
+  "core/",
+  "user/",
+  "rest/",
 ]
 # Check all (if doing web shell)
 paths.each do|path|

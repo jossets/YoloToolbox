@@ -106,6 +106,33 @@ Rien => 64 bits
 ```
 > C:\Windows\sysnative\cmd.exe
 ```
+C:\Windows\SysWOW64\cmd.exe   : 64
+C:\Windows\System32\cmd.exe   : 32
+
+
+## Powershell version
+```
+$PSVersionTable
+
+Name                           Value                                           
+----                           -----                                           
+CLRVersion                     2.0.50727.4927                                  
+BuildVersion                   6.1.7600.16385                                  
+PSVersion                      2.0                                             
+WSManStackVersion              2.0                                             
+PSCompatibleVersions           {1.0, 2.0}                                      
+SerializationVersion           1.1.0.1                                         
+PSRemotingProtocolVersion      2.1                                             
+```
+
+## Powershell cmd
+```
+& 'D:\Server\PSTools\PsExec.exe' @('\\1.1.1.1', '-accepteula', '-d', '-i', $id, '-h', '-u', 'domain\user', '-p', 'password', '-w', 'C:\path\to\the\app', 'java', '-jar', 'app.jar')
+```
+Just put paths or connection strings in one array item and split the other things in one array item each.
+
+
+
 
 ## Get User info
 
