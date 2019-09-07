@@ -154,6 +154,11 @@ wget --mirror 'ftp://ftp_user:UTDRSCH53c"$6hys@tally.htb.local'
     # wpscan -u http://raven.local/wordpress -e
     Note : mysql Credentials location: /var/www/html/wordpress/wp-config.php
 
+#### Dir structure
+  Posts :          /index.php/2017/04/12/hello-world/
+                   /index.php/jobs/apply/8/
+  Uploaded files : /wp-content/uploads/%year%/%month%/%filename% 
+
 =============================================================
 
 ## Glassfish

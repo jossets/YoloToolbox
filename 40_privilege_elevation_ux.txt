@@ -51,7 +51,43 @@ ls /boot | grep "vmlinuz"
 lsb_release -a
 uname -a
 ````
- 
+```
+$ cat /etc/issue
+Ubuntu 16.04.2 LTS \n \l
+
+takis@tenten:~$ cat /etc/*release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.2 LTS"
+NAME="Ubuntu"
+VERSION="16.04.2 LTS (Xenial Xerus)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 16.04.2 LTS"
+VERSION_ID="16.04"
+HOME_URL="http://www.ubuntu.com/"
+SUPPORT_URL="http://help.ubuntu.com/"
+BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
+VERSION_CODENAME=xenial
+UBUNTU_CODENAME=xenial
+
+takis@tenten:~$ cat /proc/version
+Linux version 4.4.0-62-generic (buildd@lcy01-30) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) ) #83-Ubuntu SMP Wed Jan 18 14:10:15 UTC 2017
+takis@tenten:~$ ls /boot | grep "vmlinuz"
+vmlinuz-4.4.0-62-generic
+takis@tenten:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 16.04.2 LTS
+Release:	16.04
+Codename:	xenial
+
+takis@tenten:~$ uname -a
+Linux tenten 4.4.0-62-generic #83-Ubuntu SMP Wed Jan 18 14:10:15 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+
 # Find user information
 ````
 id

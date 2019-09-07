@@ -79,9 +79,19 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
 
 #### Systems
 
-Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 i686 GNU/Linux
+2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 i686 GNU/Linux
 - HTB Popcorn : Linux Kernel <= 2.6.37 local privilege escalation : full_nelson : https://www.exploit-db.com/exploits/15704 , Tested on unpatched Ubuntu 10.04 kernels, both x86 and x86-64.
 
+4.4.0-62-generic x86_64
+- Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) : HTB - Tenten
+
+##### Apps
+
+- OpenSSH 7.2p2 Ubuntu 4ubuntu2.1 (Ubuntu Linux; protocol 2.0) : no exploit
+
+- Apache 2.4.18 : no exploit
+
+- WordPress 4.7.3 : no exploit
 
 
 ###HTB Windows
