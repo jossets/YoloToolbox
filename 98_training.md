@@ -76,6 +76,7 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - haircut                  : Linux haircut 4.4.0-78-generic      #99-Ubuntu SMP UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
   - mirai
   - bashed
+  - october                  : 4.4.0-78-generic #99  Ubuntu 14.04.5 LTS i686 athlon i686 GNU/Linux
 
 #### Systems
 
@@ -84,6 +85,12 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
 
 4.4.0-62-generic x86_64
 - Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) : HTB - Tenten
+
+4.4.0-78-generic #99 i686 athlon i686 GNU/Linux
+- Ubuntu 14.04.5 LTS : HTB - October
+
+
+
 
 ##### Apps
 
