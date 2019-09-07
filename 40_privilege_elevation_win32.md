@@ -565,6 +565,12 @@ powershell -Command "$PSVersionTable.PSVersion"
 https://github.com/offensive-security/exploitdb-bin-sploits
 
 
+## Exploit choice
+
+https://github.com/SecWiki/windows-kernel-exploits/raw/master/win-exp-suggester/2017-06-14-mssb.xls
+
+
+
 Read next 
 To watch : 
 - Encyclopedia of win escalation : https://www.youtube.com/watch?v=kMG8IsCohHA

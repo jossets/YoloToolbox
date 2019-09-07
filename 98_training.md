@@ -149,7 +149,7 @@ Windows Server 2008 R2 Standard
 
 Windows Server 2008 R2 Datacenter
 6.1.7600 N/A Build 7600, No hotfix
-- HTB - Bastard
+- HTB - Bastard : meterpreter ms16_014_wmi_recv_notif
 
 6.1.7600
 - HTB - Bounty : MS15-051, ms10_092_schelevator
