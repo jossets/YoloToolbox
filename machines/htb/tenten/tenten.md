@@ -7,6 +7,9 @@
 - WordPress 4.7.3 : no exploit
 
 
+# Walkthrough
+- https://medium.com/@sdgeek/hack-the-box-htb-tenten-ddd9e6a9e22
+
 
 # Nmap
 
