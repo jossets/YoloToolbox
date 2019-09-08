@@ -11,6 +11,7 @@
     -o /dev/null : Ignore response body
 
 
+
 ## HTTP authentication
 HTTP also provides mechanisms to authenticate users. There are three methods available as part of the protocol:
 - Basic Authentication: the username and password are encoded using base64 and sent using an Authorization header: 
