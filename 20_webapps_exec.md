@@ -1,6 +1,9 @@
 # Web apps frameworks : Code Execution
 
 
+## Sonar risks
+
+https://rules.sonarsource.com/php/RSPEC-3331
 
 
 ## Ruby on rail
@@ -117,3 +120,4 @@ http://ptl-4938c1df-399c9d4e.libcurl.so/?ip=`cmd`  : no output but cmd executed 
 http://ptl-836d9020-8f3b7b55.libcurl.so/?ip=$(touch /tmp/bob)
 => ping -c 2 $(touch /tmp/bob)
 ````
+

