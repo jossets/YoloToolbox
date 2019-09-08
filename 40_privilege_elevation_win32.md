@@ -575,6 +575,27 @@ https://github.com/SecWiki/windows-kernel-exploits/raw/master/win-exp-suggester/
 
 - BeRoot project : https://github.com/AlessandroZ/BeRoot
 
+## Kernel exploits
+
+    https://github.com/SecWiki/windows-kernel-exploits
+
+
+
+
+
+## Exploit suggester
+
+```
+# cp ../../../tools/windows-exploit-suggester.py .
+
+root@kali:~/htb/YoloToolbox/machines/htb/granny# python windows-exploit-suggester.py -u
+[*] initiating winsploit version 3.3...
+[+] writing to file 2019-09-08-mssb.xls
+[*] done
+root@kali:~/htb/YoloToolbox/machines/htb/granny# python windows-exploit-suggester.py -i systeminfo.txt -d 2019-09-08-mssb.xls
+[*] initiating winsploit version 3.3...
+```
+
 
 
 Read next 
