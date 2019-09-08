@@ -141,7 +141,7 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
     wget https://github.com/OJ/gobuster/releases/download/v3.0.1/gobuster-linux-amd64.7z
 
     directory-list-2.3-medium.txt : assez longue
-    ./gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
+    /opt/gobuster/gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
 
     common.txt : plus rapide
     # /opt/gobuster/gobuster dir -u http://10.10.10.13  -l -x html,php,js,txt -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
@@ -195,6 +195,12 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
 =============================================================
 
 ## Glassfish
+
+=============================================================
+
+## Joomla
+
+    # joomscan -u http://10.10.10.18
 
 =============================================================
 
