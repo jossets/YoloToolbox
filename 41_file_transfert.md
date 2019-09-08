@@ -1,6 +1,10 @@
 # File transfert
 
 
+## nc
+
+/usr/share/windows-binaries/nc.exe
+
 
 ## Server ftp
 

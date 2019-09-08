@@ -139,8 +139,8 @@ Hotfix(s): 1 Hotfix(s) Installed. [01]: Q147222
 
 Windows Server 2003 SP2
 - HTB - Granny : ms14_058 : metasploit windows/local/ms14_058_track_popup_menu (worked 0xdf)
-- HTB - Granny : ms14_058 : ms14_070 : metasploit use exploit/windows/local/ms14_070_tcpip_ioctl (worked medium)
-- HTB - Granny : ms14_058 : MS14–070 : TCP/IP IOCTL Privilege Escalation
+- HTB - Granny : ms14_070 : metasploit use exploit/windows/local/ms14_070_tcpip_ioctl (worked medium) ok
+- HTB - Granny : ms14_058 : MS14–070 : TCP/IP IOCTL Privilege Escalation ?
 
 Windows 7 Enterprise OS Version: 
 6.1.7600 N/A Build 7600, No hotfix

