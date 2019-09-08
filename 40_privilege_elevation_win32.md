@@ -570,6 +570,12 @@ https://github.com/offensive-security/exploitdb-bin-sploits
 https://github.com/SecWiki/windows-kernel-exploits/raw/master/win-exp-suggester/2017-06-14-mssb.xls
 
 
+## Workshop
+- Win32 PE workshop : https://github.com/sagishahar/lpeworkshop
+
+- BeRoot project : https://github.com/AlessandroZ/BeRoot
+
+
 
 Read next 
 To watch : 

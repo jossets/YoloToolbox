@@ -8,7 +8,15 @@
 which python
 locate python
 /usr/bin/python3 -c 'import pty; pty.spawn("/bin/bash")'  
-python -c 'import pty; pty.spawn("/bin/bash")'  
+
+
+# In reverse shell : bash
+$ python -c 'import pty; pty.spawn("/bin/bash")'
+Ctrl-Z
+
+# In Kali => <- -> history, vi,...
+$ stty raw -echo
+$ fg 
 ````
 
 ## socat

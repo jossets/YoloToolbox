@@ -61,8 +61,8 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - shocker 10.10.10.56
   - bashed 10.10.10.68
   - nibbles 10.10.10.75
-  - beep 10.10.10.7          : Linux beep 2.6.18-238.12.1.el5 #1 SMP EDT 2011 i686 athlon i386 GNU/Linux
-  - cronos 10.10.10.13
+  - beep 10.10.10.7          : 2.6.18-238.12.1.el5 #1 SMP EDT 2011 i686 athlon i386 GNU/Linux
+  - cronos 10.10.10.13       : 4.4.0-72-generic #93-16.04.2 LTS  SM x86_64
   - nineveh 10.10.10.43
   - sense 10.10.10.60
   - solidstate 10.10.10.51
@@ -72,8 +72,8 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - poison 10.10.10.84
   - sunday 10.10.10.76
   - tartarsauce 10.10.10.88
-  - popcorn                  : Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP UTC 2009 i686 GNU/Linux
-  - haircut                  : Linux haircut 4.4.0-78-generic      #99-Ubuntu SMP UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+  - popcorn                  : 2.6.31-14-generic-pae #48-Ubuntu SMP UTC 2009 i686 GNU/Linux
+  - haircut                  : 4.4.0-78-generic      #99-Ubuntu SMP UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
   - mirai
   - bashed
   - october                  : 4.4.0-78-generic #99  Ubuntu 14.04.5 LTS i686 athlon i686 GNU/Linux
@@ -89,7 +89,8 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
 4.4.0-78-generic #99 i686 athlon i686 GNU/Linux
 - Ubuntu 14.04.5 LTS : HTB - October
 
-
+4.4.0-72-generic #93-Ubuntu SMP Fri Mar 31 14:07:41 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+- Ubuntu 16.04.2 LTS : HTB - Cronos
 
 
 ##### Apps

@@ -82,6 +82,31 @@ wget --mirror 'ftp://ftp_user:UTDRSCH53c"$6hys@tally.htb.local'
 ## 23: Telnet
     # nmap -p 23 --script telnet-brute --script-args userdb=users.lst,passdb=/usr/share/john/password.lst,telnet-brute.timeout=8s <target>
 
+=============================================================
+## 53: Bind
+
+DNS Zone Transfert (axfr)
+Permet d'obtenir des noms dns qui seront utilisés pour le routage des serveurs web.
+
+```
+# dig axfr @10.10.10.13 cronos.htb
+
+; <<>> DiG 9.11.4-P2-3-Debian <<>> axfr @10.10.10.13 cronos.htb
+; (1 server found)
+;; global options: +cmd
+cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
+cronos.htb.		604800	IN	NS	ns1.cronos.htb.
+cronos.htb.		604800	IN	A	10.10.10.13
+admin.cronos.htb.	604800	IN	A	10.10.10.13
+ns1.cronos.htb.		604800	IN	A	10.10.10.13
+www.cronos.htb.		604800	IN	A	10.10.10.13
+cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
+;; Query time: 29 msec
+;; SERVER: 10.10.10.13#53(10.10.10.13)
+;; WHEN: dim. sept. 08 11:47:44 CEST 2019
+;; XFR size: 7 records (messages 1, bytes 203)
+```
+
 
 =============================================================
 ## 80: HTTP
@@ -114,7 +139,13 @@ wget --mirror 'ftp://ftp_user:UTDRSCH53c"$6hys@tally.htb.local'
     Find hidden files & dir
     https://github.com/OJ/gobuster
     wget https://github.com/OJ/gobuster/releases/download/v3.0.1/gobuster-linux-amd64.7z
+
+    directory-list-2.3-medium.txt : assez longue
     ./gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
+
+    common.txt : plus rapide
+    # /opt/gobuster/gobuster dir -u http://10.10.10.13  -l -x html,php,js,txt -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+
 
     # gobuster -u http://172.16.27.142/ -w /opt/SecLists/Discovery/Web-Content/common.txt -x html,php -s 200,301,401,403
     # ./gobuster -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
