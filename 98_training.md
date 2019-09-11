@@ -77,6 +77,9 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - mirai
   - bashed
   - october                  : 4.4.0-78-generic #99  Ubuntu 14.04.5 LTS i686 athlon i686 GNU/Linux
+  - tenten                   : 4.4.0-62-generic x86_64  Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 
+  - blocky                   : 4.4.0-62-generic x86_64  Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 
+
 
 #### Systems
 
@@ -84,7 +87,9 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
 - HTB Popcorn : Linux Kernel <= 2.6.37 local privilege escalation : full_nelson : https://www.exploit-db.com/exploits/15704 , Tested on unpatched Ubuntu 10.04 kernels, both x86 and x86-64.
 
 4.4.0-62-generic x86_64
-- Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) : HTB - Tenten
+- Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 
+  - HTB - Tenten
+  - HTB - Blocky
 
 4.4.0-78-generic #99 i686 athlon i686 GNU/Linux
 - Ubuntu 14.04.5 LTS : HTB - October
