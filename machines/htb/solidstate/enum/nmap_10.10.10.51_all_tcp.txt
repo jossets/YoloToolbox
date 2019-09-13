@@ -1,0 +1,15 @@
+# Nmap 7.70 scan initiated Fri Sep 13 16:55:41 2019 as: nmap -sV -p- -o enum/nmap_10.10.10.51_all_tcp.txt 10.10.10.51
+Nmap scan report for 10.10.10.51
+Host is up (0.035s latency).
+Not shown: 65529 closed ports
+PORT     STATE SERVICE     VERSION
+22/tcp   open  ssh         OpenSSH 7.4p1 Debian 10+deb9u1 (protocol 2.0)
+25/tcp   open  smtp        JAMES smtpd 2.3.2
+80/tcp   open  http        Apache httpd 2.4.25 ((Debian))
+110/tcp  open  pop3        JAMES pop3d 2.3.2
+119/tcp  open  nntp        JAMES nntpd (posting ok)
+4555/tcp open  james-admin JAMES Remote Admin 2.3.2
+Service Info: Host: solidstate; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Sep 13 16:56:22 2019 -- 1 IP address (1 host up) scanned in 41.14 seconds

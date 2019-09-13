@@ -36,6 +36,10 @@
     https://github.com/superkojiman/onetwopunch
 
 
+## Tools for ports
+http://www.0daysecurity.com/penetration-testing/enumeration.html
+
+
 =============================================================
 ## 21: Ftp
 
