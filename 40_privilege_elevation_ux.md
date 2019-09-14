@@ -95,6 +95,10 @@ takis@tenten:~$ uname -a
 Linux tenten 4.4.0-62-generic #83-Ubuntu SMP Wed Jan 18 14:10:15 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
+# Sudo info
+```
+sudo -l
+```
 
 # Find user information
 ````

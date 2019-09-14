@@ -98,6 +98,10 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
 - Ubuntu 16.04.2 LTS : HTB - Cronos
 
 
+4.13.0-17-generic #20-Ubuntu SMP Mon Nov 6 10:04:08 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+- Ubuntu 17.10 : HTB - Fluxcapacitor - sudo
+
+
 ##### Apps
 
 - OpenSSH 7.2p2 Ubuntu 4ubuntu2.1 (Ubuntu Linux; protocol 2.0) : no exploit
@@ -165,7 +169,8 @@ Windows Server 2008 R2 Datacenter
 - HTB - Bastard : meterpreter ms16_014_wmi_recv_notif
 
 6.1.7600
-- HTB - Bounty : MS15-051, ms10_092_schelevator
+- HTB - Bounty : MS15-051 : https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS15-051: impec
+- HTB - Bounty : ms10_092_schelevator ?
 
 Microsoft Windows Server 2012 R2 Standard
 6.3.9600 N/A Build 9600
@@ -205,7 +210,7 @@ Dist CC 4.2.4
 
 
 IIS 7
-- HTB - Bounty
+- HTB - Bounty => web.config
 
 IIS 8.5
 - HTB - Silo

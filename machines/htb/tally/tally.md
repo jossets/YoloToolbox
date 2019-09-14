@@ -7,9 +7,15 @@ SharePoint
 SQL Server 2016 13.00.1601.00; RTM
 
 - Well Known URL for Sharepoint
+- Use Veil
+
+Very long recon.. got asleep...
 
 
-# nmap
+## Walkthrough
+- https://www.absolomb.com/2018-05-04-HackTheBox-Tally/
+
+## nmap
 ```
 # nmap -A 10.10.10.59
 Starting Nmap 7.70 ( https://nmap.org ) at 2019-09-01 18:11 CEST

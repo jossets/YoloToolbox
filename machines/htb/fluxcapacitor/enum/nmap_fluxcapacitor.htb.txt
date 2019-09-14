@@ -1,0 +1,8 @@
+# Nmap 7.70 scan initiated Sun Sep 15 00:16:15 2019 as: nmap -o enum/nmap_fluxcapacitor.htb.txt fluxcapacitor.htb
+Nmap scan report for fluxcapacitor.htb (10.10.10.69)
+Host is up (0.031s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+80/tcp open  http
+
+# Nmap done at Sun Sep 15 00:16:16 2019 -- 1 IP address (1 host up) scanned in 0.87 seconds

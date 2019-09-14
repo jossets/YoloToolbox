@@ -1,0 +1,130 @@
+# Nmap 7.70 scan initiated Sun Sep 15 00:16:16 2019 as: nmap -sC -sV -A -o enum/nmap_fluxcapacitor.htb_recon.txt fluxcapacitor.htb
+Nmap scan report for fluxcapacitor.htb (10.10.10.69)
+Host is up (0.031s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE VERSION
+80/tcp open  http    SuperWAF
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.1 404 Not Found
+|     Date: Sat, 14 Sep 2019 22:08:32 GMT
+|     Content-Type: text/html
+|     Content-Length: 175
+|     Connection: close
+|     <html>
+|     <head><title>404 Not Found</title></head>
+|     <body bgcolor="white">
+|     <center><h1>404 Not Found</h1></center>
+|     <hr><center>openresty/1.13.6.1</center>
+|     </body>
+|     </html>
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     Date: Sat, 14 Sep 2019 22:08:32 GMT
+|     Content-Type: text/html
+|     Content-Length: 395
+|     Last-Modified: Tue, 05 Dec 2017 16:02:29 GMT
+|     Connection: close
+|     ETag: "5a26c315-18b"
+|     Server: SuperWAF
+|     Accept-Ranges: bytes
+|     <!DOCTYPE html>
+|     <html>
+|     <head>
+|     <title>Keep Alive</title>
+|     </head>
+|     <body>
+|     node1 alive
+|     <!--
+|     Please, add timestamp with something like:
+|     <script> $.ajax({ type: "GET", url: '/sync' }); </script>
+|     <hr/>
+|     FluxCapacitor Inc. info@fluxcapacitor.htb - http://fluxcapacitor.htb<br>
+|     <em><met><doc><brown>Roads? Where we're going, we don't need roads.</brown></doc></met></em>
+|     </body>
+|     </html>
+|   HTTPOptions: 
+|     HTTP/1.1 405 Not Allowed
+|     Date: Sat, 14 Sep 2019 22:08:32 GMT
+|     Content-Type: text/html
+|     Content-Length: 179
+|     Connection: close
+|     <html>
+|     <head><title>405 Not Allowed</title></head>
+|     <body bgcolor="white">
+|     <center><h1>405 Not Allowed</h1></center>
+|     <hr><center>openresty/1.13.6.1</center>
+|     </body>
+|     </html>
+|   RTSPRequest: 
+|     <html>
+|     <head><title>400 Bad Request</title></head>
+|     <body bgcolor="white">
+|     <center><h1>400 Bad Request</h1></center>
+|     <hr><center>openresty/1.13.6.1</center>
+|     </body>
+|     </html>
+|   X11Probe: 
+|     HTTP/1.1 400 Bad Request
+|     Date: Sat, 14 Sep 2019 22:08:32 GMT
+|     Content-Type: text/html
+|     Content-Length: 179
+|     Connection: close
+|     <html>
+|     <head><title>400 Bad Request</title></head>
+|     <body bgcolor="white">
+|     <center><h1>400 Bad Request</h1></center>
+|     <hr><center>openresty/1.13.6.1</center>
+|     </body>
+|_    </html>
+|_http-server-header: SuperWAF
+|_http-title: Keep Alive
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port80-TCP:V=7.70%I=7%D=9/15%Time=5D7D66BA%P=x86_64-pc-linux-gnu%r(GetR
+SF:equest,270,"HTTP/1\.1\x20200\x20OK\r\nDate:\x20Sat,\x2014\x20Sep\x20201
+SF:9\x2022:08:32\x20GMT\r\nContent-Type:\x20text/html\r\nContent-Length:\x
+SF:20395\r\nLast-Modified:\x20Tue,\x2005\x20Dec\x202017\x2016:02:29\x20GMT
+SF:\r\nConnection:\x20close\r\nETag:\x20\"5a26c315-18b\"\r\nServer:\x20Sup
+SF:erWAF\r\nAccept-Ranges:\x20bytes\r\n\r\n<!DOCTYPE\x20html>\n<html>\n<he
+SF:ad>\n<title>Keep\x20Alive</title>\n</head>\n<body>\n\tOK:\x20node1\x20a
+SF:live\n\t<!--\n\t\tPlease,\x20add\x20timestamp\x20with\x20something\x20l
+SF:ike:\n\t\t<script>\x20\$\.ajax\({\x20type:\x20\"GET\",\x20url:\x20'/syn
+SF:c'\x20}\);\x20</script>\n\t-->\n\t<hr/>\n\tFluxCapacitor\x20Inc\.\x20in
+SF:fo@fluxcapacitor\.htb\x20-\x20http://fluxcapacitor\.htb<br>\n\t<em><met
+SF:><doc><brown>Roads\?\x20Where\x20we're\x20going,\x20we\x20don't\x20need
+SF:\x20roads\.</brown></doc></met></em>\n</body>\n</html>\n")%r(HTTPOption
+SF:s,135,"HTTP/1\.1\x20405\x20Not\x20Allowed\r\nDate:\x20Sat,\x2014\x20Sep
+SF:\x202019\x2022:08:32\x20GMT\r\nContent-Type:\x20text/html\r\nContent-Le
+SF:ngth:\x20179\r\nConnection:\x20close\r\n\r\n<html>\r\n<head><title>405\
+SF:x20Not\x20Allowed</title></head>\r\n<body\x20bgcolor=\"white\">\r\n<cen
+SF:ter><h1>405\x20Not\x20Allowed</h1></center>\r\n<hr><center>openresty/1\
+SF:.13\.6\.1</center>\r\n</body>\r\n</html>\r\n")%r(RTSPRequest,B3,"<html>
+SF:\r\n<head><title>400\x20Bad\x20Request</title></head>\r\n<body\x20bgcol
+SF:or=\"white\">\r\n<center><h1>400\x20Bad\x20Request</h1></center>\r\n<hr
+SF:><center>openresty/1\.13\.6\.1</center>\r\n</body>\r\n</html>\r\n")%r(X
+SF:11Probe,135,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nDate:\x20Sat,\x2014\
+SF:x20Sep\x202019\x2022:08:32\x20GMT\r\nContent-Type:\x20text/html\r\nCont
+SF:ent-Length:\x20179\r\nConnection:\x20close\r\n\r\n<html>\r\n<head><titl
+SF:e>400\x20Bad\x20Request</title></head>\r\n<body\x20bgcolor=\"white\">\r
+SF:\n<center><h1>400\x20Bad\x20Request</h1></center>\r\n<hr><center>openre
+SF:sty/1\.13\.6\.1</center>\r\n</body>\r\n</html>\r\n")%r(FourOhFourReques
+SF:t,12F,"HTTP/1\.1\x20404\x20Not\x20Found\r\nDate:\x20Sat,\x2014\x20Sep\x
+SF:202019\x2022:08:32\x20GMT\r\nContent-Type:\x20text/html\r\nContent-Leng
+SF:th:\x20175\r\nConnection:\x20close\r\n\r\n<html>\r\n<head><title>404\x2
+SF:0Not\x20Found</title></head>\r\n<body\x20bgcolor=\"white\">\r\n<center>
+SF:<h1>404\x20Not\x20Found</h1></center>\r\n<hr><center>openresty/1\.13\.6
+SF:\.1</center>\r\n</body>\r\n</html>\r\n");
+Device type: general purpose
+Running (JUST GUESSING): Linux 2.6.X (87%)
+OS CPE: cpe:/o:linux:linux_kernel:2.6.18
+Aggressive OS guesses: Linux 2.6.18 (87%), Linux 2.6.18 - 2.6.22 (85%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+
+TRACEROUTE (using port 110/tcp)
+HOP RTT      ADDRESS
+1   30.93 ms 10.10.14.1
+2   30.97 ms fluxcapacitor.htb (10.10.10.69)
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Sep 15 00:16:39 2019 -- 1 IP address (1 host up) scanned in 24.69 seconds

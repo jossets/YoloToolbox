@@ -1,0 +1,22 @@
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+OUTPUT_FILE: enum/dirb_http:__fluxcapacitor.htb:80.txt
+START_TIME: Sun Sep 15 00:16:16 2019
+URL_BASE: http://fluxcapacitor.htb:80/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+OPTION: Silent Mode
+
+-----------------
+
+GENERATED WORDS: 4612
+
+---- Scanning URL: http://fluxcapacitor.htb:80/ ----
++ http://fluxcapacitor.htb:80/index.html (CODE:200|SIZE:395)
+
+-----------------
+END_TIME: Sun Sep 15 00:18:53 2019
+DOWNLOADED: 4612 - FOUND: 1

@@ -11,6 +11,12 @@
 - Get root shell 
 
 
+
+## Walkthrough
+
+- https://dominicbreuker.com/post/htb_solidstate/
+
+
 ## Nmap
 
 ```

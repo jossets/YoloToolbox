@@ -1,0 +1,6 @@
+# Nmap 7.70 scan initiated Sat Sep 14 19:43:13 2019 as: nmap -sU -p- -o enum/nmap_10.10.10.74_all_udp.txt 10.10.10.74
+Nmap scan report for 10.10.10.74
+Host is up (0.035s latency).
+All 65535 scanned ports on 10.10.10.74 are open|filtered
+
+# Nmap done at Sat Sep 14 20:21:53 2019 -- 1 IP address (1 host up) scanned in 2320.80 seconds

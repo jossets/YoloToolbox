@@ -1,0 +1,14 @@
+# Nmap 7.70 scan initiated Sat Sep 14 19:43:13 2019 as: nmap -sC -sV -A -o enum/nmap_10.10.10.74_recon.txt 10.10.10.74
+Nmap scan report for 10.10.10.74
+Host is up (0.041s latency).
+All 1000 scanned ports on 10.10.10.74 are filtered
+Too many fingerprints match this host to give specific OS details
+Network Distance: 2 hops
+
+TRACEROUTE (using proto 1/icmp)
+HOP RTT      ADDRESS
+1   30.39 ms 10.10.14.1
+2   30.68 ms 10.10.10.74
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Sep 14 19:44:49 2019 -- 1 IP address (1 host up) scanned in 97.12 seconds

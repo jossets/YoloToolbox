@@ -205,10 +205,10 @@ def scan_http(ip, port):
     nikto_outfile = "enum/nikto_"+print_url+".txt"
     add_process([ "nikto", "-h", ip, "-p", port, "-o", nikto_outfile, "-ask","no" ], "Nikto "+url, IPTARGET, port)
 
-    # /opt/gobuster/gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
+    # /opt/gobuster/gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt,aspx,asp
     gobuster_outfile = "enum/go_buster_"+print_url+".txt"
     add_process([ "/opt/gobuster/gobuster", "dir", "-w", "/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt",
-        "-u", url, "-l", "-x", "html,php,js,txt,asp,aspx", "-o", gobuster_outfile ], "Gobuster "+url, IPTARGET, port, on_gobuster_stdout_read)
+        "-u", url, "-l", "-x", "html,php,js,txt,aspx,asp", "-o", gobuster_outfile ], "Gobuster "+url, IPTARGET, port, on_gobuster_stdout_read)
 
 
 def scan_port(ip, port):

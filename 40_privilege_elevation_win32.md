@@ -133,6 +133,12 @@ Just put paths or connection strings in one array item and split the other thing
 
 
 
+## Make invisible visible
+
+```
+attrib *.* -h -s  : affiche les fichiers cachés
+```
+
 
 ## Get User info
 
