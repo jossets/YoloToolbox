@@ -1,0 +1,12 @@
+- Nikto v2.1.6/2.1.5
++ Target Host: 10.10.10.51
++ Target Port: 80
++ GET Server leaks inodes via ETags, header found with file /, fields: 0x1e60 0x5610a1e7a4c9b 
++ GET The anti-clickjacking X-Frame-Options header is not present.
++ GET The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ GET The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ OPTIONS Allowed HTTP Methods: HEAD, GET, POST, OPTIONS 
++ OSVDB-3268: GET /images/: Directory indexing found.
++ OSVDB-3268: GET /images/?pattern=/etc/*&sort=name: Directory indexing found.
++ OSVDB-3092: GET /LICENSE.txt: License file found may identify site software.
++ OSVDB-3233: GET /icons/README: Apache default file found.
