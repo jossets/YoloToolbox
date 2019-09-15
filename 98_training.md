@@ -218,3 +218,5 @@ IIS 8.5
 IIS 10.0
 - HTB - Bart
 
+X.Org X Server 1.19.6
+- HTB - YPuffy - CVE-2018-14665 :ok

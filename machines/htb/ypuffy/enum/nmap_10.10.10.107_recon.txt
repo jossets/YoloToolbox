@@ -1,0 +1,57 @@
+# Nmap 7.70 scan initiated Sun Sep 15 01:45:44 2019 as: nmap -sC -sV -A -o enum/nmap_10.10.10.107_recon.txt 10.10.10.107
+Nmap scan report for 10.10.10.107
+Host is up (0.030s latency).
+Not shown: 995 closed ports
+PORT    STATE SERVICE     VERSION
+22/tcp  open  ssh         OpenSSH 7.7 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 2e:19:e6:af:1b:a7:b0:e8:07:2a:2b:11:5d:7b:c6:04 (RSA)
+|   256 dd:0f:6a:2a:53:ee:19:50:d9:e5:e7:81:04:8d:91:b6 (ECDSA)
+|_  256 21:9e:db:bd:e1:78:4d:72:b0:ea:b4:97:fb:7f:af:91 (ED25519)
+80/tcp  open  http        OpenBSD httpd
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: YPUFFY)
+389/tcp open  ldap        (Anonymous bind OK)
+445/tcp open  netbios-ssn Samba smbd 4.7.6 (workgroup: YPUFFY)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.70%E=4%D=9/15%OT=22%CT=1%CU=33967%PV=Y%DS=2%DC=T%G=Y%TM=5D7D7BD
+OS:0%P=x86_64-pc-linux-gnu)SEQ(SP=106%GCD=1%ISR=10A%TI=RD%CI=RI%TS=21)OPS(O
+OS:1=M54DNNSNW6NNT11%O2=M54DNNSNW6NNT11%O3=M54DNW6NNT11%O4=M54DNNSNW6NNT11%
+OS:O5=M54DNNSNW6NNT11%O6=M54DNNSNNT11)WIN(W1=4000%W2=4000%W3=4000%W4=4000%W
+OS:5=4000%W6=4000)ECN(R=Y%DF=Y%T=40%W=4000%O=M54DNNSNW6%CC=N%Q=)T1(R=Y%DF=Y
+OS:%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=S%F
+OS:=AR%O=%RD=0%Q=)T4(R=N)T5(R=Y%DF=Y%T=40%W=0%S=A%A=S+%F=AR%O=%RD=0%Q=)T6(R
+OS:=Y%DF=Y%T=40%W=0%S=A%A=S%F=AR%O=%RD=0%Q=)T7(R=N)U1(R=Y%DF=N%T=FF%IPL=38%
+OS:UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=N)
+
+Network Distance: 2 hops
+Service Info: Host: YPUFFY
+
+Host script results:
+|_clock-skew: mean: 1h12m05s, deviation: 2h18m34s, median: -7m54s
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.7.6)
+|   Computer name: ypuffy
+|   NetBIOS computer name: YPUFFY\x00
+|   Domain name: hackthebox.htb
+|   FQDN: ypuffy.hackthebox.htb
+|_  System time: 2019-09-14T19:38:20-04:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2019-09-15 01:38:20
+|_  start_date: N/A
+
+TRACEROUTE (using port 110/tcp)
+HOP RTT      ADDRESS
+1   30.35 ms 10.10.14.1
+2   29.52 ms 10.10.10.107
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Sep 15 01:46:24 2019 -- 1 IP address (1 host up) scanned in 40.96 seconds
