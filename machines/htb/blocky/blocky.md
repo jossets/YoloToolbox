@@ -9,6 +9,11 @@
 - mysqlnd 5.0.12-dev - 20150407 
 - PHP 7.0.18-0ubuntu0.16.04.1
 
+- Found .jar
+- Found crdentials in .jar
+- get user
+- sudo -l 
+
 ## Writeup
 
 - https://gist.github.com/berzerk0/1a6270d3cacf30c3b5cff82c7f53bf4c

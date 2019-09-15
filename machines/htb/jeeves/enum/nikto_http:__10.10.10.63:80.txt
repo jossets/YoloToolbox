@@ -1,0 +1,8 @@
+- Nikto v2.1.6/2.1.5
++ Target Host: 10.10.10.63
++ Target Port: 80
++ GET The anti-clickjacking X-Frame-Options header is not present.
++ GET The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ GET The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ OPTIONS Allowed HTTP Methods: OPTIONS, TRACE, GET, HEAD, POST 
++ OPTIONS Public HTTP Methods: OPTIONS, TRACE, GET, HEAD, POST 

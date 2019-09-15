@@ -1,0 +1,18 @@
+- Nikto v2.1.6/2.1.5
++ Target Host: 10.10.10.68
++ Target Port: 80
++ GET Server leaks inodes via ETags, header found with file /, fields: 0x1e3f 0x55f8bbac32f80 
++ GET The anti-clickjacking X-Frame-Options header is not present.
++ GET The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ GET The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ GET IP address found in the 'location' header. The IP is "127.0.1.1".
++ OSVDB-630: GET IIS may reveal its internal or real IP in the Location header via a request to the /images directory. The value is "http://127.0.1.1/images/".
++ OPTIONS Allowed HTTP Methods: GET, HEAD, POST, OPTIONS 
++ GET /config.php: PHP Config file may contain database IDs and passwords.
++ OSVDB-3268: GET /dev/: Directory indexing found.
++ OSVDB-3092: GET /dev/: This might be interesting...
++ OSVDB-3268: GET /php/: Directory indexing found.
++ OSVDB-3092: GET /php/: This might be interesting...
++ OSVDB-3268: GET /images/: Directory indexing found.
++ OSVDB-3268: GET /images/?pattern=/etc/*&sort=name: Directory indexing found.
++ OSVDB-3233: GET /icons/README: Apache default file found.

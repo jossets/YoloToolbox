@@ -1,0 +1,4 @@
+/index.html (Status: 200) [Size: 503]
+/Index.html (Status: 200) [Size: 503]
+/error.html (Status: 200) [Size: 50]
+/INDEX.html (Status: 200) [Size: 503]

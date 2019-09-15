@@ -6,6 +6,8 @@
 - Apache 2.4.18 : no exploit
 - WordPress 4.7.3 : no exploit
 
+- Credentials in jpg : stegano
+- sudo -l
 
 # Walkthrough
 - https://medium.com/@sdgeek/hack-the-box-htb-tenten-ddd9e6a9e22

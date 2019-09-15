@@ -1,0 +1,19 @@
+# Nmap 7.70 scan initiated Sun Sep 15 14:24:20 2019 as: nmap -sC -sV -A -o enum/nmap_10.10.10.68_recon.txt 10.10.10.68
+Nmap scan report for 10.10.10.68
+Host is up (0.043s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Arrexel's Development Site
+Aggressive OS guesses: Linux 3.12 (94%), Linux 3.13 (94%), Linux 3.16 (94%), Linux 3.18 (94%), Linux 3.2 - 4.9 (94%), Linux 3.8 - 3.11 (94%), Linux 4.2 (94%), Linux 4.4 (94%), Linux 4.8 (94%), Linux 4.9 (94%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+
+TRACEROUTE (using port 113/tcp)
+HOP RTT      ADDRESS
+1   44.20 ms 10.10.14.1
+2   44.23 ms 10.10.10.68
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Sep 15 14:24:37 2019 -- 1 IP address (1 host up) scanned in 18.14 seconds

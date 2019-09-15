@@ -19,6 +19,18 @@
 - https://medium.com/@andr3w_hilton/htb-shocker-walkthrough-37f1dc6203f3
 
 
+## Shellshock bash bug
+
+Bash <= 4.3. Any version published before September 2014 got the bug.
+Version actuelle : GNU bash, version 4.4.23(1)-
+The cause of the vulnerability lies in a loophole in the Bash algorithm which parses the values of environment variables
+
+HTTP parameters are passed as env values... Use them..
+
+Nice story : https://medium.com/@nikhilh20/exploit-bash-shellshock-part-1-ad1636acaf9e
+
+Testing : env x='() { :;}; echo Oh No!' bash_shellshock -c "echo Testing!"
+
 
 ## NMap
 
