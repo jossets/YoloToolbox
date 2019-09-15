@@ -1,6 +1,11 @@
 # Web apps frameworks : Code Execution
 
 
+## PErl
+```
+# perl -e 'system("ls")'
+```
+
 ## Sonar risks
 
 https://rules.sonarsource.com/php/RSPEC-3331

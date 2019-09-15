@@ -1,0 +1,9 @@
+# Nmap 7.70 scan initiated Sun Sep 15 13:27:51 2019 as: nmap -o enum/nmap_10.10.10.56.txt 10.10.10.56
+Nmap scan report for 10.10.10.56
+Host is up (0.035s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+80/tcp   open  http
+2222/tcp open  EtherNetIP-1
+
+# Nmap done at Sun Sep 15 13:27:52 2019 -- 1 IP address (1 host up) scanned in 0.86 seconds

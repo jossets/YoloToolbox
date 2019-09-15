@@ -91,15 +91,19 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - HTB - Tenten
   - HTB - Blocky
 
-4.4.0-78-generic #99 i686 athlon i686 GNU/Linux
-- Ubuntu 14.04.5 LTS : HTB - October
-
 4.4.0-72-generic #93-Ubuntu SMP Fri Mar 31 14:07:41 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 - Ubuntu 16.04.2 LTS : HTB - Cronos
 
+4.4.0-78-generic #99 i686 athlon i686 GNU/Linux
+- Ubuntu 14.04.5 LTS : HTB - October
+
+4.4.0-96-generic #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+- Ubuntu 16.04.3 LTS : HTB Shocker : sudo
 
 4.13.0-17-generic #20-Ubuntu SMP Mon Nov 6 10:04:08 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 - Ubuntu 17.10 : HTB - Fluxcapacitor - sudo
+
+
 
 
 ##### Apps
