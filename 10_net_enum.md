@@ -170,6 +170,25 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
     Get word list from sweb site
     $ cewl http://192.168.168.168/index.html -m 2 -w cewl.lst
 
+
+### wfuzz
+
+    Si touts les url retournent un 200 OK, on fuzz sur la longueur de la réponse
+    # wfuzz -z file,/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://bart.htb/FUZZ/
+    000018:  C=200    630 L     3775 W        158607 Ch       "2006"
+    000017:  C=200    630 L     3775 W        158607 Ch       "download"
+    000026:  C=200    630 L     3775 W        158607 Ch       "about"
+    => 158607
+
+    # wfuzz -z file,/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://bart.htb/FUZZ/ --hh 158607
+    ==================================================================
+    ID      Response   Lines      Word         Chars          Payload
+    ==================================================================
+
+    000014:  C=302      0 L        0 W            0 Ch        ""
+    000067:  C=200    548 L     2412 W        35529 Ch        "forum"
+    001614:  C=200     80 L      221 W         3423 Ch        "monitor"
+
 ### Screenshot of url
 
     wkhtmltoimage url pngfile 
@@ -192,6 +211,8 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
 ### Wpscan
     # wpscan -u http://raven.local/wordpress -e
     Note : mysql Credentials location: /var/www/html/wordpress/wp-config.php
+    wpscan --url http://forum.bart.htb/ -e
+
 
 #### Dir structure
   Posts :          /index.php/2017/04/12/hello-world/

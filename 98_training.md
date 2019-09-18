@@ -80,6 +80,8 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - blocky                   : 4.4.0-62-generic x86_64  Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 
   - bashed                   : 4.4.0-62-generic x86_64  Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 
   - valentine                : 3.2.0-23-generic #36     Ubuntu 12.04 LTS                               x86_64
+  - celestial                : 4.4.0-31-generic #50     Ubuntu 16.04.1 LTS 2016 x86_64 x86_64 x86_64 GNU/Linux
+
  
 
 
@@ -93,6 +95,10 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
 3.2.0-23-generic #36-Ubuntu SMP Tue Apr 10 20:39:51 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux
 - Ubuntu 12.04 LTS  
   - HTB Valentine : Dirty cow by firefart
+
+Linux 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+- Ubuntu 16.04.1 LTS
+  - HTB - Celestial : sbit
 
 4.4.0-62-generic x86_64
 - Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 

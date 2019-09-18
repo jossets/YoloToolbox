@@ -1,6 +1,9 @@
 # HTB - Bart 10.10.10.81
 
 
+Too long... gave up..
+
+
 - Windows NT 10.0 Build 15063 i586
 - IIS 10
 
@@ -16,6 +19,7 @@
 - https://dastinia.io/write-up/hackthebox/2018/07/14/hackthebox-bart/
 - https://0xdf.gitlab.io/2018/07/15/htb-bart.html
 
+
 Windows escalation, credentials
 - http://www.fuzzysecurity.com/tutorials/16.html
 - https://pentestlab.blog/2017/04/19/stored-credentials/
@@ -23,6 +27,7 @@ Windows escalation, credentials
 
 
 Read later : https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
+
 
 
 ## Nmap
@@ -133,8 +138,6 @@ No 404, return 200 for all pages...
 #### Identify error pages
 ````
 # wfuzz -z file,/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://bart.htb/FUZZ/
-
-Warning: Pycurl is not compiled against Openssl. Wfuzz might not work correctly when fuzzing SSL sites. Check Wfuzz's documentation for more information.
 
 ********************************************************
 * Wfuzz 2.2.9 - The Web Fuzzer                         *
@@ -323,6 +326,8 @@ Viewing the details of “Internal Chat” reveals that there is another applica
 
 Visting internal-01.bart.htb in our browser reveals the login page of bart’s internal “dev chat”.
 http://internal-01.bart.htb/simple_chat/login_form.php
+
+
 
 ### github
 github repo https://github.com/magkopian/php-ajax-simple-chat. To validate that these two applications are the same, I inspected the css/chat_global.css 

