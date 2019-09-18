@@ -20,7 +20,6 @@ Ou export DISPLAY=:1
 ### user yop, with sudo
 
 
-
 ### chrome
 
 
@@ -31,7 +30,7 @@ Ou export DISPLAY=:1
 ````
 $ mkdir  ~/code
 $ cat go_code
-code --user-data-dir argument ~/code
+code --user-data-dir ~/code .
 ````
 
 ### config git

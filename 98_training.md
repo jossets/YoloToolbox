@@ -68,7 +68,6 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - solidstate 10.10.10.51
   - kotarak 10.10.10.55
   - node 10.10.10.58
-  - valentine 10.10.10.79
   - poison 10.10.10.84
   - sunday 10.10.10.76
   - tartarsauce 10.10.10.88
@@ -80,6 +79,9 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - tenten                   : 4.4.0-62-generic x86_64  Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 
   - blocky                   : 4.4.0-62-generic x86_64  Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 
   - bashed                   : 4.4.0-62-generic x86_64  Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 
+  - valentine                : 3.2.0-23-generic #36     Ubuntu 12.04 LTS                               x86_64
+ 
+
 
 
 #### Systems
@@ -87,6 +89,10 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
 2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 i686 GNU/Linux
 - HTB Popcorn : Linux Kernel <= 2.6.37 local privilege escalation : full_nelson : https://www.exploit-db.com/exploits/15704 , Tested on unpatched Ubuntu 10.04 kernels, both x86 and x86-64.
 
+
+3.2.0-23-generic #36-Ubuntu SMP Tue Apr 10 20:39:51 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux
+- Ubuntu 12.04 LTS  
+  - HTB Valentine : Dirty cow by firefart
 
 4.4.0-62-generic x86_64
 - Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 
@@ -130,12 +136,13 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - silo       : Windows Server 2008 R2
   - bounty     : Windows Server 2008 R2, 6.1.7600
   - jerry      : windows...
-  - conceal    : Windows 10 Enterprise,   10.0.15063 N/A Build 15063, No hotfix
-  - tally      : Windows Server 2016 Standard, 10.0.14393 N/A Build 14393, 2 Hotfix(s) Installed.
-  - bart       : Windows NT 10.0 Build 15063 i586
-  - jeeves
-  - chatterbox
 
+  - jeeves
+  - bart       : Windows NT 10.0 Build 15063 i586
+  - tally      : Windows Server 2016 Standard, 10.0.14393 N/A Build 14393, 2 Hotfix(s) Installed.
+  - 
+  - conceal    : Windows 10 Enterprise,   10.0.15063 N/A Build 15063, No hotfix
+  - chatterbox
   - Bastion    : Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)
   
 ### Systems
