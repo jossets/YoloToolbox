@@ -82,7 +82,7 @@ Identify number of fields in select: here 1,2,3,4 doesn’t generate error
 ## MySql
 
 ````
-select sys_exec(‘/bin/bash’);
+select sys_exec('/bin/sh');
 after bash access, “bash –p” or “sudo su”
 ````
 

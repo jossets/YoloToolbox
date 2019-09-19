@@ -167,7 +167,7 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
     /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
 ### Cewl
-    Get word list from sweb site
+    Get word list from web site
     $ cewl http://192.168.168.168/index.html -m 2 -w cewl.lst
 
 
@@ -188,6 +188,12 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
     000014:  C=302      0 L        0 W            0 Ch        ""
     000067:  C=200    548 L     2412 W        35529 Ch        "forum"
     001614:  C=200     80 L      221 W         3423 Ch        "monitor"
+
+
+### Bruteforce HTTP Basic Auth
+    
+    hydra -l admin -P /usr/share/wordlists/rockyou.txt  -f 10.10.10.157 http-get /monitoring
+
 
 ### Screenshot of url
 
