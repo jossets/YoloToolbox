@@ -1,0 +1,125 @@
+column names
+
+
+
+<dl>name: Host</dl>
+</dt>
+<dt>
+<dl>name: User</dl>
+</dt>
+<dt>
+<dl>name: Password</dl>
+</dt>
+<dt>
+<dl>name: Select_priv</dl>
+</dt>
+<dt>
+<dl>name: Insert_priv</dl>
+</dt>
+<dt>
+<dl>name: Update_priv</dl>
+</dt>
+<dt>
+<dl>name: Delete_priv</dl>
+</dt>
+<dt>
+<dl>name: Create_priv</dl>
+</dt>
+<dt>
+<dl>name: Drop_priv</dl>
+</dt>
+<dt>
+<dl>name: Reload_priv</dl>
+</dt>
+<dt>
+<dl>name: Shutdown_priv</dl>
+</dt>
+<dt>
+<dl>name: Process_priv</dl>
+</dt>
+<dt>
+<dl>name: File_priv</dl>
+</dt>
+<dt>
+<dl>name: Grant_priv</dl>
+</dt>
+<dt>
+<dl>name: References_priv</dl>
+</dt>
+<dt>
+<dl>name: Index_priv</dl>
+</dt>
+<dt>
+<dl>name: Alter_priv</dl>
+</dt>
+<dt>
+<dl>name: Show_db_priv</dl>
+</dt>
+<dt>
+<dl>name: Super_priv</dl>
+</dt>
+<dt>
+<dl>name: Create_tmp_table_priv</dl>
+</dt>
+<dt>
+<dl>name: Lock_tables_priv</dl>
+</dt>
+<dt>
+<dl>name: Execute_priv</dl>
+</dt>
+<dt>
+<dl>name: Repl_slave_priv</dl>
+</dt>
+<dt>
+<dl>name: Repl_client_priv</dl>
+</dt>
+<dt>
+<dl>name: Create_view_priv</dl>
+</dt>
+<dt>
+<dl>name: Show_view_priv</dl>
+</dt>
+<dt>
+<dl>name: Create_routine_priv</dl>
+</dt>
+<dt>
+<dl>name: Alter_routine_priv</dl>
+</dt>
+<dt>
+<dl>name: Create_user_priv</dl>
+</dt>
+<dt>
+<dl>name: Event_priv</dl>
+</dt>
+<dt>
+<dl>name: Trigger_priv</dl>
+</dt>
+<dt>
+<dl>name: Create_tablespace_priv</dl>
+</dt>
+<dt>
+<dl>name: ssl_type</dl>
+</dt>
+<dt>
+<dl>name: ssl_cipher</dl>
+</dt>
+<dt>
+<dl>name: x509_issuer</dl>
+</dt>
+<dt>
+<dl>name: x509_subject</dl>
+</dt>
+<dt>
+<dl>name: max_questions</dl>
+</dt>
+<dt>
+<dl>name: max_updates</dl>
+</dt>
+<dt>
+<dl>name: max_connections</dl>
+</dt>
+<dt>
+<dl>name: max_user_connections</dl>
+</dt>
+<dt>
+<dl>name: plugin</dl>

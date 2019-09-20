@@ -81,6 +81,7 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - bashed                   : 4.4.0-62-generic x86_64  Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64) 
   - valentine                : 3.2.0-23-generic #36     Ubuntu 12.04 LTS                               x86_64
   - celestial                : 4.4.0-31-generic #50     Ubuntu 16.04.1 LTS 2016 x86_64 x86_64 x86_64 GNU/Linux
+  - sneaky                   : 4.4.0-75-generic #96~14.04.1 Ubuntu 14.04.5 LTS 2017 i686 athlon i686 GNU/Linux
 
  
 
@@ -108,6 +109,9 @@ Linux 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x86_64
 
 4.4.0-72-generic #93-Ubuntu SMP Fri Mar 31 14:07:41 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 - Ubuntu 16.04.2 LTS : HTB - Cronos : cron+sbit file
+
+4.4.0-75-generic #96~14.04.1-Ubuntu SMP Thu Apr 20 11:06:56 UTC 2017 i686 athlon i686 GNU/Linux
+- Ubuntu 14.04.5 LTS : HTB - Sneaky : sbit + buffer overflow
 
 4.4.0-78-generic #99 i686 athlon i686 GNU/Linux
 - Ubuntu 14.04.5 LTS : HTB - October : sbit & ret2libc
