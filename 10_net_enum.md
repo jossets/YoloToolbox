@@ -112,6 +112,11 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
 ```
 
 
+
+
+
+
+
 =============================================================
 ## 80: HTTP
 
@@ -372,30 +377,8 @@ Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hyperte
 ### Mount linux share
     rdesktop -u username -p password -r disk:share=/home//Desktop 192.168.168.168
 
-=============================================================
-## 161 : SNMP (UDP)
-
-### Snmpwalk
-    snmpwalk -c public -v1 192.168.168.168
 
 
-
-```
-Voir HTB-conceal
-
-snmpwalk -v 2c -c public 10.10.10.116
-
-I could look up iso.3.6.1.2.1.1.4 (https://www.alvestrand.no/objectid/1.3.6.1.2.1.1.4.html) and see that it is sysContact,
-
-Enable MIB support for snmpwalk
-(for details, see the Mischief post: https://0xdf.gitlab.io/2019/01/05/htb-mischief.html#background), 
-
-First, install the mibs-downloader:
-# apt install snmp-mibs-downloader
-go into /etc/snmp/snmp.conf and comment out the only uncommented line to use the mibs.
-# snmpwalk -v 2c -c public 10.10.10.116
-# snmp-check -v2c -c public 10.10.10.116
-```
 
 =============================================================
 ## 389 : LDAP
@@ -432,3 +415,49 @@ go into /etc/snmp/snmp.conf and comment out the only uncommented line to use the
     $ sqsh -S hostname
     select sys_exec('/bin/bash');
     (escalation: bash -p or sudo su)
+
+
+========================================================================
+#  UDP
+========================================================================
+
+
+=============================================================
+## 69: TFTP (UDP)
+
+    tftp 10.10.10.21
+    Interactive : ?
+    Commandline -> brute force files & dirs..
+        - msf > use auxiliary/scanner/tftp/tftpbrute
+        - nmap -sU -p 69 --script tftp-enum.nse --script-args tftp-enum.filelist=customlist.txt <host>
+        - A tester : python https://github.com/EnableSecurity/tftptheft
+
+        
+=============================================================
+## 161 : SNMP (UDP)
+
+### Snmpwalk
+    snmpwalk -c public -v1 192.168.168.168
+
+
+
+```
+Voir HTB-conceal
+
+snmpwalk -v 2c -c public 10.10.10.116
+
+I could look up iso.3.6.1.2.1.1.4 (https://www.alvestrand.no/objectid/1.3.6.1.2.1.1.4.html) and see that it is sysContact,
+
+Enable MIB support for snmpwalk
+(for details, see the Mischief post: https://0xdf.gitlab.io/2019/01/05/htb-mischief.html#background), 
+
+First, install the mibs-downloader:
+# apt install snmp-mibs-downloader
+go into /etc/snmp/snmp.conf and comment out the only uncommented line to use the mibs.
+# snmpwalk -v 2c -c public 10.10.10.116
+# snmp-check -v2c -c public 10.10.10.116
+```
+IPv6 interfaces ?
+```
+snmpwalk -v2c -c public 10.10.10.20 1.3.6.1.2.1.4.34.1.3
+```

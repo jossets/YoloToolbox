@@ -249,3 +249,6 @@ X.Org X Server 1.19.6
 
 Jenkins
 - HTB - Jeeves
+
+Squid HTTP proxy
+- HTB - Joker : /etc/squid/squid.conf -> hashed pasword
