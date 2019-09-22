@@ -1,13 +1,19 @@
 # Default credentials
 
 
-## password
+## password lists
+
+    Convert 
+    tr '[:upper:]' '[:lower:]' <enum/site_words.txt >enum/site_words_lower.txt
+
+
 Kali Dictionaries
 - /usr/share/john/password.lst
 - /usr/share/dirb/wordlists/big.txt
 - /usr/share/wfuzz/wordlist/general/big.txt
 - /usr/share/wordlists/rockyou.txt             (unzip it before use)
 - /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+
 
 
 ## Listes

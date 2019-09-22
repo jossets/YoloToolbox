@@ -154,7 +154,7 @@ Linux 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x86_64
   - granny     : Windows Server 2003 SP2
   - Arctic     : Windows Server 2008 R2 Standard,   6.1.7600 N/A Build 7600, No Hotfix
   - grandpa    : Windows(R) Server 2003, Standard Edition, 5.2.3790 Service Pack 2 Build 3790 Hotfix(s): 1 Hotfix(s) Installed. [01]: Q147222
-  - silo       : Windows Server 2008 R2
+  - silo       : Microsoft Windows Server 2012 R2 Standard, 6.3.9600 N/A Build 9600, 149 Hotfix(s) Installed.
   - bounty     : Windows Server 2008 R2, 6.1.7600
   - jerry      : windows...
 
@@ -212,6 +212,13 @@ Microsoft Windows Server 2012 R2 Standard
 - HTB - Optimum : Empire MS16-032 powershell script
 
 
+Microsoft Windows Server 2012 R2 Standard
+6.3.9600 N/A Build 9600
+149 Hotfix(s) Installed.
+- HTB - Silo : System/admin direct. no escalation needed.
+
+
+
 Microsoft Windows 10 Pro
 10.0.10586 N/A Build 10586  - 10 Hotfix(s) Installed.
 - HTB - Jeeves : hotpotato in theory, not worked for me
@@ -249,8 +256,6 @@ Dist CC 4.2.4
 IIS 7
 - HTB - Bounty => web.config
 
-IIS 8.5
-- HTB - Silo
 
 IIS 10.0
 - HTB - Bart
@@ -268,3 +273,5 @@ Squid HTTP proxy
 Magento CMS 1.9.0.0
 - HTB - Swagshop : CVE create admin, upload jpg with php webshell & trigger with newsletter template
 
+Oracle TNS listener 11.2.0.2.0
+- HTB - Silo : Full Oracle exploit : sid, user.password, file upload, file exec thanks ODAT

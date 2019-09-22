@@ -1,3 +1,16 @@
+### Activate Shared Clipboard in Virtualbox
+
+apt-get update
+apt-get upgrade -y
+apt-get install virtualbox-guest-x11
+
+Dans ~/.bashrc
+VBoxClient --clipboard
+
+
+
+
+
 ### Sudo without password
 
 ````
@@ -28,9 +41,9 @@ Ou export DISPLAY=:1
 ### code
 
 ````
-$ mkdir  ~/code
+$ mkdir  ~/.code
 $ cat go_code
-code --user-data-dir ~/code .
+code --user-data-dir ~/.code .
 ````
 
 ### config git

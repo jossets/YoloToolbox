@@ -204,6 +204,7 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
 
     wkhtmltoimage url pngfile 
 
+
 =============================================================
 
 ## Sharepoint
@@ -327,8 +328,8 @@ Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hyperte
 ## 137-139-445 : NetBios/Smb
 
 ### Nmap scripts
-    nmap --script smb-vuln*.nse
-    nmap 192.168.168.168 --script=smb-vuln*.nse location: /usr/share/nmap/scripts/smb-vuln*.nse
+    nmap 192.168.168.168 --script=smb-vuln*.nse 
+    location: /usr/share/nmap/scripts/smb-vuln*.nse
 
 
 ### Enum4Linux
@@ -390,6 +391,40 @@ Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hyperte
     objectClass: sambaSamAccount
     sambaNTPassword: 0B186E661BBDBDCF6047784DE8B9FD8B
     smbclient -L \\\\10.10.10.107 --pw-nt-hash -U alice1978%0B186E661BBDBDCF6047784DE8B9FD8B
+
+
+=============================================================
+## 1521/tcp  open  oracle-tns   Oracle TNS listener
+
+- https://medium.com/@netscylla/pentesters-guide-to-oracle-hacking-1dcf7068d573
+
+    ODAT (Oracle Database Attacking Tool) : https://github.com/quentinhardy/odat
+
+    - You have an Oracle database listening remotely and want to find valid SIDs and credentials in order to connect to the database
+    - You have a valid Oracle account on a database and want to escalate your privileges to become DBA or SYSDBA
+    - You have a Oracle account and you want to execute system commands (e.g. reverse shell) in order to move forward on the operating system hosting the database
+    - Tested on Oracle Database 10g, 11g, 12c and 18c
+
+    Stand alone : 
+    - https://github.com/quentinhardy/odat/releases/
+    - https://github.com/quentinhardy/odat/releases/download/2.3/odat-linux-libc2.5-x86_64-v2.3.zip
+
+
+    Identify Database
+    - nmap
+
+    Get SID
+    - odat sidguesser -s 10.10.10.82
+    - /opt/odat/odat sidguesser -s 10.10.10.82 -p 1521 --sids-file /opt/odat/accounts/sid.txt  --sid-charset ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz    Si rien trouvé,on ajoute les minuscules
+    - msf auxiliary(admin/oracle/sid_brute) > run
+
+    Bruteforce user and pass
+    - ODAT password list is in all caps. Need to process or add new lists.
+    - cp /usr/share/wordlists/metasploit/oracle_default_userpass.txt . then replace space by / =>  LOGIN/PASS
+    - ./odat-libc2.5-x86_64 passwordguesser -s 10.10.10.82 -p 1521 -d XE --accounts-file accounts/msf_oracle_default_userpass.txt 
+      - XE found by odat sidguesser
+
+
 
 
 =============================================================

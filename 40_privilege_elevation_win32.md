@@ -608,6 +608,7 @@ cp  /usr/share/windows-binaries/nc.exe .
 
 ```
 # cp ../../../tools/windows-exploit-suggester.py .
+# pip install xlrd
 
 root@kali:~/htb/YoloToolbox/machines/htb/granny# python windows-exploit-suggester.py -u
 [*] initiating winsploit version 3.3...
