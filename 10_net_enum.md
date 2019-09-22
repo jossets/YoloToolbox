@@ -426,7 +426,7 @@ Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hyperte
 ## 69: TFTP (UDP)
 
     tftp 10.10.10.21
-    Interactive : ?
+    Interactive : ? 
     Commandline -> brute force files & dirs..
         - msf > use auxiliary/scanner/tftp/tftpbrute
         - nmap -sU -p 69 --script tftp-enum.nse --script-args tftp-enum.filelist=customlist.txt <host>

@@ -82,8 +82,11 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - valentine                : 3.2.0-23-generic #36     Ubuntu 12.04 LTS                               x86_64
   - celestial                : 4.4.0-31-generic #50     Ubuntu 16.04.1 LTS 2016 x86_64 x86_64 x86_64 GNU/Linux
   - sneaky                   : 4.4.0-75-generic #96~14.04.1 Ubuntu 14.04.5 LTS 2017 i686 athlon i686 GNU/Linux
+  - swagshop                 : 4.4.0-146-generic #172   Ubuntu 16.04.6 LTS SMP 2019 x86_64 x86_64 x86_64 GNU/Linux
+  - wall                     : 4.15.0-54-generic #58-   Ubuntu 18.04.2 LTS SMP 2019 x86_64 x86_64 x86_64 GNU/Linux
+  - Apocalyst                : 4.4.0-62-generic #83-    Ubuntu 16.04.2 LTS SMP Wed Jan 18 14:10:15 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 
- 
+
 
 
 
@@ -119,9 +122,17 @@ Linux 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x86_64
 4.4.0-96-generic #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 - Ubuntu 16.04.3 LTS : HTB Shocker : sudo
 
+4.4.0-62-generic #83-Ubuntu SMP Wed Jan 18 14:10:15 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+- Ubuntu 16.04.2 LTS : HTB - Apocalyst
+
+4.4.0-146-generic #172   Ubuntu 16.04.6 LTS SMP 2019 x86_64 x86_64 x86_64 GNU/Linux
+- Ubuntu 16.04.6 LTS : HTB - Swagshop
+
 4.13.0-17-generic #20-Ubuntu SMP Mon Nov 6 10:04:08 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 - Ubuntu 17.10 : HTB - Fluxcapacitor - sudo
 
+4.15.0-54-generic #58-Ubuntu SMP Mon Jun 24 10:55:24 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+- Ubuntu 18.04.2 LTS : HTB - Wall
 
 
 ##### Apps
@@ -252,3 +263,8 @@ Jenkins
 
 Squid HTTP proxy
 - HTB - Joker : /etc/squid/squid.conf -> hashed pasword
+
+
+Magento CMS 1.9.0.0
+- HTB - Swagshop : CVE create admin, upload jpg with php webshell & trigger with newsletter template
+
