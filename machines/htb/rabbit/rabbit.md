@@ -25,6 +25,13 @@ Windows Server 2008 R2 Standard
 - Identifier wamp64 qui tourne en System
 - Télécharger et poser un webshellphp dans c:\wamp64\www\joomla\ => flag root
 
+## Walkthrough
+
+- http://devloop.users.sourceforge.net/index.php?article167/solution-du-ctf-rabbit-de-hackthebox
+- https://ironhackers.es/en/writeups/writeup-rabbit-hackthebox/
+
+
+
 
 ## Nmap
 
@@ -688,6 +695,9 @@ PS C:\Program Files (x86)\OpenOffice 4\program>
 ```
 
 ## On liste les process, et on regarde wamp
+
+powershell -version 2 -c " & {Get-WmiObject -Query "'Select * from Win32_Process'" | where {$_.Name -notlike "'svchost*'"} | Select Name, Handle, @{Label="'Owner'";Expression={$_.GetOwner().User}} | ft -AutoSize }"
+
 
 c:\>net start | findstr wamp
    wampapache64

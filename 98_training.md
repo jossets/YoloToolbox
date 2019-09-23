@@ -153,7 +153,7 @@ Linux 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x86_64
   - Bastard    : Windows Server 2008 R2 Datacenter, 6.1.7600 N/A Build 7600, No hotfix
   - granny     : Windows Server 2003 SP2
   - Arctic     : Windows Server 2008 R2 Standard,   6.1.7600 N/A Build 7600, No Hotfix
-  - grandpa    : Windows(R) Server 2003, Standard Edition, 5.2.3790 Service Pack 2 Build 3790 Hotfix(s): 1 Hotfix(s) Installed. [01]: Q147222
+  - grandpa    : Windows(R) Server 2003, Standard Edition, 5.2.3790 Service Pack 2 Build 3790, 1 Hotfix Installed. [01]: Q147222
   - silo       : Microsoft Windows Server 2012 R2 Standard, 6.3.9600 N/A Build 9600, 149 Hotfix(s) Installed.
   - bounty     : Windows Server 2008 R2, 6.1.7600
   - jerry      : windows...
@@ -165,6 +165,9 @@ Linux 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x86_64
   - conceal    : Windows 10 Enterprise,   10.0.15063 N/A Build 15063, No hotfix
   - chatterbox
   - Bastion    : Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)
+  - rabbit     : Windows Server 2008 R2 Standard , 6.1.7601 Service Pack 1 Build 7601, 135 hotfix(s)
+
+
   
 ### Systems
   

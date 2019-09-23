@@ -291,6 +291,24 @@ Get-Service -DisplayName "Service"
 Get-CimInstance Win32_Service -Filter "Name='Service'" | Format-List -Property *
 ````
 
+## Running process
+
+```
+powershell -version 2 -c " & {Get-WmiObject -Query "'Select * from Win32_Process'" | where {$_.Name -notlike "'svchost*'"} | Select Name, Handle, @{Label="'Owner'";Expression={$_.GetOwner().User}} | ft -AutoSize }"
+
+wmic service where started=true get name, startname
+
+VMTools                              LocalSystem                  
+VMware Physical Disk Helper Service  LocalSystem                  
+VMwareCAFManagementAgentHost         LocalSystem                  
+W32Time                              NT AUTHORITY\LocalService    
+W3SVC                                LocalSystem                  
+wampapache64                         LocalSystem       <=== apache as Root             
+wampmysqld64                         LocalSystem       <=== mysql as root
+WAS                                  LocalSystem                
+```
+
+
 ## Scheduled tasks/jobs
 ````
 schtasks
@@ -298,6 +316,18 @@ schtasks /query /v /fo LIST
 Get-ScheduledTask | Where State -EQ 'Ready'
 tasklist /SVC                                : links running processes to started services.
 ````
+
+```
+schtasks /query /fo LIST 2>nul | findstr TaskName                                                                                 TaskName:      \CleanUp                                                                                                           TaskName:      \Delete Files                                                                                                      TaskName:      \Delete Sent Items Magnus                                                                                          TaskName:      \Download Email Attachments                                                                                        TaskName:      \Execute Malicious Documents                                                                                       TaskName:      \System Maintenance   
+
+Detail d'une tache :
+schtasks /query /v /fo list /tn "\System Maintenance"   
+
+Lancer une tache
+schtasks /run /tn "System Maintenance"
+
+```
+
 
 ## Driver list
 ````
@@ -332,6 +362,8 @@ wmic /?                 : help
 ````
 [exploits/windows/wmic_info.bat](exploits/windows/wmic_info.bat)
 http://www.fuzzysecurity.com/tutorials/files/wmic_info.rar
+
+
 
 # Find missing patches
 
