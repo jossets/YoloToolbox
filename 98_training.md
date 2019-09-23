@@ -85,6 +85,7 @@ Pay close attention to the privilege escalation on both Vulnix and PwnOS.
   - swagshop                 : 4.4.0-146-generic #172   Ubuntu 16.04.6 LTS SMP 2019 x86_64 x86_64 x86_64 GNU/Linux
   - wall                     : 4.15.0-54-generic #58-   Ubuntu 18.04.2 LTS SMP 2019 x86_64 x86_64 x86_64 GNU/Linux
   - Apocalyst                : 4.4.0-62-generic #83-    Ubuntu 16.04.2 LTS SMP Wed Jan 18 14:10:15 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+  - Calamity                 : 4.4.0-81-generic #104    Ubuntu 16.04.2 LTS SMP Wed Jun 14 08:15:00 UTC 2017 i686 athlon i686 GNU/Linux
 
 
 
@@ -118,6 +119,9 @@ Linux 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x86_64
 
 4.4.0-78-generic #99 i686 athlon i686 GNU/Linux
 - Ubuntu 14.04.5 LTS : HTB - October : sbit & ret2libc
+
+4.4.0-81-generic #104-Ubuntu SMP Wed Jun 14 08:15:00 UTC 2017 i686 athlon i686 GNU/Linux
+- Ubuntu 16.04.2 LTS : HTB Calamity : buffer overflow : rop chain + reenabling NX thish mprotect call.
 
 4.4.0-96-generic #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 - Ubuntu 16.04.3 LTS : HTB Shocker : sudo

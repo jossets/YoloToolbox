@@ -1,6 +1,11 @@
 # HTB - Calamity  10.10.10.27
 
 
+- Linux calamity 4.4.0-81-generic #104-Ubuntu SMP Wed Jun 14 08:15:00 UTC 2017 i686 athlon i686 GNU/Linux
+- Ubuntu 16.04.2 LTS 
+
+
+
 
 ## NMap
 
@@ -161,9 +166,58 @@ Play => 18547936..*
 
 ## ssh xalvas@10.10.10.27 : 18547936..*
 
+### Exploit 1 : lxc
+
+groups => lxd
+
+lxc help
 
 lxc is installed...
 We can use docker exploit
 
-- https://www.hackingarticles.in/hack-the-box-challenge-calamity-walkthrough/
+- Walk: https://www.hackingarticles.in/hack-the-box-challenge-calamity-walkthrough/
+
+
+### suid + buffer overflow
+
+- Walk: https://0x00sec.org/t/htb-calamity-write-up-ret2mprotect-bypass-nx-info-leak/5139
+
+```
+$ cd app
+$ readelf -W -l goodluck 2>/dev/null
+
+Elf file type is DYN (Shared object file)
+Entry point 0x7e0
+There are 9 program headers, starting at offset 52
+
+Program Headers:
+  Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
+  PHDR           0x000034 0x00000034 0x00000034 0x00120 0x00120 R E 0x4
+  INTERP         0x000154 0x00000154 0x00000154 0x00013 0x00013 R   0x1
+      [Requesting program interpreter: /lib/ld-linux.so.2]
+  LOAD           0x000000 0x00000000 0x00000000 0x013ec 0x013ec R E 0x1000
+  LOAD           0x001ee8 0x00002ee8 0x00002ee8 0x0017c 0x00198 RW  0x1000
+  DYNAMIC        0x001ef4 0x00002ef4 0x00002ef4 0x000f0 0x000f0 RW  0x4
+  NOTE           0x000168 0x00000168 0x00000168 0x00044 0x00044 R   0x4
+  GNU_EH_FRAME   0x001124 0x00001124 0x00001124 0x00084 0x00084 R   0x4
+  GNU_STACK      0x000000 0x00000000 0x00000000 0x00000 0x00000 RW  0x10
+  GNU_RELRO      0x001ee8 0x00002ee8 0x00002ee8 0x00118 0x00118 R   0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .interp 
+   02     .interp .note.ABI-tag .note.gnu.build-id .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rel.dyn .rel.plt .init .plt .plt.got .text .fini .rodata .eh_frame_hdr .eh_frame 
+   03     .init_array .fini_array .jcr .dynamic .got .got.plt .data .bss 
+   04     .dynamic 
+   05     .note.ABI-tag .note.gnu.build-id 
+   06     .eh_frame_hdr 
+   07     
+   08     .init_array .fini_array .jcr .dynamic .got 
+
+
+$ cat /proc/sys/kernel/randomize_va_space
+0
+
+```
 

