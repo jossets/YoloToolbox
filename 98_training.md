@@ -206,6 +206,11 @@ Windows Server 2008 R2 Datacenter
 - HTB - Bounty : MS15-051 : https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS15-051: impec
 - HTB - Bounty : ms10_092_schelevator ?
 
+Windows Server 2008 R2 Standard 
+6.1.7601 Service Pack 1 Build 7601
+135 hotfixs
+- HTB - Rabbit : wamps server running as System, just drop a php webshell
+
 Microsoft Windows Server 2012 R2 Standard
 6.3.9600 N/A Build 9600
 31 Hotfix(s) Installed.
@@ -275,3 +280,9 @@ Magento CMS 1.9.0.0
 
 Oracle TNS listener 11.2.0.2.0
 - HTB - Silo : Full Oracle exploit : sid, user.password, file upload, file exec thanks ODAT
+
+Complain Management System
+- HTB - Rabbit : sqli
+
+Office suite
+- HTB - Rabbit : OnLoad macro

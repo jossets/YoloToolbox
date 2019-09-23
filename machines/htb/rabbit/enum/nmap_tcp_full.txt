@@ -1,0 +1,134 @@
+Starting Nmap 7.80 ( https://nmap.org ) at 2019-09-22 23:26 CEST
+Nmap scan report for 10.10.10.71
+Host is up (0.031s latency).
+Not shown: 65485 closed ports
+PORT      STATE SERVICE              VERSION
+25/tcp    open  smtp                 Microsoft Exchange smtpd
+| smtp-commands: Rabbit.htb.local Hello [10.10.14.18], SIZE, PIPELINING, DSN, ENHANCEDSTATUSCODES, STARTTLS, X-ANONYMOUSTLS, AUTH NTLM, X-EXPS GSSAPI NTLM, 8BITMIME, BINARYMIME, CHUNKING, XEXCH50, XRDST, XSHADOW, 
+|_ This server supports the following commands: HELO EHLO STARTTLS RCPT DATA RSET MAIL QUIT HELP AUTH BDAT 
+| smtp-ntlm-info: 
+|   Target_Name: HTB
+|   NetBIOS_Domain_Name: HTB
+|   NetBIOS_Computer_Name: RABBIT
+|   DNS_Domain_Name: htb.local
+|   DNS_Computer_Name: Rabbit.htb.local
+|   DNS_Tree_Name: htb.local
+|_  Product_Version: 6.1.7601
+|_ssl-date: 2019-09-23T02:25:42+00:00; +4h55m32s from scanner time.
+53/tcp    open  domain               Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+80/tcp    open  http                 Microsoft IIS httpd 7.5
+|_http-server-header: Microsoft-IIS/7.5
+|_http-title: 403 - Forbidden: Access is denied.
+88/tcp    open  kerberos-sec         Microsoft Windows Kerberos (server time: 2019-09-23 02:22:32Z)
+135/tcp   open  msrpc                Microsoft Windows RPC
+389/tcp   open  ldap                 Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)
+443/tcp   open  ssl/https?
+|_ssl-date: 2019-09-23T02:25:41+00:00; +4h55m32s from scanner time.
+| sslv2: 
+|   SSLv2 supported
+|   ciphers: 
+|     SSL2_RC4_128_WITH_MD5
+|_    SSL2_DES_192_EDE3_CBC_WITH_MD5
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+587/tcp   open  smtp                 Microsoft Exchange smtpd
+| smtp-commands: Rabbit.htb.local Hello [10.10.14.18], SIZE 10485760, PIPELINING, DSN, ENHANCEDSTATUSCODES, STARTTLS, AUTH GSSAPI NTLM, 8BITMIME, BINARYMIME, CHUNKING, 
+|_ This server supports the following commands: HELO EHLO STARTTLS RCPT DATA RSET MAIL QUIT HELP AUTH BDAT 
+| smtp-ntlm-info: 
+|   Target_Name: HTB
+|   NetBIOS_Domain_Name: HTB
+|   NetBIOS_Computer_Name: RABBIT
+|   DNS_Domain_Name: htb.local
+|   DNS_Computer_Name: Rabbit.htb.local
+|   DNS_Tree_Name: htb.local
+|_  Product_Version: 6.1.7601
+|_ssl-date: 2019-09-23T02:25:42+00:00; +4h55m32s from scanner time.
+593/tcp   open  ncacn_http           Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+808/tcp   open  ccproxy-http?
+3268/tcp  open  ldap                 Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+3306/tcp  open  mysql                MySQL 5.7.19
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.7.19
+|   Thread ID: 15
+|   Capabilities flags: 63487
+|   Some Capabilities: FoundRows, ODBCClient, Support41Auth, SupportsTransactions, InteractiveClient, Speaks41ProtocolNew, IgnoreSigpipes, SupportsLoadDataLocal, DontAllowDatabaseTableColumn, Speaks41ProtocolOld, ConnectWithDatabase, LongPassword, LongColumnFlag, IgnoreSpaceBeforeParenthesis, SupportsCompression, SupportsMultipleResults, SupportsMultipleStatments, SupportsAuthPlugins
+|   Status: Autocommit
+|   Salt: PazI\x18]\x1D\x16:-\x1CT,\x01O	j{8\x0E
+|_  Auth Plugin Name: mysql_native_password
+5722/tcp  open  msrpc                Microsoft Windows RPC
+5985/tcp  open  http                 Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+6001/tcp  open  ncacn_http           Microsoft Windows RPC over HTTP 1.0
+6002/tcp  open  ncacn_http           Microsoft Windows RPC over HTTP 1.0
+6003/tcp  open  ncacn_http           Microsoft Windows RPC over HTTP 1.0
+6004/tcp  open  ncacn_http           Microsoft Windows RPC over HTTP 1.0
+6005/tcp  open  msrpc                Microsoft Windows RPC
+6006/tcp  open  msrpc                Microsoft Windows RPC
+6007/tcp  open  msrpc                Microsoft Windows RPC
+6008/tcp  open  msrpc                Microsoft Windows RPC
+6010/tcp  open  ncacn_http           Microsoft Windows RPC over HTTP 1.0
+6011/tcp  open  msrpc                Microsoft Windows RPC
+6141/tcp  open  msrpc                Microsoft Windows RPC
+7041/tcp  open  msrpc                Microsoft Windows RPC
+7044/tcp  open  msrpc                Microsoft Windows RPC
+7045/tcp  open  msrpc                Microsoft Windows RPC
+8080/tcp  open  http                 Apache httpd 2.4.27 ((Win64) PHP/5.6.31)
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-server-header: Apache/2.4.27 (Win64) PHP/5.6.31
+|_http-title: Example
+9389/tcp  open  mc-nmf               .NET Message Framing
+30827/tcp open  msrpc                Microsoft Windows RPC
+30832/tcp open  msrpc                Microsoft Windows RPC
+30859/tcp open  msrpc                Microsoft Windows RPC
+30865/tcp open  msrpc                Microsoft Windows RPC
+30891/tcp open  msrpc                Microsoft Windows RPC
+30892/tcp open  msrpc                Microsoft Windows RPC
+30901/tcp open  msrpc                Microsoft Windows RPC
+30904/tcp open  msrpc                Microsoft Windows RPC
+30911/tcp open  msrpc                Microsoft Windows RPC
+30925/tcp open  msrpc                Microsoft Windows RPC
+30939/tcp open  msrpc                Microsoft Windows RPC
+30957/tcp open  msrpc                Microsoft Windows RPC
+30962/tcp open  msrpc                Microsoft Windows RPC
+47001/tcp open  http                 Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+64327/tcp open  msexchange-logcopier Microsoft Exchange 2010 log copier
+64337/tcp open  mc-nmf               .NET Message Framing
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.80%E=4%D=9/22%OT=25%CT=1%CU=33285%PV=Y%DS=2%DC=T%G=Y%TM=5D87E88
+OS:5%P=x86_64-pc-linux-gnu)SEQ(SP=101%GCD=1%ISR=108%TI=I%CI=I%II=I%SS=S%TS=
+OS:7)SEQ(SP=101%GCD=1%ISR=108%CI=I%II=I%TS=7)SEQ(SP=101%GCD=1%ISR=108%TI=I%
+OS:CI=I%II=I%TS=7)OPS(O1=M54DNW8ST11%O2=M54DNW8ST11%O3=M54DNW8NNT11%O4=M54D
+OS:NW8ST11%O5=M54DNW8ST11%O6=M54DST11)WIN(W1=2000%W2=2000%W3=2000%W4=2000%W
+OS:5=2000%W6=2000)ECN(R=Y%DF=Y%T=80%W=2000%O=M54DNW8NNS%CC=N%Q=)T1(R=Y%DF=Y
+OS:%T=80%S=O%A=S+%F=AS%RD=0%Q=)T2(R=Y%DF=Y%T=80%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=
+OS:)T3(R=Y%DF=Y%T=80%W=0%S=Z%A=O%F=AR%O=%RD=0%Q=)T4(R=Y%DF=Y%T=80%W=0%S=A%A
+OS:=O%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%D
+OS:F=Y%T=80%W=0%S=A%A=O%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O
+OS:=%RD=0%Q=)U1(R=Y%DF=N%T=80%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=
+OS:G)U1(R=N)IE(R=Y%DFI=N%T=80%CD=Z)
+
+Network Distance: 2 hops
+Service Info: Hosts: Rabbit.htb.local, RABBIT; OS: Windows; CPE: cpe:/o:microsoft:windows, cpe:/o:microsoft:windows_server_2008:r2:sp1
+
+Host script results:
+|_clock-skew: mean: 4h55m31s, deviation: 0s, median: 4h55m31s
+|_smb2-time: Protocol negotiation failed (SMB2)
+
+TRACEROUTE (using port 22/tcp)
+HOP RTT      ADDRESS
+1   35.98 ms 10.10.14.1
+2   36.06 ms 10.10.10.71
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 402.94 seconds

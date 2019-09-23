@@ -1,0 +1,30 @@
+# enum4linux Rabbit.htb.local -U
+Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Mon Sep 23 00:02:07 2019
+
+ ========================== 
+|    Target Information    |
+ ========================== 
+Target ........... Rabbit.htb.local
+RID Range ........ 500-550,1000-1050
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+ ======================================================== 
+|    Enumerating Workgroup/Domain on Rabbit.htb.local    |
+ ======================================================== 
+[E] Can't find workgroup/domain
+
+
+ ================================================ 
+|    Nbtstat Information for Rabbit.htb.local    |
+ ================================================ 
+Looking up status of 10.10.10.71
+No reply from 10.10.10.71
+
+ ========================================= 
+|    Session Check on Rabbit.htb.local    |
+ ========================================= 
+Use of uninitialized value $global_workgroup in concatenation (.) or string at ./enum4linux.pl line 437.
+[E] Server doesn't allow session using username '', password ''.  Aborting remainder of tests.

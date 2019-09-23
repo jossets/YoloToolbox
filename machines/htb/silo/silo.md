@@ -19,10 +19,14 @@
 
 
 ## Walkthrough
+
+- https://0xdf.gitlab.io/2018/08/04/htb-silo.html
+-> Nice writeup, some other ways, and rotenpotato
+
 - https://v3ded.github.io/ctf/htb-silo.html
 - https://medium.com/@DRX_Sicher/walkthrough-silo-hackthebox-929f7f0a7431
 - https://medium.com/@sathish__kumar/hackthebox-silo-writeup-5fe92ac04bb5
-- https://0xdf.gitlab.io/2018/08/04/htb-silo.html
+
 
 
 

@@ -58,3 +58,18 @@ $ git config --global user.email 13644560+jossets@users.noreply.github.com
 
 
 shift+ImpEcran -> Save in ~/Images
+
+
+### gobuster
+
+### libreoffice
+
+
+    apt-get install libreoffice
+
+
+## Set date
+
+
+date -s "23 SEP 2019 21:45:00"
+

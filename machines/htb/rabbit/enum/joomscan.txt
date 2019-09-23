@@ -1,0 +1,74 @@
+    ____  _____  _____  __  __  ___   ___    __    _  _ 
+   (_  _)(  _  )(  _  )(  \/  )/ __) / __)  /__\  ( \( )
+  .-_)(   )(_)(  )(_)(  )    ( \__ \( (__  /(__)\  )  ( 
+  \____) (_____)(_____)(_/\/\_)(___/ \___)(__)(__)(_)\_)
+			(1337.today)
+   
+    --=[OWASP JoomScan
+    +---++---==[Version : 0.0.7
+    +---++---==[Update Date : [2018/09/23]
+    +---++---==[Authors : Mohammad Reza Espargham , Ali Razmjoo
+    --=[Code name : Self Challenge
+    @OWASP_JoomScan , @rezesp , @Ali_Razmjo0 , @OWASP
+
+Processing http://rabbit.htb:8080/joomla/ ...
+
+
+
+[+] FireWall Detector
+[++] Firewall not detected
+
+[+] Detecting Joomla Version
+[++] Joomla 3.8.1
+
+[+] Core Joomla Vulnerability
+[++] Target Joomla core is not vulnerable
+
+[+] Checking Directory Listing
+[++] directory has directory listing : 
+http://rabbit.htb:8080/joomla/administrator/components
+http://rabbit.htb:8080/joomla/administrator/modules
+http://rabbit.htb:8080/joomla/administrator/templates
+http://rabbit.htb:8080/joomla/images/banners
+
+
+[+] Checking apache info/status files
+[++] Readable info/status files are not found
+
+[+] admin finder
+[++] Admin page : http://rabbit.htb:8080/joomla/administrator/
+
+[+] Checking robots.txt existing
+[++] robots.txt is found
+path : http://rabbit.htb:8080/joomla/robots.txt 
+
+Interesting path found from robots.txt
+http://rabbit.htb:8080/joomla/joomla/administrator/
+http://rabbit.htb:8080/joomla/administrator/
+http://rabbit.htb:8080/joomla/bin/
+http://rabbit.htb:8080/joomla/cache/
+http://rabbit.htb:8080/joomla/cli/
+http://rabbit.htb:8080/joomla/components/
+http://rabbit.htb:8080/joomla/includes/
+http://rabbit.htb:8080/joomla/installation/
+http://rabbit.htb:8080/joomla/language/
+http://rabbit.htb:8080/joomla/layouts/
+http://rabbit.htb:8080/joomla/libraries/
+http://rabbit.htb:8080/joomla/logs/
+http://rabbit.htb:8080/joomla/modules/
+http://rabbit.htb:8080/joomla/plugins/
+http://rabbit.htb:8080/joomla/tmp/
+
+
+[+] Finding common backup files name
+[++] Backup files are not found
+
+[+] Finding common log files name
+[++] error log is not found
+
+[+] Checking sensitive config.php.x file
+[++] Readable config files are not found
+
+
+Your Report : reports/rabbit.htb:8080/
+root@kali:~/YoloToolbox/machines/htb/rabbit# 

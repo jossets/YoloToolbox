@@ -570,7 +570,14 @@ powershell -Command "$PSVersionTable.PSVersion"
 
 - C:\Users\Public\Documents : Windows 2008 and 2012 
 - C:\Documents and Settings\All Users\Documents :  Windows 2003 
- 
+- c:\wamp64\www\
+- C:\Windows\Temp
+- C:\Users\Public\
+- C:\temp
+- c:\inetpub\temps
+- c:\inetpub\wwwroot
+
+
 ## Offensive BinSploit
 https://github.com/offensive-security/exploitdb-bin-sploits
 

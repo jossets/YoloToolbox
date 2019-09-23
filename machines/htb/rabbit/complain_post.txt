@@ -1,0 +1,14 @@
+POST /complain/process.php?action=assignComplain HTTP/1.1
+Host: rabbit.htb:8080
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://rabbit.htb:8080/complain/view.php?mod=admin&view=viewByCompID&compId=9
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 139
+Cookie: 8e3390591191591f0578d77b26fb406e=urmt83eohmug21i43fq1819jb2; 823d4ac52e9d0ce23e7e4b5d187c1c30=m14be3k5t7c7j7u3s57lpr37n3; PHPSESSID=k56fi574rn0mk382mq8b5u1217
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+compId=9&compDesc=hello%2C%0D%0A%0D%0Amy+setup+box+is+not+working+well.+please+assist.%0D%0A%0D%0AThanks&engId=6&btnLogin=+Assing+Complain+

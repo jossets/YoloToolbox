@@ -1,0 +1,176 @@
+Host Name:                 RABBIT
+OS Name:                   Microsoft Windows Server 2008 R2 Standard 
+OS Version:                6.1.7601 Service Pack 1 Build 7601
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Primary Domain Controller
+OS Build Type:             Multiprocessor Free
+Registered Owner:          Windows User
+Registered Organization:   
+Product ID:                55041-507-9857321-84278
+Original Install Date:     10/24/2017, 11:45:45 AM
+System Boot Time:          9/23/2019, 8:41:49 PM
+System Manufacturer:       VMware, Inc.
+System Model:              VMware Virtual Platform
+System Type:               x64-based PC
+Processor(s):              2 Processor(s) Installed.
+                           [01]: AMD64 Family 23 Model 1 Stepping 2 AuthenticAMD ~1996 Mhz
+                           [02]: AMD64 Family 23 Model 1 Stepping 2 AuthenticAMD ~1996 Mhz
+BIOS Version:              Phoenix Technologies LTD 6.00, 4/5/2016
+Windows Directory:         C:\Windows
+System Directory:          C:\Windows\system32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-us;English (United States)
+Input Locale:              en-us;English (United States)
+Time Zone:                 (UTC-05:00) Eastern Time (US & Canada)
+Total Physical Memory:     6,143 MB
+Available Physical Memory: 3,256 MB
+Virtual Memory: Max Size:  12,285 MB
+Virtual Memory: Available: 7,232 MB
+Virtual Memory: In Use:    5,053 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    htb.local
+Logon Server:              \\RABBIT
+Hotfix(s):                 135 Hotfix(s) Installed.
+                           [01]: KB2849697
+                           [02]: KB2849696
+                           [03]: KB2841134
+                           [04]: KB2670838
+                           [05]: KB3191566
+                           [06]: KB2506014
+                           [07]: KB2506212
+                           [08]: KB2509553
+                           [09]: KB2533623
+                           [10]: KB2552343
+                           [11]: KB2560656
+                           [12]: KB2564958
+                           [13]: KB2585542
+                           [14]: KB2604115
+                           [15]: KB2620704
+                           [16]: KB2621440
+                           [17]: KB2639308
+                           [18]: KB2643719
+                           [19]: KB2653956
+                           [20]: KB2654428
+                           [21]: KB2656356
+                           [22]: KB2667402
+                           [23]: KB2685939
+                           [24]: KB2690533
+                           [25]: KB2698365
+                           [26]: KB2705219
+                           [27]: KB2719033
+                           [28]: KB2729094
+                           [29]: KB2729452
+                           [30]: KB2731771
+                           [31]: KB2736422
+                           [32]: KB2742599
+                           [33]: KB2758857
+                           [34]: KB2765809
+                           [35]: KB2770660
+                           [36]: KB2786081
+                           [37]: KB2789645
+                           [38]: KB2807986
+                           [39]: KB2809215
+                           [40]: KB2813430
+                           [41]: KB2834140
+                           [42]: KB2836942
+                           [43]: KB2836943
+                           [44]: KB2840631
+                           [45]: KB2853587
+                           [46]: KB2861698
+                           [47]: KB2862152
+                           [48]: KB2862330
+                           [49]: KB2862335
+                           [50]: KB2864202
+                           [51]: KB2868038
+                           [52]: KB2871997
+                           [53]: KB2872035
+                           [54]: KB2882822
+                           [55]: KB2884256
+                           [56]: KB2888049
+                           [57]: KB2892074
+                           [58]: KB2893294
+                           [59]: KB2894844
+                           [60]: KB2900986
+                           [61]: KB2911501
+                           [62]: KB2912390
+                           [63]: KB2931356
+                           [64]: KB2937610
+                           [65]: KB2943357
+                           [66]: KB2968294
+                           [67]: KB2972100
+                           [68]: KB2972211
+                           [69]: KB2973112
+                           [70]: KB2973201
+                           [71]: KB2973351
+                           [72]: KB2977292
+                           [73]: KB2978120
+                           [74]: KB2984972
+                           [75]: KB2991963
+                           [76]: KB2992611
+                           [77]: KB3000483
+                           [78]: KB3003743
+                           [79]: KB3004361
+                           [80]: KB3004375
+                           [81]: KB3010788
+                           [82]: KB3011780
+                           [83]: KB3018238
+                           [84]: KB3019978
+                           [85]: KB3021674
+                           [86]: KB3022777
+                           [87]: KB3023215
+                           [88]: KB3030377
+                           [89]: KB3031432
+                           [90]: KB3035126
+                           [91]: KB3035132
+                           [92]: KB3037574
+                           [93]: KB3042058
+                           [94]: KB3045685
+                           [95]: KB3046017
+                           [96]: KB3046269
+                           [97]: KB3055642
+                           [98]: KB3059317
+                           [99]: KB3060716
+                           [100]: KB3068457
+                           [101]: KB3071756
+                           [102]: KB3072305
+                           [103]: KB3074543
+                           [104]: KB3075220
+                           [105]: KB3076895
+                           [106]: KB3078601
+                           [107]: KB3084135
+                           [108]: KB3086255
+                           [109]: KB3092601
+                           [110]: KB3097989
+                           [111]: KB3101722
+                           [112]: KB3108371
+                           [113]: KB3108381
+                           [114]: KB3108664
+                           [115]: KB3109103
+                           [116]: KB3109560
+                           [117]: KB3110329
+                           [118]: KB3122648
+                           [119]: KB3124275
+                           [120]: KB3126587
+                           [121]: KB3127220
+                           [122]: KB3133043
+                           [123]: KB3138612
+                           [124]: KB3139398
+                           [125]: KB3139914
+                           [126]: KB3156016
+                           [127]: KB3156019
+                           [128]: KB3159398
+                           [129]: KB3161949
+                           [130]: KB3161958
+                           [131]: KB3177467
+                           [132]: KB4019990
+                           [133]: KB4040980
+                           [134]: KB976902
+                           [135]: KB4041681
+Network Card(s):           1 NIC(s) Installed.
+                           [01]: Intel(R) PRO/1000 MT Network Connection
+                                 Connection Name: Local Area Connection
+                                 DHCP Enabled:    No
+                                 IP address(es)
+                                 [01]: 10.10.10.71
+                                 [02]: fe80::284f:3ed5:97c1:7a1a
+                                 [03]: dead:beef::284f:3ed5:97c1:7a1a

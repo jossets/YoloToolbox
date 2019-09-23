@@ -1,0 +1,76 @@
+Starting Nmap 7.80 ( https://nmap.org ) at 2019-09-22 23:26 CEST
+Nmap scan report for 10.10.10.71
+Host is up (0.030s latency).
+Not shown: 974 closed ports
+PORT      STATE         SERVICE      VERSION
+53/udp    open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+88/udp    open          kerberos-sec Microsoft Windows Kerberos (server time: 2019-09-23 02:40:44Z)
+123/udp   open          ntp          NTP v3
+| ntp-info: 
+|_  
+389/udp   open          ldap         Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)
+464/udp   open|filtered kpasswd5
+500/udp   open|filtered isakmp
+|_ike-version: ERROR: Script execution failed (use -d to debug)
+512/udp   open|filtered biff
+4500/udp  open|filtered nat-t-ike
+5355/udp  open|filtered llmnr
+17823/udp open|filtered unknown
+19687/udp open|filtered unknown
+32815/udp open|filtered unknown
+37393/udp open|filtered unknown
+51586/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+51690/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+51717/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+51905/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+51972/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+52144/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+52225/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+52503/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+53006/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+53037/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+53571/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+53589/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+53838/udp open          domain       Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+Too many fingerprints match this host to give specific OS details
+Network Distance: 2 hops
+Service Info: Host: RABBIT; OS: Windows; CPE: cpe:/o:microsoft:windows_server_2008:r2:sp1, cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: 4h55m44s
+
+TRACEROUTE (using port 16786/udp)
+HOP RTT      ADDRESS
+1   29.30 ms 10.10.14.1
+2   30.09 ms 10.10.10.71
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1329.47 seconds

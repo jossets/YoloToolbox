@@ -1,0 +1,28 @@
+# /opt/gobuster/gobuster dir -u https://Rabbit.htb.local -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --insecuressl
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            https://Rabbit.htb.local
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2019/09/23 00:15:51 Starting gobuster
+===============================================================
+/public (Status: 302)
+/exchange (Status: 302)
+/Public (Status: 302)
+[ERROR] 2019/09/23 00:16:14 [!] Get https://Rabbit.htb.local/rpc: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+[ERROR] 2019/09/23 00:16:33 [!] Get https://Rabbit.htb.local/owa: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+/Exchange (Status: 302)
+[ERROR] 2019/09/23 00:18:21 [!] Get https://Rabbit.htb.local/ecp: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+/RPC (Status: 401)
+[ERROR] 2019/09/23 00:18:55 [!] Get https://Rabbit.htb.local/powershell: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+/ews (Status: 401)
+/PUBLIC (Status: 302)
+/exchweb (Status: 302)
+===============================================================
+2019/09/23 00:27:55 Finished
