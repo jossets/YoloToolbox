@@ -156,6 +156,8 @@ cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 
     directory-list-2.3-medium.txt : assez longue
     /opt/gobuster/gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
 
+    HTTPS: -k : skipp ssl verification
+    
     common.txt : plus rapide
     # /opt/gobuster/gobuster dir -u http://10.10.10.13  -l -x html,php,js,txt -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
 
