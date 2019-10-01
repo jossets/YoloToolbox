@@ -20,3 +20,10 @@ https://sushant747.gitbooks.io/total-oscp-guide/webshell.html
 
 
 
+https://github.com/six2dez/OSCP-Human-Guide
+https://gtfobins.github.io/
+https://github.com/PollyP/Notes-on-Penetration-Testing-A-Hands-On-Guide-to-Hacking/blob/master/README.md
+https://sushant747.gitbooks.io/total-oscp-guide/spawning_shells.html
+https://github.com/cornerpirate/socat-shell
+http://pentestmonkey.net/blog/post-exploitation-without-a-tty
+https://scund00r.com/all/oscp/2018/02/25/passing-oscp.html
