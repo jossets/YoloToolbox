@@ -1,8 +1,15 @@
 # Command injection
 
-
+Scenario
+- Web page, script, binary with text field for an IP adresse: system ("ping ".$IP)
+- Exploit Input : arg, var, filename; need to encode
+- Exploit PATH
+- exploit library path
 
 https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command Injection
+
+Exemples
+https://www.owasp.org/index.php/Command_Injection
 
 
 
