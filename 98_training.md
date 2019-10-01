@@ -170,7 +170,7 @@ Linux 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x86_64
   - chatterbox
   - Bastion    : Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)
   - rabbit     : Windows Server 2008 R2 Standard , 6.1.7601 Service Pack 1 Build 7601, 135 hotfix(s)
-
+  - crafted Windows XP machine with SLMail, Minishare, DoStackOverflowGood, VulnServer and WarFTPD.
 
   
 ### Systems
