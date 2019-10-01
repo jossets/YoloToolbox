@@ -67,9 +67,13 @@ Télécharger Chrome : https://www.google.com/chrome/
 Ajouter des raccourcis vers :
 
 - https://www.exploit-db.com/
-
 - https://crackstation.net
 
+
+## Config de Firefow avec Burp
+
+    localhost:8080
+    Installer les certificats pour HTTPS
 
 
 ## Visual code
