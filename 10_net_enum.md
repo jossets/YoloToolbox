@@ -43,6 +43,18 @@ http://www.0daysecurity.com/penetration-testing/enumeration.html
 =============================================================
 ## 21: Ftp
 
+Commands
+
+    $ ftp> open 10.10.10.98
+    anonymous access
+    ftp> cd xx
+    ftp> ls -aihl           : All files including hidden
+    ftp> binary
+    ftp> get backup.mdb
+    ftp> get 'Access Control.zip'
+
+Penser au mode PASV si pb de connection pour le get
+
 Check anonymous access
 ````
 anonymous       anonymous
@@ -53,7 +65,7 @@ Use nmap script
 nmap --script=ftp-anon.nse 10.10.10.9
 ````
 
-Hydra password list
+Hydra brute force with password list
 ````
 # hydra -t 1 -l admin -P /root/Desktop/password.lst -vV 192.168.1.1 ftp
 ````
@@ -175,7 +187,7 @@ Permet d'obtenir des noms dns qui seront utilisés pour le routage des serveurs 
     /usr/share/wordlists/dirb/common.txt
     /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt      
     /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt  
-     
+
     IIS : https://github.com/digination/dirbuster-ng/blob/master/wordlists/vulns/iis.txt
     Sharepoint : /usr/share/wordlists/SecLists/Discovery/Web-Content/CMS/sharepoint.txt
 

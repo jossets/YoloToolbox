@@ -17,7 +17,7 @@ nmap -sS -sV -p- -oN access.txt 10.10.10.98
 $ ftp> open 10.10.10.98
 anonymous access
 ftp> cd xx
-ftp> ls -aihl           : All files includinh hidden
+ftp> ls -aihl           : All files including hidden
 ftp> binary
 ftp> get backup.mdb
 ftp> get 'Access Control.zip'

