@@ -45,9 +45,9 @@ $ msfdb init
 ## Creation du compte Zen
 
     $ adduser zen
-    $ echo -e "xhost +SI:localuser:zen\nsu - zen">/root/go_zen; chmod a+x /root/go_zen
-    $ echo "export DISPLAY=:0" >> /home/zen/.bashrc    
-    
+    $ cat .bashrc
+    xhost +SI:localuser:zen
+    export DISPLAY=:0
     Ou export DISPLAY=:1
 
 
@@ -75,14 +75,6 @@ Ajouter des raccourcis vers :
     localhost:8080
     Installer les certificats pour HTTPS
 
-    Firefox Preferences / Network Proxy / Settings 
-        Manual Proxy Configuration
-        local host 8080
-        Use this proxy server for all protocols
-
-    Burp [Proxy]/[intercept] Intercep is Off
-
-    
 
 ## Visual code
 

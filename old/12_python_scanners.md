@@ -1,18 +1,6 @@
-# Reverse shell
+# HTTP scanners
 
 - https://github.com/infodox/python-pty-shells/blob/master/udp_pty_backconnect.py.
-
-
-## HTTP Scanner
-    python3 /opt/dirsearch/dirsearch.py -u http://10.10.10.9/ -e php -x 403,404 -t 50
-    Look for : 
-    phpinfo.php
-    /phpliteadmin
-    /dashboard
-    /admin
-    /admin.php
-    /login
-    /login.php
 
 
 ## Print password list

