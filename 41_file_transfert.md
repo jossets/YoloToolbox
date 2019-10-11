@@ -16,7 +16,9 @@ python -m pyftpdlib -p 21
 
 ## Server http
 
-
+  $ php -S localhost:8000 -t foo/
+  
+  
 ## Server tftp
 
 service atftpd start
