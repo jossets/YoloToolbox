@@ -93,6 +93,12 @@ wget --mirror 'ftp://ftp_user:UTDRSCH53c"$6hys@tally.htb.local'
 =============================================================
 ## 53: Bind
 
+Reverse DNS
+	
+	$ dig -x 10.13.37.10 @10.13.37.10
+	=> fqdn
+
+
 DNS Zone Transfert (axfr)
 Permet d'obtenir des noms dns qui seront utilisés pour le routage des serveurs web.
 
