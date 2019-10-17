@@ -151,6 +151,7 @@ top
 pstree
 cat /etc/services
 service --status-all
+ps -aef --forest
 ````
 
  
