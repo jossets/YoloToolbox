@@ -180,3 +180,7 @@ hashcat -m 13400 tim.keepass
 ### RDCMan - Decrypt Microsoft Remote Desktop Manager passwords (RDCman)
     Open the .rdg file with a text editor and copy in the password section
     
+    
+## cyberchef : magic
+
+https://gchq.github.io/CyberChef/#recipe=Magic(3,false,false,'')&input=TlZDaWpGN242cGVNN2E3eUxZUFpyUGdIbVdVSGk5N0xDQXpYeFNFVXJhS21l
