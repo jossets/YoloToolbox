@@ -243,6 +243,7 @@ Permet d'obtenir des noms dns qui seront utilisés pour le routage des serveurs 
 ### wfuzz
 
 Fuzz directory name
+
     Si touts les url retournent un 200 OK, on fuzz sur la longueur de la réponse
     # wfuzz -z file,/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://bart.htb/FUZZ/
     000018:  C=200    630 L     3775 W        158607 Ch       "2006"
@@ -261,9 +262,11 @@ Fuzz directory name
     001614:  C=200     80 L      221 W         3423 Ch        "monitor"
 
 Fuzz data in HTTP
+
     wfuzz -z file,/usr/share/wordlists/rockyou.txt -d "password=FUZZ&remember=yes&login=Log+In&proc_login=true" -b PHPSESSID=s1soh390fah01sfvojpgovrc15 --hh 13949  https://10.10.10.43/db/index.php 
 
 Fuzz command and argument
+
     # wfuzz -z file,/usr/share/wordlists/seclists/Discovery/Web-Content/burp-parameter-names.txt  http://10.13.37.10/search?FUZZ=cmd
     # wfuzz -z file,/usr/share/wordlists/seclists/Discovery/Web-Content/burp-parameter-names.txt --hh=178  http://10.13.37.10/search?FUZZ=cmd
     # wfuzz -z file,/usr/share/wordlists/seclists/Discovery/Web-Content/burp-parameter-names.txt --hh=178  http://10.13.37.10/search?category=FUZZ
