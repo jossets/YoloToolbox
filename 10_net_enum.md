@@ -244,13 +244,16 @@ Permet d'obtenir des noms dns qui seront utilisés pour le routage des serveurs 
 
 Fuzz directory name
 
-    Si touts les url retournent un 200 OK, on fuzz sur la longueur de la réponse
+On lance wfuzz avec -z (word file) -u (url) 
+Si toutes les url retournent un 200 OK, on identifie la longueur des réponses negatives : ici 158607 caractères.
+
     # wfuzz -z file,/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://bart.htb/FUZZ/
     000018:  C=200    630 L     3775 W        158607 Ch       "2006"
     000017:  C=200    630 L     3775 W        158607 Ch       "download"
     000026:  C=200    630 L     3775 W        158607 Ch       "about"
     => 158607 
 
+On relance la même commande avec l'option --hh (longueur à éliminer)
 
     # wfuzz -z file,/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://bart.htb/FUZZ/ --hh 158607
     ==================================================================
@@ -261,11 +264,15 @@ Fuzz directory name
     000067:  C=200    548 L     2412 W        35529 Ch        "forum"
     001614:  C=200     80 L      221 W         3423 Ch        "monitor"
 
+
 Fuzz data in HTTP
 
     wfuzz -z file,/usr/share/wordlists/rockyou.txt -d "password=FUZZ&remember=yes&login=Log+In&proc_login=true" -b PHPSESSID=s1soh390fah01sfvojpgovrc15 --hh 13949  https://10.10.10.43/db/index.php 
 
-Fuzz command and argument
+
+Fuzz command and argument : index.php?cmd=login
+
+On va identifier cmd, puis login
 
     # wfuzz -z file,/usr/share/wordlists/seclists/Discovery/Web-Content/burp-parameter-names.txt  http://10.13.37.10/search?FUZZ=cmd
     # wfuzz -z file,/usr/share/wordlists/seclists/Discovery/Web-Content/burp-parameter-names.txt --hh=178  http://10.13.37.10/search?FUZZ=cmd
