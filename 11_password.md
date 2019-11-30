@@ -4,6 +4,7 @@
 =============================================================
 ## Listes
 SecLists: wget https://github.com/danielmiessler/SecLists/archive/master.zip
+https://wiki.skullsecurity.org/Passwords
 
 
 ### login lists
