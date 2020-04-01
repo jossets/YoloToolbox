@@ -151,3 +151,18 @@ En cas de soucis de copier/coller entre windows et Kali
 Si c'est trop fréquent, automatiser avec 
 
     echo "VBoxClient --clipboard" >> ~/.bashrc
+    
+    
+#### Etherpad
+sudo apt install nodejs npm
+
+You'll need git and node.js installed (minimum required Node version: 8.9.0, preferred: >= 10.13.0).
+As any user (we recommend creating a separate user called etherpad):
+Move to a folder where you want to install Etherpad. Clone the git repository: 
+
+git clone --branch master git://github.com/ether/etherpad-lite.git
+cd etherpad-lite
+bin/run.sh
+open http://127.0.0.1:9001 in your browser.
+
+
