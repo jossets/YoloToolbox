@@ -70,7 +70,7 @@ Ajouter des raccourcis vers :
 - https://crackstation.net
 
 
-## Config de Firefow avec Burp
+## Config de Firefox avec Burp
 
     localhost:8080
     Installer les certificats pour HTTPS
