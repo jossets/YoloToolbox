@@ -171,6 +171,10 @@ cat /etc/cron.(time)
 systemctl list-timers
 ````
 
+# Check running process
+````
+https://github.com/DominicBreuker/pspy
+````
 
 # Spawn and Upgrade shells to tty
 ````
