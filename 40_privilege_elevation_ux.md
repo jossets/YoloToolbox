@@ -203,6 +203,10 @@ https://pen-testing.sans.org/blog/2012/06/06/escaping-restricted-linux-shells
 
     :! /bin/bash
 
+## bash
+    To avoid bash drop privileges use -p
+    bash -p
+    
 ## lynx & vi
     open a local file with lynx (e.g.: $ lynx /etc/passwd)
     type “o” to open the options; change the second option (Editor) to “/bin/vi” and save the changes to go back at the main page.
@@ -253,13 +257,19 @@ tee -a 'xx' : append to file
     lua: os.execute('/bin/sh')
     irb(main:001:0> exec "/bin/sh"
 
-## Files Executed in Unrestricted Mode?
 
 
-## Put in /opt/priv_esc_ux
+
+## Enum scripts
+
+Put in /opt/priv_esc_ux
 - LinEnum.sh           : https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh
 - linuxprivchecker.py
 - unixprivesc.sh
+- lse.sh : https://github.com/diego-treitos/linux-smart-enumeration
+- linPeass : https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite
+
+
 
 Upgrate Python3 : 2to3-3.5
 Some restricted shells will start by running some files in an unrestricted mode before the restricted shell is applied. If your .bash_profile is executed in an unrestricted mode and it's editable, you'll be able to execute code and commands as an unrestricted user.
