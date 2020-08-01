@@ -242,7 +242,7 @@ Microsoft Windows Server 2016 Standard
 Microsoft Windows Server 2016 Standard
 10.0.14393 N/A Build 14393 
 2 Hotfix(s) Installed. [01]: KB3199986, [02]: KB4015217           
-- HTB - Tally
+- HTB - Tally : rotentomato (not tested)
 
 
 Microsoft Windows 10 Enterprise
