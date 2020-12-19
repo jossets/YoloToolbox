@@ -31,6 +31,8 @@ PORT     STATE    SERVICE
 
 ## 80 : Login/password  SQLi
 
+[skytower_login.jpg]
+
 Detecter la sqli avec ' ou un polyglot
 ````
 a/*$(sleep 5)`sleep 5``*/sleep(5)#'/*$(sleep 5)`sleep 5` #*/||sleep(5)||'"||sleep(5)||"`
