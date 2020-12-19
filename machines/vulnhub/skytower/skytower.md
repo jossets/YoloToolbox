@@ -31,7 +31,7 @@ PORT     STATE    SERVICE
 
 ## 80 : Login/password  SQLi
 
-![login][skytower_login.jpg]
+![login](skytower_login.jpg)
 
 Detecter la sqli avec ' ou un polyglot
 ````
