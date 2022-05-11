@@ -1,0 +1,19 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!readme.md
+!readme.txt
+!exploit.py
+
+!flag.txt
+!callme
+!encrypted_flag.dat
+!key1.dat
+!key2.dat
+!libcallme.so 
+
+
+# ...even if they are in subdirectories
+!*/

